@@ -7,34 +7,32 @@
  * DP, String
  */
 public class LT032_Longest_Valid_Parentheses {
+    //dp[i] to store the longest parentheses end at index i
+    //If s[i] is '(', set dp[i] to 0,because any string end with '(' cannot be a valid one.
+    //Else if s[i] is ')'
+    //  If s[i-1] is '(', dp[i] = dp[i-2] + 2
+    //  Else if s[i-1] is ')' and s[i-dp[i-1]-1] == '(', dp[i] = dp[i-1] + 2 + dp[i-dp[i-1]-2]
+    //  eg.input "()(())", at i = 5, dp array is [0,2,0,0,2,0], dp[5] = dp[4] + 2 + dp[1] = 6.
     public int longestValidParentheses(String s) {
-        //dp from backward
-    	//int[] dp. dp[len-1]=0. from len-2~0. if s[i]=')', dp[i]=0
-    	//									   if s[i]='(', j=i+1+dp[i+1]. 
-    	//												if s[j]=')' && j<s.length--> dp[i] = 2+dp[i+1].   case: ((.))
-    	//												if s[j]=')' && j<s.length &&j+1<s.length --> dp[i] = 2+dp[i+1]+dp[j+1]
-   
-    	if(s==null || s.length()==0) return 0;
-    	int maxLen = 0;
-    	int[] dp = new int[s.length()];
-    	dp[s.length()-1] = 0;
-    	
-    	for(int i=s.length()-2;i>=0;i--){
-    		if(s.charAt(i)==')') 
-    			dp[i] =0;
-    		else{
-    			int j=i+1+dp[i+1];
-    			if(j<s.length()&&s.charAt(j)==')'){
-    				dp[i] = dp[i+1]+2;
-    				if(j+1<s.length())
-    					dp[i]+=dp[j+1];
-    			}
-    				
-    		}
-    		
-    		maxLen = Math.max(maxLen,dp[i]);
-    	}
-    	
-    	return maxLen;
+        if(s==null || s.length()==0) return 0;
+        int max = 0;
+        int[] dp = new int[s.length()];
+        dp[0] = 0;
+        for(int i=1;i<s.length();i++){
+            if(s.charAt(i)==')'){
+                if(s.charAt(i-1)=='('){
+                    dp[i]=(i-2>=0)?dp[i-2]+2:2;
+                   
+                }else{
+                    if((i-dp[i-1]-1) >=0 && s.charAt(i-dp[i-1]-1) == '('){
+                        dp[i] = dp[i-1] + 2 + ((i-dp[i-1]-2>=0)?dp[i-dp[i-1]-2]:0);
+                    }
+                } 
+                max = Math.max(max, dp[i]);
+            }
+            //else ='(' dp[i] is default 0. can skip
+        }
+        
+        return max;
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
  Given a sorted array and a target value, return the index if the target is found. 
  If not, return the index where it would be if it were inserted in order.
@@ -25,5 +27,10 @@ public class LT035_Search_Insert_Position {
         }
         
         return left;
+    }
+	
+	public int searchInsert2(int[] nums, int target) {
+        int pos = Arrays.binarySearch(nums,target);
+        return pos<0?-(pos+1):pos;
     }
 }

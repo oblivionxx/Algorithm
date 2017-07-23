@@ -17,7 +17,7 @@ public class LT002_Add_Two_Numbers {
 			int sum=0;
 			if(l1!=null){
 				sum+=l1.val;
-				l1 = l1.next;
+				l1 = l1.next;			//move cursor
 			}
 			if(l2!=null){
 				sum+=l2.val;
@@ -26,14 +26,9 @@ public class LT002_Add_Two_Numbers {
 			sum +=carry;
 			carry = sum/10;
 			cur.next = new ListNode(sum%10);
-			cur = cur.next;
+			cur = cur.next;				//move curNode. different with dummyHead
 		}
 		return res.next;
 	}
 	
-	class ListNode {
-		 int val;
-		 ListNode next;
-	     ListNode(int x) { val = x; }
-	}
 }

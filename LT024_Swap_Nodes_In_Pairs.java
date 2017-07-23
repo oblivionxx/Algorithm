@@ -36,10 +36,5 @@ public class LT024_Swap_Nodes_In_Pairs {
         n.next = head;
         return n;
     }
-	
-	public class ListNode {
-		 int val;
-		 ListNode next;
-		 ListNode(int x) { val = x; }
-	}
+
 }

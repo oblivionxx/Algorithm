@@ -14,22 +14,14 @@
  */
 public class LT045_Jump_Game_II {
 	public int jump(int[] nums) {
-		if(nums==null || nums.length==0)
-            return 0;
-		
-		int lastReach = 0, reach=0, step=0;
-		for(int i=0;i<=reach && i<nums.length;i++){
-			if(i>lastReach){
-				step++;
-				lastReach = reach;
-			}
-			reach = Math.max(reach, nums[i]+i);	
-		}
-		
-		//cannot reach the end
-		if(reach<nums.length-1)
-			return 0;
-		
-		return step;
+		int jumps = 0, curEnd = 0, curFarthest = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            curFarthest = Math.max(curFarthest, i + nums[i]);			//update curFarthest using num[i]+i
+            if (i == curEnd) {
+                jumps++;
+                curEnd = curFarthest;
+            }
+        }
+        return jumps;
     }
 }

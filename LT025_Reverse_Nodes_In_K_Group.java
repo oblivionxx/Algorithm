@@ -34,9 +34,8 @@ public class LT025_Reverse_Nodes_In_K_Group {
 		while(cur!=null){
 			count++;
 			ListNode next = cur.next;
-			if(count==k){
+			if(count%k==0){
 				pre = reverse(pre,next);  //(0,4)-> new pre =1.
-				count =0;
 			}
 			cur = cur.next;
 		}
@@ -82,11 +81,5 @@ public class LT025_Reverse_Nodes_In_K_Group {
 		
 		return head;
 		
-	}
-	
-	public class ListNode {
-		 int val;
-		 ListNode next;
-		 ListNode(int x) { val = x; }
 	}
 }

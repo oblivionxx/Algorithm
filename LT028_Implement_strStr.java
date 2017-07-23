@@ -58,13 +58,12 @@ public class LT028_Implement_strStr {
     
     public int strStrSol2(String haystack, String needle) {
         //Brute Force.
-        int m = haystack.length();
+    	int m = haystack.length();
         int n = needle.length();
         int i=0;
         int j=0;
         for(i=0;i<=(m-n);i++){
-            for(j=0;j<n && haystack.charAt(i+j)==needle.charAt(j);j++);
-            if(j==n) return i;
+            if(haystack.substring(i).startsWith(needle)) return i;
         }
         return -1;
     }

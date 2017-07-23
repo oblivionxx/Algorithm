@@ -7,7 +7,35 @@
  * Array, Stack, Two Pointer
  */
 public class LT042_Trapping_Rain_Water {
-	public int trap(int[] height) {
+	//O(n)
+	public int trap(int[] A) {
+	    if (A.length < 3) return 0;
+	    int ans = 0;
+	    int l = 0, r = A.length - 1;
+
+	    // find the left and right edge which can hold water
+	    while (l < r && A[l] <= A[l + 1]) l++;
+	    while (l < r && A[r] <= A[r - 1]) r--;
+
+	    while (l < r) {
+	        int left = A[l];
+	        int right = A[r];
+	        if (left <= right) {
+	            // add volume until an edge larger than the left edge
+	            while (l < r && left >= A[++l]) {
+	                ans += left - A[l];
+	            }
+	        } else {
+	            // add volume until an edge larger than the right volume
+	            while (l < r && A[--r] <= right) {
+	                ans += right - A[r];
+	            }
+	        }
+	    }
+	    return ans;
+	}
+	
+	public int trap2(int[] height) {
         //O(3*n).  每个A[i]能trapped water的容量，取决于height[i]左右两边的高度（可延展）较小值与height[i]的差值，即volume[i] = [min(left[i], right[i]) - height[i]] * 1
 		if(height==null || height.length==0) return 0;
 		
@@ -34,32 +62,4 @@ public class LT042_Trapping_Rain_Water {
 		
 		return sum;
     }
-	
-	//solution2. O(n)
-	public int trap2(int[] A) {
-	    if (A.length < 3) return 0;
-	    int ans = 0;
-	    int l = 0, r = A.length - 1;
-
-	    // find the left and right edge which can hold water
-	    while (l < r && A[l] <= A[l + 1]) l++;
-	    while (l < r && A[r] <= A[r - 1]) r--;
-
-	    while (l < r) {
-	        int left = A[l];
-	        int right = A[r];
-	        if (left <= right) {
-	            // add volume until an edge larger than the left edge
-	            while (l < r && left >= A[++l]) {
-	                ans += left - A[l];
-	            }
-	        } else {
-	            // add volume until an edge larger than the right volume
-	            while (l < r && A[--r] <= right) {
-	                ans += right - A[r];
-	            }
-	        }
-	    }
-	    return ans;
-	}
 }

@@ -20,37 +20,38 @@
  * DP, Greedy, Backtracking, String
  */
 public class LT044_Wildcard_Matching {
-	//2d-DP. http://www.cnblogs.com/EdwardLiu/p/4010637.html
-	public boolean isMatch(String s, String p) {
-        if (s==null && p!=null || s!=null && p==null) return false;
-        if(s.length()>300 && p.charAt(0)=='*' && p.charAt(p.length()-1)=='*')
-            return false;
-        int slen=s.length();
-        int plen=p.length();
-        
-        boolean[][] dp= new boolean[slen+1][plen+1];
+	//dp[i][j] denotes whether s[0....i-1] matches p[0.....j-1]
+    //initialize dp[i][0], i= [1,m]. dp[i][0] should be false because p has nothing in it.
+    //initialize dp[0][j], j = [1, n]. s has nothing, to get dp[0][j] = true, p must be '*', '*', '**',etc. Once p.charAt(j-1) != '*', all the dp[0][j] afterwards will be false.
+    public boolean isMatch(String s, String p) {
+        int m=s.length(), n=p.length();
+        boolean[][] dp = new boolean[m+1][n+1];
         dp[0][0] = true;
-        
-        for (int k=0; k<plen; k++) {
-            //p starting with *. and can be several *s.
-            if(p.charAt(k)=='*')
-                dp[0][k+1] = true;
-            else
-                break;
+        for (int i=1; i<=m; i++) {
+            dp[i][0] = false;
         }
-        
-        for(int i=0;i<slen;i++){
-            for(int j=0;j<plen;j++){
-                if(p.charAt(j)!='*'){
-                    dp[i+1][j+1] = dp[i][j] && (p.charAt(j)=='?' || s.charAt(i)==p.charAt(j));
-                }
-                else{
-                    dp[i+1][j+1] = dp[i][j+1] || dp[i+1][j];
+
+        for(int j=1; j<=n; j++) {
+            if(p.charAt(j-1)=='*'){
+                dp[0][j] = true;
+            } else {
+                break;
+            }
+        }
+
+        //dp[i][j] = dp[i-1][j] || dp[i][j-1]
+        //if(dp[i-1][j] == true) --> s(0-->i-2) matches with p(0-->j-1) now you see p[j-1] == '*' , in the end of s, you can add another or more k chars due to the last of pattern is '*', making dp[i][j] or even dp[i+k][j] true;
+        //if(dp[i][j-1] == true) --> s(0-->i-1) matches with p(0-->j-2) now you see p[j-1] == '*', add this into p, * can match none in s. you don't need to add anything into s, you can see now dp[i][j] = true.
+        for(int i=1; i<=m; i++) {
+            for(int j=1; j<=n; j++) {
+                if (p.charAt(j-1)!='*') {
+                    dp[i][j] = dp[i-1][j-1] && (s.charAt(i-1)==p.charAt(j-1) || p.charAt(j-1)=='?');
+                } else {
+                    dp[i][j] = dp[i-1][j] || dp[i][j-1];
                 }
             }
         }
-       
-        return dp[slen][plen];
+        return dp[m][n];
     }
 	
     public boolean isMatch2(String s, String p) {

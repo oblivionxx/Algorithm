@@ -10,29 +10,21 @@
 import java.util.*;
 public class LT046_Permutation {
 	public List<List<Integer>> permute(int[] nums) {
-		
-		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		if(nums==null || nums.length==0) return res;
-		boolean[] visited = new boolean[nums.length];
-		helper(nums, visited, res, new ArrayList<Integer>());
-		
-		return res;
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res, new ArrayList<>(), nums);
+        return res;
     }
-	
-	public void helper(int[] nums, boolean[] visited, List<List<Integer>> res, ArrayList<Integer> elm){
-		if(elm.size()==nums.length){
-			res.add(new ArrayList<Integer>(elm));
-			return;
-		}
-		
-		for(int i=0;i<nums.length;i++){
-			if(!visited[i]){
-				visited[i] = true;
-				elm.add(nums[i]);
-				helper(nums, visited, res, elm);
-				elm.remove(elm.size()-1);
-				visited[i] = false;
-			}
-		}
-	}
+    
+    private void helper(List<List<Integer>> res, List<Integer> tempList, int [] nums){
+        if(tempList.size() == nums.length){
+            res.add(new ArrayList<>(tempList));
+        }else{
+            for(int i = 0; i < nums.length; i++){         //start from 0. at each position put all possible num
+                if(tempList.contains(nums[i])) continue;   // element already exists, skip
+                tempList.add(nums[i]);
+                helper(res, tempList, nums);
+                tempList.remove(tempList.size() - 1);
+            }
+        }
+    } 
 }

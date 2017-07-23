@@ -6,7 +6,7 @@
 
 /*
  * Math
- * Consider 1. last digit=0  2. overflow after reverse. then return 0
+ * Consider 1. last digit=0  2. overflow after reverse. then return 0. 3. negative value
  */
 public class LT007_Reverse_Integer {
     public int reverse(int x) {

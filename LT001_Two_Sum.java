@@ -14,6 +14,8 @@ import java.util.*;
 
 public class LT001_Two_Sum {
 	public int[] twoSum(int[] nums, int target) {
+		//output is 0 based or 1 based. 
+		//nums sorted ? duplicate
         int[] res = new int[2];
 
         HashMap<Integer, Integer> map = new HashMap<>();

@@ -46,13 +46,6 @@ public class LT023_Merge_k_Sorted_Lists {
         return dummy.next;
     }
 	
-	public class ListNode {
-		 int val;
-		 ListNode next;
-		 ListNode(int x) { val = x; }
-	}
-	
-	
 	//2. Heap and PriorityQueue
 	public ListNode mergeKListsSol2(ListNode[] lists) {
 		if(lists==null || lists.length==0) return null;

@@ -28,7 +28,7 @@ public class LT010_Regular_Expression_Matching {
 		 * else p[j-1] = '*', p[j-2]=x
 		 * then dp[i][j] is true iff any of the following is true
          * 1) "x*" repeats 0 time and matches empty: dp[i][j -2]
-         * 2) "x*" repeats >= 1 times and matches "x*x": s[i-1] == x && dp[i-1][j]. 
+         * 2) "x*" repeats >= 1 times and matches s->"x*x": dp[i-1][j] && s[i-1] == x. (dp[i-1][j] already satisfy the smth like s=xx, p=x*. then new s = xxx. still match p)
          */
 		
 		boolean dp[][] = new boolean[s.length()+1][p.length()+1];

@@ -13,27 +13,26 @@
  */
 public class LT038_Count_And_Say {
 	public String countAndSay(int n) {
-        //for loop. update last string
-		if(n<=0) return null;
-		
-		String str = "1";
-		int cnt = 1;
-		
-		for(int i=1;i<n;i++){
-			StringBuilder sb = new StringBuilder();
-			for(int j=0;j<str.length();j++){
-				if(j<str.length()-1 && str.charAt(j+1)==str.charAt(j))		//if compare j and j-1, may miss the last letter
-																			//and cannot reverse the two element aside of &&
-					cnt++;
-				else{
-					sb.append(cnt).append(str.charAt(j));
-					cnt=1;
-				}
-			}
-			
-			str = sb.toString();
-		}
-		
-		return str;
+        if(n<=0) return null;
+        int count = 1;
+        String initString = "1";
+        
+        for(int i=1;i<n;i++){
+            //read the preString and translate
+            StringBuilder sb = new StringBuilder();
+            for(int j=0;j<initString.length();j++){
+                //loop the string. update count and form the new string
+                if(j<initString.length()-1 && initString.charAt(j)==initString.charAt(j+1)){
+                    count++;
+                }else{
+                    sb.append(count).append(initString.charAt(j));
+                    count=1;
+                }
+            }
+            
+            initString = sb.toString();
+        }
+        
+        return initString;
     }
 }

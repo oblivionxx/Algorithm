@@ -35,10 +35,4 @@ public class LT019_Remove_Nth_Node_From_End_Of_List {
 	     return head;
 	     
 	}
-	
-	public class ListNode {
-		 int val;
-		 ListNode next;
-		 ListNode(int x) { val = x; }
-	}
 }
