@@ -17,49 +17,49 @@ import java.util.HashMap;
  */
 public class LT076_Minimum_Window_Substring {
 	public String minWindow(String s, String t) {
-        HashMap<Character, Integer> tMap = new HashMap<>();
-        for(int i=0;i<t.length();i++){
-        	char letter = t.charAt(i);
-        	if(!tMap.containsKey(letter))
-        		tMap.put(letter, 1);
-        	else
-        		tMap.put(letter, tMap.get(letter)+1);
-        }
-        
-        //using two pointer to track the letter occurence in s.
-        int left = 0;
-        int count = 0;	//max equals to t.length
-        int minStart = 0, minLength = Integer.MAX_VALUE;
-        for(int right=0;right<s.length();right++){
-        	char l = s.charAt(right);
-        	if(tMap.containsKey(l)){
-        		tMap.put(l, tMap.get(l)-1);
-        		if(tMap.get(l)>=0)
-        			count++;
-        		while(count==t.length()){
-        			//already contains all the letter in t. consider move left.
-        			
-        			//update optimal
-        			if(right-left+1<minLength)  {  
-                        minLength = right-left+1;  
-                        minStart = left;                      
-                    }
-        			//consider move left
-        			if(tMap.containsKey(s.charAt(left))){
-        				tMap.put(s.charAt(left), tMap.get(s.charAt(left))+1);     //add one back to have one letter available??recheck
-                        if(tMap.get(s.charAt(left))>0){  
-                            count--;  
-                        }  
-        			}
-        			
-        			left++;		//if not tMap not contains left, left also++ here.
-        		}
-        	}
-        }
-        
-        if(minLength>s.length())
-            return "";
-        
-        return s.substring(minStart, minStart+minLength);
-    }
+		if (s == null || s.length() < t.length() || s.length() == 0) {
+			return "";
+		}
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for (char c : t.toCharArray()) {
+			if (map.containsKey(c)) {
+				map.put(c, map.get(c) + 1);
+			} else {
+				map.put(c, 1);
+			}
+		}
+
+		int left = 0, minLeft = 0, minLen = s.length() + 1;
+		int count = t.length();
+		for (int right = 0; right < s.length(); right++) {
+			if (map.containsKey(s.charAt(right))) {
+				map.put(s.charAt(right), map.get(s.charAt(right)) - 1);
+				if (map.get(s.charAt(right)) >= 0) {
+					count--;
+				}
+
+				while (count == 0) { // if so, satisfy the window that
+										// s.substring contains all letters in
+										// t. update left.
+					if (right - left + 1 < minLen) {
+						minLeft = left;
+						minLen = right - left + 1;
+					}
+					if (map.containsKey(s.charAt(left))) {
+						map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
+						if (map.get(s.charAt(left)) > 0) {
+							count++;
+						}
+					}
+					left++;
+				}
+			}
+		}
+
+		if (minLen > s.length()) {
+			return "";
+		}
+
+		return s.substring(minLeft, minLeft + minLen);
+	}
 }

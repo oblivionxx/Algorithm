@@ -14,27 +14,21 @@ return 10.
  * Array, Stack
  */
 public class LT084_Largest_Rectangle_In_Histogram {
-	//trick using stack
+	// trick using stack
 	public int largestRectangleArea(int[] height) {
-		int area = 0;
-		Stack<Integer> stack = new java.util.Stack<Integer>();			//stack store increasing value's INDEX. 
-		for (int i = 0; i < height.length; i++) {
-			if (stack.empty() || height[stack.peek()] < height[i]) {
-				stack.push(i);
-			}else {														//if next value < stack.peek.
-				int start = stack.pop();
-				int width = stack.empty() ? i : i - stack.peek() - 1;	
-				area = Math.max(area, height[start] * width);			//calculate the max area not including i.
-				i--;													//re-compare height[i] and the new stack.peek's height
-			}
-		}
-       
-		while (!stack.empty()) {
-			int start = stack.pop();
-			int width = stack.empty() ? height.length : height.length - stack.peek() - 1;   //ex. 1,2,3,4,3,2. so this calculate from start to end. 
-			area = Math.max(area, height[start] * width);      
+        int len = height.length;
+        Stack<Integer> s = new Stack<Integer>();
+        int maxArea = 0;
+        for(int i = 0; i <= len; i++){
+            int h = (i == len ? 0 : height[i]);
+            if(s.isEmpty() || h >= height[s.peek()]){
+                s.push(i);              //stack save asc bars
+            }else{
+                int tp = s.pop();
+                maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));     //i - 1 - s.peek() is the width. calculate stack peek's index to cur position.
+                i--;                                                                                //if 1,3,4,2 just compare 4,2 bar. pop. then compare 3,-,2 bar. 4 is removed. then width++
+            }
         }
-		
-		return area;
-	}
+        return maxArea;
+    }
 }

@@ -10,10 +10,9 @@
  * Binary Search
  */
 public class LT081_Search_in_Rotated_Sorted_Array_II {
-	//3 case, mid is target. left is ordered. right is ordered.
-	//left is ordered. then search in left. if target is in ordered left. ...
-	//right is ordered. then search in right. ...
-	
+	// 3 case, mid is target. left is ordered. right is ordered.
+	// left is ordered. then search in left. if target is in ordered left. ...
+	// right is ordered. then search in right. ...
 	public boolean search(int[] A, int target) {
         if(A==null || A.length==0)
             return false;
@@ -36,7 +35,7 @@ public class LT081_Search_in_Rotated_Sorted_Array_II {
                 }else{
                     r = m-1;
                 }                
-            }else{										//move left bound
+            }else{										//move left bound. mid is among duplicate numbers.
                 l++;
             }
         }

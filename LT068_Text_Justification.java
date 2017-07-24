@@ -24,6 +24,8 @@
  * String
  */
 public class LT068_Text_Justification {
+	https://leetcode.com/discuss/25949/simple-java-solution
+	https://leetcode.com/discuss/30857/share-my-2-ms-30-lines-solution
 	public List<String> fullJustify(String[] words, int maxWidth) {
         
     }

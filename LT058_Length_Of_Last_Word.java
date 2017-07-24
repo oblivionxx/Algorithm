@@ -12,27 +12,24 @@
  */
 public class LT058_Length_Of_Last_Word {
 	public int lengthOfLastWord1(String s) {
-        if(s==null || s.length()==0) return 0;
-        
-        String[] str = s.split(" ");
-        int len = str.length;
-        if(len==0) return 0;
-        else
-            return str[len-1].length();
-    }
-	
+		if (s == null || s.length() == 0)
+			return 0;
+		String[] res = s.split("\\s+");
+		return res.length == 0 ? 0 : res[res.length - 1].length();
+	}
+
 	public int lengthOfLastWord2(String s) {
-        if(s==null || s.length()==0) return 0;
-        s = s.trim();	//be careful case like "a ".
-        int count =0;	
-        for(int i=s.length()-1;i>=0;i--){
-            if(s.charAt(i)!=' '){
-                count++;
-            }
-            else
-                return count;
-        }
-        
-        return count;
-    }
+		if (s == null || s.length() == 0)
+			return 0;
+		s = s.trim(); // be careful case like "a ".
+		int count = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if (s.charAt(i) != ' ') {
+				count++;
+			} else
+				return count;
+		}
+
+		return count;
+	}
 }

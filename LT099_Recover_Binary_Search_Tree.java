@@ -6,8 +6,7 @@ Note:
 A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
 
  */
-public class LT099_Recover_Binary_Search_Tree_recheck {
-
+public class LT099_Recover_Binary_Search_Tree {
 	//O(n) space using a stack and inorder traversal. if the number is not correct. note.
 	//O(1) space by Morris Traversal
 	//http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html

@@ -1,3 +1,4 @@
+
 /*
  Given a collection of integers that might contain duplicates, nums, return all possible subsets.
 
@@ -20,32 +21,26 @@ If nums = [1,2,2], a solution is:
  * Array, Backtracking
  */
 import java.util.*;
+
 public class LT090_Subsets_II {
 	public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        if(nums.length==0 || nums==null)
-            return res;
-        Arrays.sort(nums);
-        boolean[] visited = new boolean[nums.length];  
-        res.add(new ArrayList<Integer>()); //add empty set
-        helper(nums, 0, new ArrayList<Integer>(), res,visited);
-        return res;
-        
-    }
-    
-    private void helper(int[] nums, int index, List<Integer> elm, List<List<Integer>> res,boolean[] visited){
-        
-        for(int i=index;i<nums.length;i++){
-            if(i>0 && nums[i-1] == nums[i] && !visited[i-1])  continue;		//add for duplicates.
-            
-            if(!visited[i]){												//add visited for duplicates.
-                elm.add(nums[i]);
-                visited[i] = true;
-                res.add(new ArrayList<Integer>(elm));
-                helper(nums,i+1,elm,res,visited);
-                elm.remove(elm.size()-1);
-                visited[i] = false;
-            }
-        }
-    }
+		List<List<Integer>> res = new ArrayList<List<Integer>>();
+		if (nums.length == 0 || nums == null)
+			return res;
+		Arrays.sort(nums);
+		res.add(new ArrayList<Integer>()); // add empty set. Important.
+		helper(nums, 0, new ArrayList<Integer>(), res);
+		return res;
+	}
+
+	public void helper(int[] nums, int index, ArrayList<Integer> elm, List<List<Integer>> res) {
+		for (int i = index; i < nums.length; i++) {
+			if (i > index && nums[i - 1] == nums[i])
+				continue;
+			elm.add(nums[i]);
+			res.add(new ArrayList<Integer>(elm));
+			helper(nums, i + 1, elm, res);
+			elm.remove(elm.size() - 1);
+		}
+	}
 }

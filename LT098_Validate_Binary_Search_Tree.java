@@ -11,14 +11,15 @@ Tree, DFS
  */
 public class LT098_Validate_Binary_Search_Tree {
 	public boolean isValidBST(TreeNode root) {
-        return helper(root, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
-    }
-    
-    private boolean helper(TreeNode root, double max, double min){
-        if(root==null) return true;
-        if(root.val>=max || root.val <=min)
-            return false;
-        
-        return helper(root.left, root.val, min) && helper(root.right, max, root.val);
-    }
+		return helper(root, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
+	}
+
+	private boolean helper(TreeNode root, double max, double min) {
+		if (root == null)
+			return true;
+		if (root.val >= max || root.val <= min)
+			return false;
+
+		return helper(root.left, root.val, min) && helper(root.right, max, root.val);
+	}
 }

@@ -11,20 +11,14 @@ public class LT083_Remove_Duplicates_from_Sorted_List {
 	public ListNode deleteDuplicates(ListNode head) {
         if(head == null || head.next == null)
             return head;
-           
-        ListNode pre = head;
-        ListNode cur = head.next;
-        
+            
+        ListNode cur = head;
         while(cur!=null){
-            if(pre.val == cur.val)
-                pre.next = cur.next;
-            else
-                pre = cur;
-                
+            while(cur.next!=null && cur.val==cur.next.val){
+                cur.next=cur.next.next;
+            }
             cur = cur.next;
         }
-        
         return head;
     }
-
 }

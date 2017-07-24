@@ -13,40 +13,36 @@ Given m, n satisfy the following condition:
 LinkedList
  */
 public class LT092_Reverse_Linked_List_II {
-	 public ListNode reverseBetween(ListNode head, int m, int n) {
-        //get the mth element, then start to reverse until nth
-        //反转的方法就是每读到一个结点，把它插入到m结点前面位置，然后m结点接到读到结点的下一个。
-        //总共只需要一次扫描，所以时间是O(n)，只需要几个辅助指针，空间是O(1)。
-        
-        //Set up the head node
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        
-        ListNode preNode = dummy; 
-        //find m-1 th node
-        int count = 1;
-        while(preNode.next!=null && m>count)
-        {
-            preNode = preNode.next;
-            count++;
-        }
-        if(m>count)
-            //already null
-            return head;
-        
-        //reverse from the next node of preNode
-        ListNode mNode = preNode.next;    //mth
-        ListNode mCur = mNode.next;       //m+1 th
-                                          //Next m+2th
-        while(mCur!= null && n>count)
-        {
-            ListNode Next = mCur.next;    //next position
-            mCur.next = preNode.next;       //reverse mNode and mCur
-            preNode.next = mCur;
-            mNode.next = Next;
-            mCur = Next;                    //move to next position
-            count++;
-        }
-        return dummy.next;
-    }
+	public ListNode reverseBetween(ListNode head, int m, int n) {
+		if (head == null)
+			return null;
+		ListNode dummy = new ListNode(0); // create a dummy node to mark the
+											// head of this list
+		dummy.next = head;
+		ListNode pre = dummy; // make a pointer pre as a marker for the node
+								// before reversing
+		for (int i = 0; i < m - 1; i++)
+			pre = pre.next;
+
+		ListNode start = pre.next; // a pointer to the beginning of a sub-list
+									// that will be reversed
+		ListNode then = start.next; // a pointer to a node that will be reversed
+
+		// 1 - 2 -3 - 4 - 5 ; m=2; n =4 ---> pre = 1, start = 2, then = 3
+		// dummy-> 1 -> 2 -> 3 -> 4 -> 5
+
+		for (int i = 0; i < n - m; i++) {	// insert then before start
+			start.next = then.next;
+			then.next = pre.next;
+			pre.next = then;
+			then = start.next;
+		}
+
+		// first reversing : dummy->1 - 3 - 2 - 4 - 5; pre = 1, start = 2, then
+		// = 4
+		// second reversing: dummy->1 - 4 - 3 - 2 - 5; pre = 1, start = 2, then
+		// = 5 (finish)
+
+		return dummy.next;
+	}
 }

@@ -18,23 +18,28 @@ import java.util.*;
 public class LT057_Insert_Interval {
 	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
 		List<Interval> res = new ArrayList<>();
-		
-		for(Interval elm:intervals){
-			if(elm.end<newInterval.start){
+
+		for (Interval elm : intervals) {
+			if (elm.end < newInterval.start) {
 				res.add(elm);
-			}else if(elm.start>newInterval.end){
+			} else if (elm.start > newInterval.end) {
 				res.add(newInterval);
 				newInterval = elm;
-			}else{	//need to merge elm and newInterval to newInterval
+			} else { // need to merge elm and newInterval to newInterval
 				int nstart = Math.min(elm.start, newInterval.start);
-                int nend = Math.max(newInterval.end, elm.end);
-                newInterval = new Interval(nstart, nend);		//cannot write to res.add(new Interval(nstart, nend))
-                												//if like this, cannot pass [[1,5]], [2,3] case.
+				int nend = Math.max(newInterval.end, elm.end);
+				newInterval = new Interval(nstart, nend); // cannot write to
+															// res.add(new
+															// Interval(nstart,
+															// nend))
+															// if like this,
+															// cannot pass
+															// [[1,5]], [2,3]
+															// case.
 			}
 		}
-		
-		res.add(newInterval);		//cannot forget
-		return res;
-    }
-}
 
+		res.add(newInterval); // cannot forget
+		return res;
+	}
+}
