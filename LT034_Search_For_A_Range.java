@@ -11,31 +11,31 @@
  */
 public class LT034_Search_For_A_Range {
 	public int[] searchRange(int[] nums, int target) {
-        
-		int ll=0,lr=nums.length-1;
-		while(ll<=lr){
-			int mid = (ll+lr)/2;
-			if(nums[mid]<target)
-				ll = mid+1;		//ll is always >= target
+
+		int ll = 0, lr = nums.length - 1;
+		while (ll <= lr) {
+			int mid = (ll + lr) / 2;
+			if (nums[mid] < target)
+				ll = mid + 1; // ll is always >= target
 			else
-				lr = mid-1;		//dont care
+				lr = mid - 1; // dont care
 		}
-		
-		int rl=0, rr=nums.length-1;
-		while(rl<=rr){
-			int mid = (rl+rr)/2;
-			if(nums[mid]>target)
-				rr = mid-1;		//rr is always<=target
+
+		int rl = 0, rr = nums.length - 1;
+		while (rl <= rr) {
+			int mid = (rl + rr) / 2;
+			if (nums[mid] > target)
+				rr = mid - 1; // rr is always<=target
 			else
-				rl = mid+1;		//dont care
+				rl = mid + 1; // dont care
 		}
-		
-		int[] res = {-1,-1};
-		if(ll<=rr){
+
+		int[] res = { -1, -1 };
+		if (ll <= rr) {
 			res[0] = ll;
 			res[1] = rr;
 		}
-		
+
 		return res;
-    }
+	}
 }

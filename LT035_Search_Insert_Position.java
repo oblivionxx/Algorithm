@@ -15,22 +15,24 @@ import java.util.Arrays;
  */
 public class LT035_Search_Insert_Position {
 	public int searchInsert(int[] nums, int target) {
-		//easy. think by myself
-        int left = 0, right = nums.length-1;
-        while(left<=right){
-        	int mid = (left+right)/2;
-        	if(nums[mid]==target) return mid; 			//if found, return index;
-        	else if(nums[mid]<target)					//find the left bound s.t. num[left]>target
-        		left = mid+1;
-        	else
-        		right = mid-1;
-        }
-        
-        return left;
-    }
-	
+		// easy. think by myself
+		int left = 0, right = nums.length - 1;
+		while (left <= right) {
+			int mid = (left + right) / 2;
+			if (nums[mid] == target)
+				return mid; // if found, return index;
+			else if (nums[mid] < target) // find the left bound s.t.
+											// num[left]>target
+				left = mid + 1;
+			else
+				right = mid - 1;
+		}
+
+		return left;
+	}
+
 	public int searchInsert2(int[] nums, int target) {
-        int pos = Arrays.binarySearch(nums,target);
-        return pos<0?-(pos+1):pos;
-    }
+		int pos = Arrays.binarySearch(nums, target);
+		return pos < 0 ? -(pos + 1) : pos;
+	}
 }

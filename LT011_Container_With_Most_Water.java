@@ -7,17 +7,17 @@
  */
 public class LT011_Container_With_Most_Water {
 	public int maxArea(int[] height) {
-		//BF. find all the index selection = c(2,n). O(n^2)
-        //lines don't take space.Two pointer from two side to center O(n)
-		int left=0,right=height.length-1;
-		int max=0;
-		while(left<right){
-			max = Math.max(max,(right-left)*Math.min(height[left], height[right]));
-			if(height[left]>height[right])
+		// BF. find all the index selection = c(2,n). O(n^2)
+		// lines don't take space.Two pointer from two side to center O(n)
+		int left = 0, right = height.length - 1;
+		int max = 0;
+		while (left < right) {
+			max = Math.max(max, (right - left) * Math.min(height[left], height[right]));
+			if (height[left] > height[right])
 				right--;
 			else
 				left++;
 		}
 		return max;
-    }
+	}
 }

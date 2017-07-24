@@ -9,18 +9,19 @@
  * Array
  */
 public class LT048_Rotate_Image {
-    public void rotate(int[][] matrix) {
-        if(matrix==null || matrix.length==0) return;
-        int m = matrix.length;
-        
-        for(int i=0;i<m/2;i++){
-        	for(int j=0;j<Math.ceil((double)m/2);j++){
-        		int tmp = matrix[i][j];
-        		matrix[i][j] = matrix[m-1-j][i];
-        		matrix[m-1-j][i] = matrix[m-1-i][m-1-j];
-        		matrix[m-1-i][m-1-j] = matrix[j][m-1-i];
-        		matrix[j][m-1-i] = tmp;
-        	}
-        }
-    }
+	public void rotate(int[][] matrix) {
+		if (matrix == null || matrix.length == 0)
+			return;
+		int m = matrix.length;
+
+		for (int i = 0; i < m / 2; i++) {
+			for (int j = 0; j < Math.ceil((double) m / 2); j++) {
+				int tmp = matrix[i][j];
+				matrix[i][j] = matrix[m - 1 - j][i];
+				matrix[m - 1 - j][i] = matrix[m - 1 - i][m - 1 - j];
+				matrix[m - 1 - i][m - 1 - j] = matrix[j][m - 1 - i];
+				matrix[j][m - 1 - i] = tmp;
+			}
+		}
+	}
 }

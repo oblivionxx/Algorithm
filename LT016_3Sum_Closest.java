@@ -10,25 +10,28 @@ import java.util.Arrays;
  * Array, Two Pointer
  */
 public class LT016_3Sum_Closest {
-    public int threeSumClosest(int[] nums, int target) {
-    	Arrays.sort(nums);
-        int globalMin = Integer.MAX_VALUE;      //used to compare
-        int res = 0;                            //save res if find min
-        for(int i=0;i<nums.length;i++){
-            int left= i+1, right=nums.length-1;
-            while(left<right){
-                int sum = nums[i]+nums[left]+nums[right];
-                int diff = Math.abs(sum-target);
-                if(sum==target) return sum;
-                else if(sum<target) left++;
-                else right--;
-                
-                if(diff<globalMin){
-                    globalMin = diff;
-                    res = sum;
-                }
-            }
-        } 
-        return res;
-    }
+	public int threeSumClosest(int[] nums, int target) {
+		Arrays.sort(nums);
+		int globalMin = Integer.MAX_VALUE; // used to compare
+		int res = 0; // save res if find min
+		for (int i = 0; i < nums.length; i++) {
+			int left = i + 1, right = nums.length - 1;
+			while (left < right) {
+				int sum = nums[i] + nums[left] + nums[right];
+				int diff = Math.abs(sum - target);
+				if (sum == target)
+					return sum;
+				else if (sum < target)
+					left++;
+				else
+					right--;
+
+				if (diff < globalMin) {
+					globalMin = diff;
+					res = sum;
+				}
+			}
+		}
+		return res;
+	}
 }

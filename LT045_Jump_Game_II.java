@@ -15,13 +15,16 @@
 public class LT045_Jump_Game_II {
 	public int jump(int[] nums) {
 		int jumps = 0, curEnd = 0, curFarthest = 0;
-        for (int i = 0; i < nums.length - 1; i++) {
-            curFarthest = Math.max(curFarthest, i + nums[i]);			//update curFarthest using num[i]+i
-            if (i == curEnd) {
-                jumps++;
-                curEnd = curFarthest;
-            }
-        }
-        return jumps;
-    }
+		for (int i = 0; i < nums.length - 1; i++) {
+			curFarthest = Math.max(curFarthest, i + nums[i]); // update
+																// curFarthest
+																// using
+																// num[i]+i
+			if (i == curEnd) {
+				jumps++;
+				curEnd = curFarthest;
+			}
+		}
+		return jumps;
+	}
 }

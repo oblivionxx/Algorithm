@@ -15,26 +15,29 @@
  */
 public class LT006_Zigzag_Conversion {
 	public String convert(String s, int nRows) {
-        //just trick to calculate zigzaging letter position.
-		if(nRows==1) return s;
-		if(s==null || s.length()==0 || nRows<1) return "";
-		
+		// just trick to calculate zigzaging letter position.
+		if (nRows == 1)
+			return s;
+		if (s == null || s.length() == 0 || nRows < 1)
+			return "";
+
 		StringBuilder sb = new StringBuilder();
-		int zigzag = 2*nRows-2;		
-		for(int i=0;i<nRows;i++){
-			for(int j=i;j<s.length();j+=zigzag){
-				//non-zigzaging letter. those in colums
+		int zigzag = 2 * nRows - 2;
+		for (int i = 0; i < nRows; i++) {
+			for (int j = i; j < s.length(); j += zigzag) {
+				// non-zigzaging letter. those in colums
 				sb.append(s.charAt(j));
-				
-				//add zigzaging letter in row 1~lastRow-1
-				if(i>0 && i<nRows-1){
-					int idx = j+zigzag-2*i;		//trick here
-					if(idx<s.length()) sb.append(s.charAt(idx));
+
+				// add zigzaging letter in row 1~lastRow-1
+				if (i > 0 && i < nRows - 1) {
+					int idx = j + zigzag - 2 * i; // trick here
+					if (idx < s.length())
+						sb.append(s.charAt(idx));
 				}
 			}
 		}
-		
+
 		return sb.toString();
-		    
-    }
+
+	}
 }
