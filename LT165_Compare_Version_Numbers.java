@@ -14,32 +14,18 @@ String
  */
 public class LT165_Compare_Version_Numbers {
 	public int compareVersion(String version1, String version2) {
-        //The tricky part of the problem is to handle cases like 1.0 and 1. They should be equal.
-        String[] v1 = version1.split("\\.");
-        String[] v2 = version2.split("\\.");
+        //compare length. be careful 1.0=1
+        String[] levels1 = version1.split("\\.");
+        String[] levels2 = version2.split("\\.");
         
-        int len = Math.min(v1.length,v2.length);
-        int i =0;
-        while(i<len)
-        {
-            int a = Integer.parseInt(v1[i]);
-            int b = Integer.parseInt(v2[i]);
-            
-            if(a>b) return 1;
-            if(b>a) return -1;
-            i++;
-        }
-        
-        if(v1.length>v2.length)
-        {
-            if(Integer.parseInt(v1[i])!=0)			//what if v1.0.1 v.s v1
-                return 1;
-        }
-        
-        if(v1.length<v2.length)
-        {
-            if(Integer.parseInt(v2[i])!=0)
-                return -1;
+        int length = Math.max(levels1.length, levels2.length);
+        for (int i=0; i<length; i++) {
+        	Integer v1 = i < levels1.length ? Integer.parseInt(levels1[i]) : 0;
+        	Integer v2 = i < levels2.length ? Integer.parseInt(levels2[i]) : 0;
+        	int compare = v1.compareTo(v2);
+        	if (compare != 0) {
+        		return compare;
+        	}
         }
         
         return 0;

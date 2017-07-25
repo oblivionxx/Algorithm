@@ -9,39 +9,30 @@ The read function may be called multiple times.
 String
  */
 public class LT158_Read_N_Characters_Given_Read4_II_Call_Multiple_Times {
-	private int offSet = 0;
-    private int remaining = 0;		//sth more.
-    private boolean eof = false;
-    private char[] buffer = new char[4];
-
     /**
      * @param buf Destination buffer
      * @param n   Maximum number of characters to read
      * @return    The number of characters read
      */
+ //buffer pointer (buffPtr) and buffer Counter (buffCnt) to store the data received in previous calls. In the while loop, if buffPtr reaches current buffCnt, it will be set as zero to be ready to read new data.
+    
+    private int buffPtr = 0;
+    private int buffCnt = 0;
+    private char[] buff = new char[4];
+
     public int read(char[] buf, int n) {
-        int res = 0;
-        while (res < n && (remaining != 0 || !eof)) {
-            int readSize = 0;
-            if(remaining != 0){
-                readSize = remaining;
-            }else{
-                offSet = 0;
-                readSize = read4(buffer);
-                if (readSize != 4) {
-                	eof = true;
-                }
+        int ptr = 0;
+        while (ptr < n) {
+            if (buffPtr == 0) {
+                buffCnt = read4(buff);                      //if buffPtr=0.  read new data
             }
-            int length = Math.min(n - res, readSize);
-            for (int i= offSet; i<offSet + length; i++) {
-                buf[res++] = buffer[i];
+            if (buffCnt == 0) break;                        //get back nothing
+            while (ptr < n && buffPtr < buffCnt) {
+                buf[ptr++] = buff[buffPtr++];               //buffPtr save the buffer index in previous calls. 
             }
-            remaining = readSize - length;
-            if (remaining != 0) {
-                offSet += length;
-            }
+            if (buffPtr >= buffCnt) buffPtr = 0;            //finish reading all the remaining data from previous call
         }
-        return res;
+        return ptr;
     }
     
     public int read4(char[] buf){

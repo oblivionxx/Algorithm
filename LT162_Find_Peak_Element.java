@@ -12,8 +12,17 @@ Binary Search, Array
  */
 public class LT162_Find_Peak_Element {
 	public int findPeakElement(int[] nums) {
+        //linear scan O(n). binary search O(lgN)
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] > nums[i + 1])
+                return i;
+        }
+        return nums.length - 1;
+    }
+	
+	
+	public int findPeakElement2(int[] nums) {
         if(nums==null || nums.length==0) return 0;
-        
         return helper(nums, 0, nums.length-1);
     }
     

@@ -11,9 +11,19 @@ HashTable, Bit Manipulation
  */
 import java.util.*;
 public class LT187_Repeated_DNA_Sequences {
+	public List<String> findRepeatedDnaSequences(String s) {
+        Set<String> seen = new HashSet<>(), repeated = new HashSet<>();
+        for (int i = 0; i + 9 < s.length(); i++) {
+            String ten = s.substring(i, i + 10);
+            if (!seen.add(ten))       //failed to add into seen. means duplicated
+                repeated.add(ten);
+        }
+        return new ArrayList<String>(repeated);
+    }
+	
 	//rolling hash technique or in case of string search also known as Rabin-Karp algorithm.
 	//check. https://leetcode.com/discuss/24595/short-java-rolling-hash-solution
-    public List<String> findRepeatedDnaSequences(String s) {
+    public List<String> findRepeatedDnaSequences2(String s) {
         
         List<String> rslt = new ArrayList<String>();
         HashSet<Integer> resultHash = new HashSet<Integer>();

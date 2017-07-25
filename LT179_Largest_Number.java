@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Comparator;
 
 /*
 Given a list of non negative integers, arrange them such that they form the largest number.
@@ -16,16 +15,7 @@ public class LT179_Largest_Number {
             str[i] = String.valueOf(nums[i]);
         }
         
-        //sort string[].
-        Comparator<String> cmp = new Comparator<String>(){
-            public int compare(String s1, String s2){
-                String s1s2 = s1+s2;
-                String s2s1 = s2+s1;
-                return s2s1.compareTo(s1s2);
-            }
-        };
-        
-        Arrays.sort(str, cmp);
+        Arrays.sort(str, (s1,s2)->(s2+s1).compareTo(s1+s2));			//key part
         StringBuilder stb = new StringBuilder();
         
         //append to get the largest number.
@@ -36,6 +26,5 @@ public class LT179_Largest_Number {
         if(stb.charAt(0)=='0') return "0";
         else
             return stb.toString();
-        
     }
 }

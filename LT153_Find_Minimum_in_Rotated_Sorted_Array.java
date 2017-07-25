@@ -8,18 +8,16 @@ Array, Binary Search
  */
 public class LT153_Find_Minimum_in_Rotated_Sorted_Array {
 	public int findMin(int[] nums) {
-		if(nums==null || nums.length==0) return 0;
-		int left =0, right= nums.length-1;
-		while(left<=right){
-			int mid = (left+right)/2;
-			if(nums[mid]<nums[left]){	//left is not ordered. min is in left
-				right = mid;
-			}else if(nums[mid]>nums[right]){
-				left =  mid+1;
-			}else
-				break;
-		}
-		
-		return nums[left];
+        int left = 0, right =nums.length-1;
+        while(left<right){
+            int mid = (left+right)/2;       //find the part which is not sorted
+            if(nums[mid]>nums[right]){
+                left = mid+1;
+            }else{
+                right = mid;
+            }
+        }
+        
+        return nums[left];
     }
 }

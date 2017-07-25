@@ -15,20 +15,14 @@ Math
  */
 public class LT168_Excel_Sheet_Column_Title {
 	public String convertToTitle(int n) {
-        
-		StringBuilder sb = new StringBuilder();
-        if(n<27){
+        StringBuilder sb = new StringBuilder();
+        while(n!=0){
             n--;
-            sb.insert(0, (char)(n%26+'A'));
-        }else{
-            while(n!=0){
-                n--;									//first n--. important
-                sb.insert(0,(char)(n%26+'A')); 			//insert before. reverse order!!
-                										//here pay attention to int + char. force to change type as char. and add the bracket in the correct place ?
-                n = n/26;
-            }
+            char cur = (char)('A'+n%26);
+            sb.append(cur);
+            n/=26;
         }
         
-        return sb.toString();  
+        return sb.reverse().toString();
     }
 }

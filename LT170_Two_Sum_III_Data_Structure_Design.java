@@ -30,7 +30,7 @@ public class LT170_Two_Sum_III_Data_Structure_Design {
 	public boolean find(int value) {
 	    for(int key:map.keySet()){
 	        int another = value-key;
-	        if(another==key && map.get(key)>1)					//important.
+	        if(another==key && map.get(key)>1)					//important. 6 =3+3 so need to appear more than 1 times
 	            return true;
 	        if(another!=key && map.containsKey(another))
 	            return true;

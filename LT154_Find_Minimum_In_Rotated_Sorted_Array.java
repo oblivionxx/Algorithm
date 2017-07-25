@@ -12,45 +12,21 @@ The array may contain duplicates.
 Array, Binary Search
  */
 public class LT154_Find_Minimum_In_Rotated_Sorted_Array {
-	//idea similar to 153.
-	public int findMin2(int[] nums) {
-	     int l = 0, r = nums.length-1;
-	     while (l < r) {								//here without =.
-	         int mid = (l + r) / 2;		
-	         if (nums[mid] < nums[r]){					//right is in order. smallest is on the left half.
-	             r = mid;
-	         }else if (nums[mid] > nums[r]){			//right is not inorder. smallest is on right.
-	             l = mid + 1;
-	         }else {  
-	             r--;  									//nums[mid]=nums[r] no idea, but we can eliminate nums[r];
-	         }
-	     }
-	     return nums[l];
-	}
-	
-	//use left<right-1. different to 153.
-		public int findMin(int[] nums) {
-			if(nums == null || nums.length==0)
-	            return 0;
-	        int l = 0;
-	        int r = nums.length-1;
-	        int min = nums[0];
-	        while(l<r-1)
-	        {
-	            int m = (l+r)/2;
-	            if(nums[l]<nums[m]){						//left is in order.
-	                min = Math.min(nums[l],min);
-	                l = m+1;
-	            }else if(nums[l]>nums[m]){					//left is not inorder.
-	                min = Math.min(nums[m],min);
-	                r = m-1;
-	            }else{										//left is all same numbers.
-	                l++;
-	            }
-	        }
-	        min = Math.min(nums[r],min);
-	        min = Math.min(nums[l],min);
-	        return min;
-	    }
-		
+	public int findMin(int[] nums) {
+        //allow duplicates
+        int left = 0, right =nums.length-1;
+        while(left<right){
+            int mid = (left+right)/2;       //find the part which is not sorted
+            if(nums[mid]>nums[right]){
+                left = mid+1;
+            }else if(nums[mid]<nums[left]){
+                right = mid;
+            }else{
+                //nums[mid]=nums[r] no idea, but we can eliminate nums[r];
+                right--;        //result using left, so better to eliminate right side
+            }
+        }
+        
+        return nums[left];
+    }
 }

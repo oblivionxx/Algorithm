@@ -16,36 +16,24 @@ import java.util.*;
 public class LT199_Binary_Tree_Right_Side_View {
 	//BFS. Level order idea. when reach end of level, add to result.
 	public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
-		
-	    queue.add(root);
-		int curNum = 1;
-		int nextNum = 0;
-		if(root==null) return res;
-		
-		while(!queue.isEmpty()){
-			TreeNode cur  = queue.poll();
-			curNum--;
-			
-			if(cur.left!=null){
-			   queue.add(cur.left);
-			   nextNum++;
-			}
-			
-			if(cur.right!=null){
-			    queue.add(cur.right);
-			    nextNum++;
-			}
-	
-		    if(curNum==0){
-			    res.add(cur.val);
-			    curNum = nextNum;
-			    nextNum=0;
-		    }
-		}
-		
-	    return res;
+        //level order. store last value
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
+        if(root==null) return res;
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            TreeNode cur = null;
+            for(int i=0;i<size;i++){
+                cur = queue.poll();
+                if(cur.left!=null) queue.add(cur.left);
+                if(cur.right!=null) queue.add(cur.right);
+                
+            }
+            res.add(cur.val);
+        }
+        
+        return res;
     }
 	
 	//DFS. recheck

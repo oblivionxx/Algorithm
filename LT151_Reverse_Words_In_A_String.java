@@ -22,17 +22,17 @@ String
  */
 public class LT151_Reverse_Words_In_A_String {
 	//1. using trim. separate by space. 
-    public String reverseWords(String s) {
-        if(s==null || s.length()==0) return "";
+	public String reverseWords(String s) {
         s = s.trim();
-        String[] a = s.split("\\s+");
+        String[] list = s.split("\\s+");
         StringBuilder sb = new StringBuilder();
-        for(int i=a.length-1;i>=0;i--){
-            if(i==0)
-                sb.append(a[i]);
+        for(int i=list.length-1;i>=0;i--){
+            if(i!=0)
+                sb.append(list[i]).append(" ");
             else
-             sb.append(a[i]).append(" ");
+                sb.append(list[i]);
         }
+        
         return sb.toString();
     }
     

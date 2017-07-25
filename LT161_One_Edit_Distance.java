@@ -19,7 +19,6 @@ public class LT161_One_Edit_Distance {
             if(s.charAt(i)!=t.charAt(i))
                 count++;
         }
-        
         return count==1;
     }
         

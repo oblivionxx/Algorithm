@@ -23,7 +23,7 @@ DFS, BFS, Union Find
  */
 public class LT200_Number_of_Islands {
 	//1. bfs
-    class Pair{
+	class Pair{
 		int x,y;
 		Pair(int x,int y){
 			this.x = x;
@@ -31,6 +31,7 @@ public class LT200_Number_of_Islands {
 		}
 	}
 	
+	//bfs
     public int numIslands(char[][] grid) {
     	if(grid==null||grid.length==0) return 0;
     	int row = grid.length,column = grid[0].length;
@@ -47,25 +48,25 @@ public class LT200_Number_of_Islands {
     }
     
     private void bfs(char[][]grid,int i,int j){
+        int m = grid.length, n = grid[0].length;
     	Queue<Pair> que = new LinkedList<>();
     	que.offer(new Pair(i,j));
     	while(!que.isEmpty()){
     		Pair p= que.poll();
     		grid[p.x][p.y] = '*';
-    		if(isIsland(grid, p.x-1, p.y)){
-    			//非常重要，防止同层之间互相加
+    		if(p.x>0 && grid[p.x-1][p.y]=='1'){
     			grid[p.x-1][p.y] ='*';
     			que.offer(new Pair(p.x-1,p.y));
     		}
-    		if(isIsland(grid, p.x+1, p.y)){
+            if(p.x<m-1 && grid[p.x+1][p.y]=='1'){
     			grid[p.x+1][p.y] ='*';
     			que.offer(new Pair(p.x+1,p.y));
     		}
-    		if(isIsland(grid, p.x, p.y-1)){
+            if(p.y>0 && grid[p.x][p.y-1]=='1'){
     			grid[p.x][p.y-1] ='*';
     			que.offer(new Pair(p.x,p.y-1));
     		}
-    		if(isIsland(grid, p.x, p.y+1)){
+    		if(p.y<n-1 && grid[p.x][p.y+1]=='1'){
     			grid[p.x][p.y+1] ='*';
     			que.offer(new Pair(p.x,p.y+1));
     		}
@@ -101,13 +102,6 @@ public class LT200_Number_of_Islands {
             dfs(grid,i,j-1,m,n);
             dfs(grid,i,j+1,m,n);            //dfs to the connected part
         }   
-    }
-    
-    
-    private boolean isIsland(char[][]grid,int i,int j){
-    	if(i<0||i>=grid.length||j<0||j>=grid[0].length) return false;
-    	if(grid[i][j]=='1') return true;
-    	return false;
     }
     
     //3. Union

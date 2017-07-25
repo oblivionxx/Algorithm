@@ -25,15 +25,12 @@ public class LT157_Read_N_Characters_Given_Read4 {
         
         while(!eof && res<n){
             int size = read4(read);			//1. text>n (stop by res<n). 2. text<n.(will have size<4, stop by eof)
-            if(size<4){
-                eof = true;
-            }
+            eof = size<4;
             
             bytes = Math.min(n-res,size);  	//if size=4.  bytes=4. if n-res<4. text may have more than n letters. but n+1, n+2...is not necessary.
             for(int i=0; i<bytes; i++){
-                buf[res+i] = read[i];
+                buf[res++] = read[i];		//res in the end = res+bytes.
             }
-            res += bytes;
         }
         
         return res;
