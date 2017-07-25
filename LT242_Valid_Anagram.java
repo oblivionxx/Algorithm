@@ -18,18 +18,14 @@ Hashtable, sort
 public class LT242_Valid_Anagram {
 	public boolean isAnagram(String s, String t) {
         if(s.length()!=t.length()) return false;
-        
-        char[] s1 = s.toCharArray();
-        char[] s2 = t.toCharArray();
-        
-        Arrays.sort(s1);
-        Arrays.sort(s2);
-        
-        String s_new = new String(s1);
-        String t_new = new String(s2);
-        
-        return s_new.equals(t_new);
-        
+        char[] ss = s.toCharArray();
+        char[] tt = t.toCharArray();
+        Arrays.sort(ss);
+        Arrays.sort(tt);
+        for(int i=0;i<ss.length;i++){
+            if(ss[i]!=tt[i]) return false;
+        }
+        return true;
     }
 	
 	//or use hashmap to count occurrence.

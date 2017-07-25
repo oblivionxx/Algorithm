@@ -60,12 +60,7 @@ public class LT239_Sliding_Window_Maximum {
         if(nums.length == 0) return new int[0];
         
         //max heap
-        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>(){
-            @Override
-            public int compare(Integer i1, Integer i2){
-                return Integer.compare(i2, i1);
-            }
-        });
+        PriorityQueue<Integer> queue = new PriorityQueue<Integer>(k, Collections.reverseOrder());
     
         for(int i = 0; i < k; i ++){
             queue.add(nums[i]);
@@ -80,5 +75,5 @@ public class LT239_Sliding_Window_Maximum {
         }
     
         return result;
- 	}
+    }
 }

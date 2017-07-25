@@ -18,50 +18,33 @@ Divide and Conquer, Heap
 import java.util.*;
 public class LT218_The_Skyline_Problem {
 	public List<int[]> getSkyline(int[][] buildings) {
-        //http://codechen.blogspot.ch/2015/06/leetcode-skyline-problem.html
-        List<int[]> res = new ArrayList<int[]>();
-        if(buildings==null || buildings.length==0 || buildings[0].length==0) return res;
-        List<Height> list = new ArrayList<Height>();
-        //transform buildings index height into self-defined Height class
-        for(int[] building: buildings){
-            list.add(new Height(building[0], -building[2]));			//start position. -height.
-            list.add(new Height(building[1], building[2]));				//end position. +height.
+        //1. heap
+        List<int[]> result = new ArrayList<>();
+        List<int[]> height = new ArrayList<>();
+        for(int[] b:buildings) {
+            height.add(new int[]{b[0], -b[2]});			//start, -height
+            height.add(new int[]{b[1], b[2]});			//end, height
         }
-        
-        //sort
-        Collections.sort(list, new Comparator<Height>(){
-            @Override
-            public int compare(Height h1, Height h2){
-                return h1.index==h2.index?h1.height-h2.height:h1.index-h2.index;
-            }
+        Collections.sort(height, (a, b) -> {
+                if(a[0] != b[0]) 
+                    return a[0] - b[0];
+                return a[1] - b[1];
         });
-        
-        //add height into max Heap. 
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(1000, Collections.reverseOrder()); 
+        Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
         pq.offer(0);
-        int pre = 0;
-        for(Height h:list){
-            if(h.height<0)
-                pq.offer(-h.height);
-            else
-                pq.remove(h.height);
+        int prev = 0;
+        for(int[] h:height) {
+            if(h[1] < 0) {
+                pq.offer(-h[1]);
+            } else {
+                pq.remove(h[1]);
+            }
             int cur = pq.peek();
-            if(cur!=pre){
-                res.add(new int[]{h.index,cur});
-                pre = cur;
+            if(prev != cur) {
+                result.add(new int[]{h[0], cur});
+                prev = cur;
             }
         }
-        
-        return res;
-    }
-    
-    
-    public class Height{
-        int height;
-        int index;
-        public Height(int index, int height){
-            this.index = index;
-            this.height = height;
-        }
+        return result;
     }
 }

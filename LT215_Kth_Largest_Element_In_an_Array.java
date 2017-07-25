@@ -18,7 +18,6 @@ public class LT215_Kth_Largest_Element_In_an_Array {
 	//2. Heap O(nlgk)   insert cost O(lgk). get peek operation O(1)
 	public int findKthLargest2(int[] nums, int k) {
         PriorityQueue<Integer> queue = new PriorityQueue<Integer>(k, Collections.reverseOrder());
-
         for(int i:nums){
             queue.offer(i);
         }

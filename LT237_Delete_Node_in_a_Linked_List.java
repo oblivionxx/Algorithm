@@ -8,9 +8,7 @@ public class LT237_Delete_Node_in_a_Linked_List {
 	public void deleteNode(ListNode node) {
         //since it is singly linked, the link to the current node is not known
         //so MODIFY the value and link of the current node to the next next node.
-        
         node.val = node.next.val;
         node.next = node.next.next;
-        
     }
 }

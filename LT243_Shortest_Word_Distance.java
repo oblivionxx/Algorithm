@@ -32,39 +32,4 @@ public class LT243_Shortest_Word_Distance {
         
         return res;
     }
-	
-	public int shortestDistance2(String[] words, String word1, String word2) {
-        Map<String, List<Integer>> map = new HashMap<>();
-        
-        for (int i = 0; i < words.length; i++) {
-            String s = words[i];
-            List<Integer> list;
-            if (map.containsKey(s)) {
-                list = map.get(s);
-            } else {
-                list = new ArrayList<>();
-            }
-            list.add(i);
-            map.put(s, list);
-        }
-        List<Integer> index1 = map.get(word1);
-        List<Integer> index2 = map.get(word2);
-
-        int diff = Integer.MAX_VALUE;
-        int i=0,j=0;
-        //O(m+n)
-        while (i < index1.size() && j < index2.size()) {  		//here loop all the possibilities
-            int pos1 = index1.get(i), pos2 = index2.get(j);  
-            if (pos1 < pos2) {  
-                diff = Math.min(diff, pos2 - pos1);  
-                i++;  
-            } else {  
-                diff = Math.min(diff, pos1 - pos2);  
-                j++;  
-            }  
-        }  
-
-        return diff;
-    
-    }
 }

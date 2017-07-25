@@ -19,14 +19,12 @@ import java.util.*;
 public class LT236_Lowest_Common_Ancestor_of_a_Binary_Tree {
 	//recursive
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //If the current (sub)tree contains both p and q, then the function result is their LCA. If only one of them is in that subtree, then the result is that one of them. If neither are in that subtree, the result is null/None/nil.
+        if(root==null || root==p || root==q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        return left==null?right:(right==null?left:root);
 
-    	if(root==null || root==p || root==q) return root;
-    	TreeNode L = lowestCommonAncestor(root.left,p,q);
-    	TreeNode R = lowestCommonAncestor(root.right,p,q);
-
-    	if(L!=null && R!=null) return root; //l,r on both sides
-    	
-    	return (L!=null)?L:R;   //either one of p, q is on one side OR p,q is not in l&r subtrees
     }
 	
 	//iterative with parent pointer idea.

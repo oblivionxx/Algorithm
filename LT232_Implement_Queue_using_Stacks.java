@@ -15,38 +15,36 @@ You may assume that all operations are valid (for example, no pop or peek operat
 Stack, Design
  */
 public class LT232_Implement_Queue_using_Stacks {
-	private Stack<Integer> firstStack = new Stack<Integer>();
-    private Stack<Integer> secondStack = new Stack<Integer>();
+	Stack<Integer> stk = new Stack<>();
+    /** Initialize your data structure here. */
+    public LT232_Implement_Queue_using_Stacks() {
+        
+    }
     
-    // Push element x to the back of queue.Inqueue
-    public void push(int x) {  //put the new element into the bottom of first stack
-    
-        while(!firstStack.isEmpty()){
-            secondStack.push(firstStack.peek());
-            firstStack.pop();
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        Stack<Integer> secondStack = new Stack<Integer>();
+        while(!stk.isEmpty()){
+            secondStack.push(stk.pop());
         }
         secondStack.push(x);
         while(!secondStack.isEmpty()){
-            firstStack.push(secondStack.peek());
-            secondStack.pop();
+            stk.push(secondStack.pop());
         }
     }
-
-    // Removes the element from in front of queue.Dequeue
-    public void pop() {
-        firstStack.pop();
-        
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        return stk.pop();
     }
-
-    // Get the front element.
+    
+    /** Get the front element. */
     public int peek() {
-        return firstStack.peek();
-        
+        return stk.peek();
     }
-
-    // Return whether the queue is empty.
+    
+    /** Returns whether the queue is empty. */
     public boolean empty() {
-        return firstStack.isEmpty();
-        
+        return stk.isEmpty();
     }
 }

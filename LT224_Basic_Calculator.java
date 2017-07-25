@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /*
 Implement a basic calculator to evaluate a simple expression string.
 The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
@@ -13,9 +15,31 @@ Followup: How to convert infix to postfix(reverse polish) expression ?
 
  */
 public class LT224_Basic_Calculator {
-..
-	https://leetcode.com/discuss/39553/iterative-java-solution-with-stack
-	https://leetcode.com/discuss/41868/java-solution-stack
-	https://leetcode.com/discuss/77406/java-easy-version-to-understand
-	https://leetcode.com/discuss/39454/accepted-infix-postfix-based-solution-explaination-600ms
+	public int calculate(String s) {
+        int len = s.length(), sign = 1, result = 0;
+    	Stack<Integer> stack = new Stack<Integer>();
+    	for (int i = 0; i < len; i++) {
+    		if (Character.isDigit(s.charAt(i))) {
+    			int sum = s.charAt(i) - '0';
+    			while (i + 1 < len && Character.isDigit(s.charAt(i + 1))) {
+    				sum = sum * 10 + s.charAt(i + 1) - '0';
+    				i++;
+    			}
+    			result += sum * sign;
+    		} else if (s.charAt(i) == '+')
+    			sign = 1;
+    		else if (s.charAt(i) == '-')
+    			sign = -1;
+    		else if (s.charAt(i) == '(') {
+    			stack.push(result);
+    			stack.push(sign);
+    			result = 0;
+    			sign = 1;
+    		} else if (s.charAt(i) == ')') {
+    			result = result * stack.pop() + stack.pop();
+    		}
+    
+    	}
+    	return result;
+    }
 }

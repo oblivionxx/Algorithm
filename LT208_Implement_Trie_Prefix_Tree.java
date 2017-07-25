@@ -9,7 +9,7 @@ import java.util.*;
 public class LT208_Implement_Trie_Prefix_Tree {
 // Initialize your data structure here.
 	public class TrieNode {
-	    //feq
+	    //freq
 	    public int freq;
 	    //word path
 	    public HashMap<Character, TrieNode> children = new HashMap<>();

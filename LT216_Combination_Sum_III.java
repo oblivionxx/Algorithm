@@ -27,13 +27,11 @@ public class LT216_Combination_Sum_III {
     
     private void helper(int k, int n, int index, List<Integer> elm, List<List<Integer>> res){
     	if(n<0) return;
-    	
         if(elm.size()==k && n==0){
             res.add(new ArrayList<Integer>(elm));
             return;
         }
         
-       
         //backtracking
         for(int i=index;i<=9;i++){
             elm.add(i);

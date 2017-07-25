@@ -9,25 +9,21 @@ LinkedList
  */
 public class LT203_Remove_Linked_List_Elements {
 	public ListNode removeElements(ListNode head, int val) {
-	    
-        ListNode cur = head;
-        ListNode next = null;
-        
-        if(head==null)
-            return null;
-        if(head.val==val)
-            return removeElements(head.next, val);
-        
-        while(cur.next!=null){
-            next= cur.next;
-            if(next.val==val){
-                cur.next = next.next;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode cur = dummy.next;
+        while(cur!=null){
+            if(cur.val==val){
+                cur = cur.next;
+                pre.next = cur;
+            }else{
+                cur = cur.next;
+                pre = pre.next;
             }
-            else
-                cur = next;
         }
         
-        return head;
-            
+        return dummy.next;
+        
     }
 }
