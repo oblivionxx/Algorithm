@@ -15,11 +15,10 @@ public class LT142_Linked_List_Cycle_II {
         
         while(true){
             if(fast==null || fast.next==null) return null;  //no cycle
-            
             slow = slow.next;
             fast = fast.next.next;
             if(fast==slow)
-               break;       //meet at Z
+               break;       
         }
         
         //if continue to this part, means exist cycle
@@ -28,7 +27,6 @@ public class LT142_Linked_List_Cycle_II {
             slow = slow.next;
             fast = fast.next;
         }
-        //terminate the loop means meet at Y. Find the first node of the list
         
         return slow;
     }

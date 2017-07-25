@@ -21,6 +21,11 @@ All words contain only lowercase alphabetic characters.
 Array, Backtracking, BFS, String
  */
 public class LT126_Word_Ladder_II {
+	https://leetcode.com/discuss/9523/share-two-similar-java-solution-that-accpted-by-oj
+	https://leetcode.com/discuss/44110/super-fast-java-solution-two-end-bfs
+	https://leetcode.com/discuss/64808/my-concise-java-solution-based-on-bfs-and-dfs
+			
+			
 	public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         
     }

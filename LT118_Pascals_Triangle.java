@@ -17,14 +17,13 @@ Array
 import java.util.*;
 public class LT118_Pascals_Triangle {
 	public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();  //remeber, list is abstract, cannot be instanced. should use arraylist here.
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
         if(numRows<=0)
             return result;
         
         List<Integer> pre = new ArrayList<Integer>();
         pre.add(1);
         result.add(pre);   //if row =1
-        
             
         for(int i=2; i<=numRows;i++){
             List<Integer> cur = new ArrayList<Integer>();

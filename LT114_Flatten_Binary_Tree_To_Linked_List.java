@@ -32,6 +32,21 @@ Tree, DFS
  */
 public class LT114_Flatten_Binary_Tree_To_Linked_List {
 	public void flatten(TreeNode root) {
+        if (root == null) return; 
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        
+        root.left = null;
+        flatten(left);
+        flatten(right);
+        
+        root.right = left;
+        TreeNode cur = root;
+        while (cur.right != null) cur = cur.right;
+        cur.right = right;
+    }
+	
+	public void flatten2(TreeNode root) {
 		if(root==null) return;
         Stack<TreeNode> stk = new Stack<TreeNode>();
         TreeNode cur = root;

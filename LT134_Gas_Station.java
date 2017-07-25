@@ -19,7 +19,7 @@ public class LT134_Gas_Station {
             total += gas[i]-cost[i];	//always add up to check if can travel around the circuit once.
             if(sum<0){
                  index = i+1;    //cannot be start.
-                 sum = 0;    	//from the new start to calculate possiblity of sum
+                 sum = 0;    	//from the new start to calculate possibility of sum
             }
             
         }

@@ -9,32 +9,38 @@ Return 3.
 DP, String
  */
 public class LT115_Distinct_Sequences {
-	RECHECK
-	//子串的长度为 i，我们要求的就是长度为 i 的字串在长度为 j 的母串中出现的次数，设为 t[i][j]，若母串的最后一个字符与子串的最后一个字符不同，则长度为 i 的子串在长度为 j 的母串中出现的次数就是母串的前 j - 1 个字符中子串出现的次数，即 t[i][j] = t[i][j - 1]，若母串的最后一个字符与子串的最后一个字符相同，那么除了前 j - 1 个字符出现字串的次数外，还要加上子串的前 i - 1 个字符在母串的前 j - 1 个字符中出现的次数，即 t[i][j] = t[i][j - 1] + t[i - 1][j - 1]。 
-    //reverse i, j in the code. !!!!
-    
-    //dp[0][0] = 1; // T和S都是空串.
-    //dp[0][1 ... S.length() - 1] = 1; // T是空串，S只有一种子序列匹配。
-    //dp[1 ... T.length() - 1][0] = 0; // S是空串，T不是空串，S没有子序列匹配
-    
-    public int numDistinct(String S, String T) {
-        int[][] dp = new int[S.length() + 1][T.length() + 1];   
-        dp[0][0] = 1;//initial
-        
-        for(int j = 1; j <= T.length(); j++)//S is empty
-            dp[0][j] = 0;
-            
-        for (int i = 1; i <= S.length(); i++)//T is empty
-            dp[i][0] = 1;
-           
-        for (int i = 1; i <= S.length(); i++) {
-            for (int j = 1; j <= T.length(); j++) {
-                dp[i][j] = dp[i-1][j];                      
-                if (S.charAt(i - 1) == T.charAt(j - 1)) 
-                    dp[i][j] += dp[i - 1][j - 1];
-            }
+	public int numDistinct(String S, String T) {
+        /**
+         * Solution (DP):
+         * We keep a m*n matrix and scanning through string S, while
+         * m = T.length() + 1 and n = S.length() + 1
+         * and each cell in matrix Path[i][j] means the number of distinct subsequences of 
+         * T.substr(1...i) in S(1...j)
+         * 
+         * Path[i][j] = Path[i][j-1]            (discard S[j])
+         *              +     Path[i-1][j-1]    (S[j] == T[i] and we are going to use S[j])
+         *                 or 0                 (S[j] != T[i] so we could not use S[j])
+         * while Path[0][j] = 1 and Path[i][0] = 0.
+         */
+        int sl = S.length();
+        int tl = T.length();
+
+        int [][] dp = new int[tl+1][sl+1];
+
+        for(int i=0; i<=sl; ++i){
+            dp[0][i] = 1;
         }
-     
-        return dp[S.length()][T.length()];
+
+        for(int t=1; t<=tl; ++t){
+            for(int s=1; s<=sl; ++s){
+                if(T.charAt(t-1) != S.charAt(s-1)){
+                    dp[t][s] = dp[t][s-1];
+                }else{
+                    dp[t][s] = dp[t][s-1] + dp[t-1][s-1];
+                }
+            }	
+        }
+
+        return dp[tl][sl];
     }
 }

@@ -7,8 +7,7 @@ Design
  */
 import java.util.*;
 public class LT146_LRU_Cache {
-	recheck
-	
+	//multi-thread please use lock on the hashmap and linkedlist
     private HashMap<Integer, DoubleLinkedListNode> map = new HashMap<>();
     private DoubleLinkedListNode head;
     private DoubleLinkedListNode end;
@@ -61,7 +60,6 @@ public class LT146_LRU_Cache {
     
     
     public void setHead(DoubleLinkedListNode node){
-         
          node.next = head;
          node.pre = null;
          if(head!=null)
@@ -76,7 +74,6 @@ public class LT146_LRU_Cache {
     
     
     public void removeNode(DoubleLinkedListNode node){
-        DoubleLinkedListNode cur = node;
         DoubleLinkedListNode pre = node.pre;
         DoubleLinkedListNode next = node.next;
         //need to attention, cur is head so pre is null or cur is end so next is null 

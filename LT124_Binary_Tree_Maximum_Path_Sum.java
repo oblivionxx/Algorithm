@@ -14,31 +14,17 @@ Return 6.
 Tree, DFS
  */
 public class LT124_Binary_Tree_Maximum_Path_Sum {
-	//1. Node itself
-    //2. Node with left Child
-    //3. Node with right child
-    //4. Node with left+right child
-    
-    //val can be negative
-    
+	int max = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        int[] max = new int[1];
-        max[0] = Integer.MIN_VALUE;
-        maxPath(root,max);
-        return max[0];
+        help(root);
+        return max;
     }
     
-    //return maximum from case 1,2,3.used for next recursion
-    //max[0] store for case 1,2,3,4
-    private int maxPath(TreeNode root, int[] max) {
-        if (root == null)
-            return 0;
-        int left = maxPath(root.left, max);		//左边一支儿（不算自己）
-        int right = maxPath(root.right, max);
-        int arch = left + right + root.val; 									//case 4. 
-        int single = Math.max(root.val, Math.max(left, right) + root.val);		//case 1,2,3
-       
-        max[0] = Math.max(max[0], Math.max(arch, single));		//update maximum. compare case 1,2,3,4 and previous maximum
-        return single;  										//return value is not local maximum. either left or right path. cannot be arch(arch can be local maximum).
+    public int help(TreeNode root){         //maxPathDownwards. returns the maximum pathSum of left/right subtree, not across root
+        if(root==null) return 0;
+        int left = Math.max(0, help(root.left));        //be careful. pathSum could be negative. 
+        int right = Math.max(0, help(root.right));
+        max = Math.max(root.val + left + right, max);	//path across left, root, right	
+        return root.val+Math.max(left, right);
     }
 }

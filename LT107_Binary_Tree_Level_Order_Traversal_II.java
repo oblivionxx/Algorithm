@@ -18,34 +18,29 @@ Tree, BFS
  */
 import java.util.*;
 public class LT107_Binary_Tree_Level_Order_Traversal_II {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        //difference to I: when add to res, using res.add(0, item)
+        //add before the rest items.
         List<List<Integer>> res = new ArrayList<>();
         if(root==null) return res;
-        LinkedList<TreeNode> queue = new LinkedList<>();
         
-        List<Integer> elm = new ArrayList<Integer>();
-		
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int curLevel = 1;
-        int nextLevel = 0;
         while(!queue.isEmpty()){
-        	for(int i=0;i<curLevel;i++){
-	        	TreeNode cur = queue.poll();
-	        	elm.add(cur.val);
-	        	if(cur.left!=null){
-	        		queue.add(cur.left);
-	        		nextLevel++;
-	        	}
-	        	if(cur.right!=null){
-	        		queue.add(cur.right);
-	        		nextLevel++;
-	        	}
-        	}
-        	
-        	res.add(0, new ArrayList<>(elm));		//only difference to levelOrder. insert cur level before the previous level. 
-        	elm.clear();
-        	curLevel = nextLevel;
-        	nextLevel = 0;
+            int size = queue.size();
+            List<Integer> item = new ArrayList<>();
+            for(int i=0;i<size;i++){
+                TreeNode cur = queue.poll();
+                if(cur.left!=null){
+                    queue.add(cur.left);
+                }
+                if(cur.right!=null){
+                    queue.add(cur.right);
+                }
+                
+                item.add(cur.val);
+            }
+            res.add(0, item);       //only difference
         }
         
         return res;

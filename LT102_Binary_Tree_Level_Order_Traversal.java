@@ -22,31 +22,24 @@ public class LT102_Binary_Tree_Level_Order_Traversal {
 	public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if(root==null) return res;
-        LinkedList<TreeNode> queue = new LinkedList<>();
         
-        List<Integer> elm = new ArrayList<Integer>();
-		
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int curLevel = 1;
-        int nextLevel = 0;
         while(!queue.isEmpty()){
-        	for(int i=0;i<curLevel;i++){
-	        	TreeNode cur = queue.poll();
-	        	elm.add(cur.val);
-	        	if(cur.left!=null){
-	        		queue.add(cur.left);
-	        		nextLevel++;
-	        	}
-	        	if(cur.right!=null){
-	        		queue.add(cur.right);
-	        		nextLevel++;
-	        	}
-        	}
-        	
-        	res.add(new ArrayList<>(elm));
-        	elm.clear();
-        	curLevel = nextLevel;
-        	nextLevel = 0;
+            int size = queue.size();
+            List<Integer> item = new ArrayList<>();
+            for(int i=0;i<size;i++){
+                TreeNode cur = queue.poll();
+                if(cur.left!=null){
+                    queue.add(cur.left);
+                }
+                if(cur.right!=null){
+                    queue.add(cur.right);
+                }
+                
+                item.add(cur.val);
+            }
+            res.add(item);
         }
         
         return res;

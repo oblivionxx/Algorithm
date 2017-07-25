@@ -26,7 +26,6 @@ public class LT119_Pascals_Trangles_II {
             
             cur.add(1);
             pre = cur;
-            if(i==rowIndex) return cur;
         }
         return pre;
     }

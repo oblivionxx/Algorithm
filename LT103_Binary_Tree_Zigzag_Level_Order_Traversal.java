@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+
 
 /*
 Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
@@ -21,64 +20,31 @@ return its zigzag level order traversal as:
 Stack, Tree, BFS
  */
 public class LT103_Binary_Tree_Zigzag_Level_Order_Traversal {
-	public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        //BFS. Flag for level odd/even. using stack instead of queue to do reverse order
         List<List<Integer>> res = new ArrayList<>();
-        if(root==null) return res;
-        
-        Stack<TreeNode> queue = new Stack<>();
-        
-        int level = 1;
-        List<Integer> elm = new ArrayList<Integer>();
-		elm.add(root.val);
-		res.add(elm);
-		
-        queue.add(root);
-       
-        while(!queue.isEmpty()){
-        	Stack<TreeNode> newQ = new Stack<TreeNode>();		//store nextlevel element.
-        	elm = new ArrayList<Integer>();
-        	while(!queue.isEmpty()){     						//loop the element in the stack
-                TreeNode node = queue.pop();    
-                if(level%2==0){         						//check the level number is odd or even. 
-                    if(node.left!=null){
-                    	newQ.push(node.left);
-                        elm.add(node.left.val);
-                    }
-                    if(node.right!=null){
-                    	newQ.push(node.right);
-                        elm.add(node.right.val);
-                    }
-                }else{
-                    if(node.right!=null){
-                        newQ.push(node.right);					//newQ stack. reverse order to elm.
-                        elm.add(node.right.val);				//elm is list. 
-                    }
-                    if(node.left!=null){
-                        newQ.push(node.left);
-                        elm.add(node.left.val);
-                    }                   
+        if(root == null) return res;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        boolean order = true;
+
+        while(!q.isEmpty()) {
+            int size = q.size();
+            List<Integer> tmp = new ArrayList<>();
+            for(int i = 0; i < size ; ++i) {
+                TreeNode n = q.poll();
+                if(order) {
+                    tmp.add(n.val);
+                } else {
+                    tmp.add(0, n.val);
                 }
+                if(n.left != null) q.add(n.left);
+                if(n.right!= null) q.add(n.right);
             }
-            level++;
-            if(elm.size()>0)   
-                res.add(elm);
-            queue = newQ;
+            res.add(tmp);
+            order = order ? false : true;
         }
-        
         return res;
     }
-	
-	public static void main(String[] args){
-		TreeNode root = new TreeNode(1);
-		TreeNode left = new TreeNode(2);
-		TreeNode right = new TreeNode(3);
-		root.left = left;
-		root.right = right;
-		left.left = new TreeNode(4);
-		left.right =  new TreeNode(5);
-		right.left =  new TreeNode(6);
-		right.right =  new TreeNode(7);
-		
-		zigzagLevelOrder(root);
-	}
 }
