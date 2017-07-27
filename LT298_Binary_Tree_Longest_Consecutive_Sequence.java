@@ -24,27 +24,18 @@ Longest consecutive sequence path is 2-3,not3-2-1, so return 2.
 Tree
  */
 public class LT298_Binary_Tree_Longest_Consecutive_Sequence {
-	public int longestConsecutive(TreeNode root) {				//Increasing from parent to child node
-        int[] max = new int[]{0};
-        helper(root, max);
-        return max[0];
-        
+    //top to bottom
+    private int maxLength = 0;
+    public int longestConsecutive(TreeNode root) {
+        dfs(root, null, 0);
+        return maxLength;
     }
-    
-    public int helper(TreeNode root, int[] max){
-        if(root==null) return 0;
-        int res = 1;
-        int left = helper(root.left, max);
-        int right = helper(root.right, max);
-        if (root.left == null || root.val + 1 != root.left.val) {
-            left = 0;
-        }
-        if (root.right == null || root.val + 1 != root.right.val) {
-            right = 0;
-        }
-        res += Math.max(right, left);
-        max[0] = Math.max(res, max[0]);
-        return res;
-    
+
+    private void dfs(TreeNode p, TreeNode parent, int length) {
+        if (p == null) return;
+        length = (parent != null && p.val == parent.val + 1) ? length + 1 : 1;
+        maxLength = Math.max(maxLength, length);
+        dfs(p.left, p, length);
+        dfs(p.right, p, length);
     }
 }

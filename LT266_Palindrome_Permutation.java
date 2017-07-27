@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 /*
 Given a string, determine if a permutation of the string could form a palindrome.
 For example,
@@ -16,24 +14,15 @@ HashTable
 public class LT266_Palindrome_Permutation {
 	//just count the freq.
 	public boolean canPermutePalindrome(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
-        char[] arr = s.toCharArray();
-        
-        for(char c:arr){
-            if(!map.containsKey(c))
-                map.put(c,1);
-            else
-                map.put(c, map.get(c)+1);
+        int[] array = new int[256];
+        for(int i=0;i<s.length();i++){
+            array[s.charAt(i)]++; 
         }
-        
         int odd = 0;
-        for(int i:map.values()){
-            if(i%2==1)
-                odd++;
+        for(int i=0;i<array.length;i++){
+            if(array[i]%2==1) odd++;
         }
         
-        if(odd>1) return false;
-        
-        return true;
+        return odd<=1;
     }
 }

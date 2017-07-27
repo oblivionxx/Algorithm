@@ -8,7 +8,7 @@ If there are 5 stones in the heap, could you figure out a way to remove the ston
 
  */
 public class LT292_Nim_Game {
-	public boolean canWinNim(int n) {
-		return n % 4 != 0;
+    public boolean canWinNim(int n) {
+	return n % 4 != 0;
     }
 }

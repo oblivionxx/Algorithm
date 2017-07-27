@@ -16,23 +16,20 @@ Two Pointer, Array
  */
 public class LT259_3Sum_Smaller {
 	public int threeSumSmaller(int[] nums, int target) {
-        int sum =0;
+        int count =0;
         Arrays.sort(nums);
-        
         for(int i=0;i<nums.length-2;i++){
-            int start = i+1;
-            int end = nums.length-1;
-            
-            while(start<end){
-                if(nums[i]+nums[start]+nums[end]>=target){
-                    end--;
-                }else{
-                    sum += end-start;
-                    start++;
+            int left = i+1, right = nums.length-1;
+            while(left<right){
+                int sum = nums[i]+nums[left]+nums[right];
+                if(sum>=target) right--;
+                else{
+                    count+=right-left;      //[-2, 0, 1, 3] when -2,0,3 works. can be sure that -2,0,1 is also working. if just move left, then count less
+                    left++;
                 }
             }
         }
-        return sum;
         
+        return count;
     }
 }

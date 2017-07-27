@@ -14,7 +14,7 @@ A faster approach is to use extra space.
 HashTable, Sort
  */
 public class LT274_H_Index {
-	//1. counting sort
+    //1. counting sort
     public int hIndex(int[] citations) {
         if(citations.length <=0) return 0;
         int res = 0;
@@ -37,22 +37,13 @@ public class LT274_H_Index {
     
     //2. Sort and check from bwd 
     public int hIndex2(int[] citations) {
-        if (citations.length == 0) {
-            return 0;
-        }
- 
-        //数组元素降序排列
         Arrays.sort(citations);
-        //计算H指数
-        int result = 0;
-        for (int i = citations.length - 1; i >= 0; i--) {
-            if (result >= citations[i]) {
-                return result;
-            }
-            result++;
+        int hIndex = 0;
+        for(int i=citations.length-1;i>=0;i--){
+            if(citations[i]<=hIndex) return hIndex;
+            hIndex++;
         }
-         
-        return result;
-    
+        
+        return hIndex;
     }
 }

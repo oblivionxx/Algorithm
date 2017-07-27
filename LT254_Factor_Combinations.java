@@ -43,19 +43,18 @@ public class LT254_Factor_Combinations {
     	if (n <=3)
     		return result;
      
-    	List<Integer> item = new ArrayList<Integer>();
-    	dfs(n, -1, item, result); // because it need to begin from 1
+    	dfs(n, 2, new ArrayList<Integer>(), result); // because it need to begin from 1
     	return result;
     }
          
     private void dfs(int n, int lower, List<Integer> cur, List<List<Integer>> result) {
-    	if (lower != -1) {
-            cur.add(n);
-            result.add(new ArrayList<Integer>(cur));
-            cur.remove(cur.size() - 1);
+    	if (n==1) {
+    	    if (cur.size() > 1) 
+                result.add(new ArrayList<Integer>(cur));
+            return;
         }
-        int upper = (int) Math.sqrt(n);
-        for (int i = Math.max(2, lower); i <= upper; ++i) {
+        
+        for (int i = lower; i <= n; ++i) {
             if (n % i == 0) {
                 cur.add(i);
                 dfs(n / i, i, cur, result);

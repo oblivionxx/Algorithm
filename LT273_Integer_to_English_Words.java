@@ -14,48 +14,34 @@ There are many edge cases. What are some good test cases? Does your code work wi
 Math, String
  */
 public class LT273_Integer_to_English_Words {
-	public String numberToWords(int num) {
-        //maximum is 21 billiion
-        //Need enumerate [1-19], and [20,30,40,50,60,70,80,90].
-        //一个三位数n，百位数表示为n/100，后两位数一起表示为n%100，十位数表示为n%100/10，个位数表示为n%10，然后我们看后两位数是否小于20，小于的话直接从数组中取出单词，如果大于等于20的话，则分别将十位和个位数字的单词从两个数组中取出来。然后再来处理百位上的数字，还要记得加上Hundred。主函数中调用四次这个帮助函数，
-        //中间要插入"Thousand", "Million","Billion"到对应的位置，最后check一下末尾是否有空格，把空格都删掉，返回的时候检查下输入是否为0，是的话要返回'Zero'。
-        String[] units = {""," Thousand"," Million"," Billion"};
+    private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private final String[] TENS = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
+
+    public String numberToWords(int num) {
+        if (num == 0) return "Zero";
+    
         int i = 0;
-        String res="";
-        while(num>0) {
-            int temp = num%1000;
-            if(temp>0) res = convert(temp) + units[i] + (res.length()==0 ?"": " "+res);
-            num /= 1000;
-            i++;
+        String words = "";
+        
+        while (num > 0) {
+            if (num % 1000 != 0)
+        	    words = convert(num % 1000) +THOUSANDS[i] + " " + words;
+        	num /= 1000;
+        	i++;
         }
-        return res.isEmpty()? "Zero" : res;
+        
+        return words.trim();
     }
-    public String convert(int num){
-        String res = "";
-        String[] ten = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
-        String[] hundred = {"Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-        String[] twenty = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-        if(num>0) {
-            int temp = num/100;
-            if(temp>0) {
-                res += ten[temp] + " Hundred";
-            }
-            temp = num%100;
-            if(temp>=10 && temp<20){
-                if(!res.isEmpty()) res +=" ";
-                res = res + twenty[temp%10];
-                return res;
-            }else if(temp>=20){
-                temp = temp/10;
-                if(!res.isEmpty()) res +=" ";
-                res = res + hundred[temp-1];
-            }
-            temp = num%10;
-            if(temp>0) {
-                if(!res.isEmpty()) res +=" ";
-                res = res + ten[temp];
-            }
-        }
-        return res;
+    
+    private String convert(int num) {
+        if (num == 0)
+            return "";
+        else if (num < 20)
+            return LESS_THAN_20[num] + " ";
+        else if (num < 100)
+            return TENS[num / 10] + " " + convert(num % 10);
+        else
+            return LESS_THAN_20[num / 100] + " Hundred " + convert(num % 100);
     }
 }

@@ -16,7 +16,7 @@ Note: Do not use class member/global/static variables to store states. Your seri
 Tree, Design
  */
 public class LT297_Serialize_and_Deserialize_Binary_Tree {
-	//Idea: pre-order traverse the tree
+    //Idea: pre-order traverse the tree
     //plug in # in return if current node is null
     public String serialize(TreeNode root) {
         // write your code here

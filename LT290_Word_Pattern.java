@@ -24,7 +24,7 @@ public class LT290_Word_Pattern {
         String[] array = str.split(" ");
         if(charArray.length!=array.length) return false;
         
-        for(int i =0;i<array.length;i++){
+        for(int i = 0;i<array.length;i++){
             if(map1.containsKey(array[i])){
                 if(!map1.get(array[i]).equals(charArray[i]))
                     return false;

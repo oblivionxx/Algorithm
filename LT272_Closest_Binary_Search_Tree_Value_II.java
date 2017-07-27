@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
 Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.
 
@@ -20,5 +22,40 @@ You would need two stacks to track the path in finding predecessor and successor
 Tree, Stack
  */
 public class LT272_Closest_Binary_Search_Tree_Value_II {
-	recheck
+    public List<Integer> closestKValues(TreeNode root, double target, int k) {
+	Comparator<Integer> cmp = new Comparator<Integer>() {
+	    public int compare(Integer o1, Integer o2) {
+		if (o1 == o2) {
+		    return 0;
+		}
+		if (Math.abs(o1 - target) < Math.abs(o2 - target)) {
+		    return 1;
+		} else {
+		    return -1;
+		}
+	    }
+	};
+	// heap save on the top the fartest node to value
+	Queue<Integer> queue = new PriorityQueue<Integer>(cmp);
+	helper(root, target, k, queue);
+	return new ArrayList<Integer>(queue);
+    }
+
+    public void helper(TreeNode root, double target, int k, Queue<Integer> queue) {
+	if (root == null) {
+	    return;
+	}
+
+	helper(root.left, target, k, queue);
+	if (queue.size() < k) {
+	    queue.offer(root.val);
+	} else {
+	    // update root to be the kth closest
+	    if (Math.abs(queue.peek() - target) > Math.abs(root.val - target)) {
+		queue.poll();
+		queue.add(root.val);
+	    }
+	}
+	helper(root.right, target, k, queue);
+    }
 }

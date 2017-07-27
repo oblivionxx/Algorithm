@@ -15,17 +15,18 @@ If there is no valid move, return an empty list [].
 String
  */
 public class LT293_Flip_Game {
-	public List<String> generatePossibleNextMoves(String s) {
-        List<String> res = new ArrayList<String>();
-        if(s==null || s.length()==0) return res;
-        int len = s.length();
-        
-        for(int i=1;i<len;i++){
-            if(s.charAt(i)=='+' && s.charAt(i-1)=='+')
-               res.add(s.substring(0,i-1)+"--"+s.substring(i+1,len));
-        }
-        
-        return res;
-        
+    public List<String> generatePossibleNextMoves(String s) {
+	List<String> res = new ArrayList<String>();
+	if (s == null || s.length() == 0)
+	    return res;
+	int len = s.length();
+
+	for (int i = 1; i < len; i++) {
+	    if (s.charAt(i) == '+' && s.charAt(i - 1) == '+')
+		res.add(s.substring(0, i - 1) + "--" + s.substring(i + 1, len));
+	}
+
+	return res;
+
     }
 }

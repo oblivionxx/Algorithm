@@ -22,7 +22,7 @@ After running your function, the 2D grid should be:
 BFS
  */
 public class LT286_Walls_And_Gates {
-	//O(m*n) space O(n)
+    //O(m*n) space O(n)
     public void wallsAndGates(int[][] rooms) {
         if(rooms.length == 0) return;
         int m = rooms.length;

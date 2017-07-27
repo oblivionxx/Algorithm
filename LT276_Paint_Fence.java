@@ -25,5 +25,6 @@ public class LT276_Paint_Fence {
         }
         
         return dp[n];
+       
     }
 }

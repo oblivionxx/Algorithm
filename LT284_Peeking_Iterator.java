@@ -21,44 +21,44 @@ Follow up: How would you extend your design to be generic and work with all type
 Design
  */
 public class LT284_Peeking_Iterator {
-	recheck 
-	class PeekingIterator implements Iterator<Integer> {
+    class PeekingIterator implements Iterator<Integer> {
 
-	    private Integer nextElement = null;
-	    private boolean peeked = false;
-	    private Iterator<Integer> iterator;
-	    
-		public PeekingIterator(Iterator<Integer> iterator) {
-		    // initialize any member here.
-		    this.iterator = iterator;
-		}
+	private Integer nextElement = null;
+	private boolean peeked = false;
+	private Iterator<Integer> iterator;
 
-	    // Returns the next element in the iteration without advancing the iterator.
-		public Integer peek() {
-	        if (!peeked) {
-	            nextElement = iterator.next();
-	            peeked = true;
-	        }
-	        return nextElement; //still the previous nextElement. don't update iterator pointing position
-	        
-		}
-
-		// hasNext() and next() should behave the same as in the Iterator interface.
-		// Override them if needed.
-		@Override
-		public Integer next() {
-		    if(!peeked)
-		        return iterator.next();
-		    peeked = false;
-	        Integer result = nextElement;
-	        nextElement = null;
-	        return result;
-		}
-
-		@Override
-		public boolean hasNext() {
-		    return peeked || iterator.hasNext();  //if peeked, then has a nextelement
-		    
-		}
+	public PeekingIterator(Iterator<Integer> iterator) {
+	    this.iterator = iterator;
 	}
+
+	// Returns the next element in the iteration without advancing the
+	// iterator.
+	public Integer peek() {
+	    if (!peeked) {				//if not peeked. update nextElement and flag. 
+		nextElement = iterator.next();
+		peeked = true;
+	    }
+	    return nextElement; 
+	}
+
+	// hasNext() and next() should behave the same as in the Iterator
+	// interface.
+	// Override them if needed.
+	@Override
+	public Integer next() {
+	    if (!peeked)
+		return iterator.next();
+	    peeked = false;				//if peaked. reset nextElement and flag to 
+	    Integer result = nextElement;
+	    nextElement = null;
+	    return result;
+	}
+
+	@Override
+	public boolean hasNext() {
+	    return peeked || iterator.hasNext(); // if peeked, then has a
+						 // nextelement
+
+	}
+    }
 }

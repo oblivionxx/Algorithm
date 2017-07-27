@@ -10,19 +10,11 @@ Sort. check for overlap
 import java.util.*;	
 public class LT252_Meeting_Rooms {
 	public boolean canAttendMeetings(Interval[] intervals) {
-		Arrays.sort(intervals, new Comparator<Interval>() {
-            @Override
-            public int compare(Interval o1, Interval o2) {
-                int r = o1.start - o2.start;
-                return r==0? o1.end - o2.end : r;
-            }
-        });
-        
-        for(int i=1;i<intervals.length;i++) {
-            Interval t1 = intervals[i-1];
-            Interval t2 = intervals[i];
-            if(t1.end>t2.start) return false;
+        Arrays.sort(intervals, (i1,i2)->(i1.start-i2.start));
+        for(int i=0;i<intervals.length-1;i++){
+            if(intervals[i].end > intervals[i+1].start) return false;
         }
+        
         return true;
     }
 }

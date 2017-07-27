@@ -19,7 +19,7 @@ Digit root. dr(n)=n-9*[(n-1)/9]
  */
 public class LT258_Add_Digits {
 	public int addDigits(int num) {
-        //congruence
+        //congruence O(1)
         if(num==0) return num;
         return (num-1)%9+1;
     }

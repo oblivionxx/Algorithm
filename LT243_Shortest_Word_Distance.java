@@ -13,7 +13,6 @@ You may assume that word1 does not equal to word2, and word1 and word2 are both 
 Array
  */
 
-import java.util.*;
 public class LT243_Shortest_Word_Distance {
 	//O(n)
 	public int shortestDistance(String[] words, String word1, String word2) {
