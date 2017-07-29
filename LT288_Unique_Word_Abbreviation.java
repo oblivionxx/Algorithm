@@ -27,44 +27,46 @@ isUnique("make") -> true
 HashTable, Design
  */
 public class LT288_Unique_Word_Abbreviation {
-	public class ValidWordAbbr {
-	    HashMap<String, HashSet<String>> map = new HashMap<>();
+    public class ValidWordAbbr {
+	HashMap<String, HashSet<String>> map = new HashMap<>();
 
-	    public ValidWordAbbr(String[] dictionary) {
-	        for(String s:dictionary){
-	            String abbr = convert(s);
-	            if(!map.containsKey(abbr)){
-	                HashSet<String> set = new HashSet<>();
-	                set.add(s);
-	                map.put(abbr, set);
-	            }
-	            else{
-	                HashSet<String> set =map.get(abbr);
-	                set.add(s);
-	                map.put(abbr,set);
-	            }
-	        }
-	    }
-
-	    public boolean isUnique(String word) {
-	        String abbr = convert(word);
-	        if(!map.containsKey(abbr))
-	            return true;
-	        if(map.get(abbr).contains(word) && map.get(abbr).size() == 1)		// means the map.get(abbr).equals(abbr)
-	            return true;
-	        return false;
-	    }
-	    
-	    private String convert(String s){
-	        if(s==null || s.length()==0) return "";
-	        if(s.length()<3) return s;
-	        return s.charAt(0) + Integer.toString(s.length() - 2)+ s.charAt(s.length()-1);
+	public ValidWordAbbr(String[] dictionary) {
+	    for (String s : dictionary) {
+		String abbr = convert(s);
+		if (!map.containsKey(abbr)) {
+		    HashSet<String> set = new HashSet<>();
+		    set.add(s);
+		    map.put(abbr, set);
+		} else {
+		    HashSet<String> set = map.get(abbr);
+		    set.add(s);
+		    map.put(abbr, set);
+		}
 	    }
 	}
 
+	public boolean isUnique(String word) {
+	    String abbr = convert(word);
+	    if (!map.containsKey(abbr))
+		return true;
+	    if (map.get(abbr).contains(word) && map.get(abbr).size() == 1) // means
+									   // the
+									   // map.get(abbr).equals(abbr)
+		return true;
+	    return false;
+	}
 
-	// Your ValidWordAbbr object will be instantiated and called as such:
-	// ValidWordAbbr vwa = new ValidWordAbbr(dictionary);
-	// vwa.isUnique("Word");
-	// vwa.isUnique("anotherWord");
+	private String convert(String s) {
+	    if (s == null || s.length() == 0)
+		return "";
+	    if (s.length() < 3)
+		return s;
+	    return s.charAt(0) + Integer.toString(s.length() - 2) + s.charAt(s.length() - 1);
+	}
+    }
+
+    // Your ValidWordAbbr object will be instantiated and called as such:
+    // ValidWordAbbr vwa = new ValidWordAbbr(dictionary);
+    // vwa.isUnique("Word");
+    // vwa.isUnique("anotherWord");
 }
