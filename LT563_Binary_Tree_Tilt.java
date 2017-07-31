@@ -6,17 +6,20 @@
  * Tree
  */
 public class LT563_Binary_Tree_Tilt {
-	int res = 0;
+    int res = 0;
+
     public int findTilt(TreeNode root) {
-        sum(root);
-        return res;
+	sum(root);
+	return res;
     }
-    
-    public int sum(TreeNode root){
-        if(root==null) return 0;
-        int leftsum = sum(root.left);
-        int rightsum = sum(root.right);
-        res+= Math.abs(leftsum-rightsum);
-        return leftsum+rightsum+root.val;           //sum of subTree starting from root
+
+    public int sum(TreeNode root) {
+	if (root == null)
+	    return 0;
+	int leftsum = sum(root.left);
+	int rightsum = sum(root.right);
+	res += Math.abs(leftsum - rightsum);
+	return leftsum + rightsum + root.val; // sum of subTree starting from
+					      // root
     }
 }
