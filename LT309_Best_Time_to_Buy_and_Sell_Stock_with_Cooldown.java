@@ -14,23 +14,24 @@ transactions = [buy, sell, cooldown, buy, sell]
 DP
  */
 public class LT309_Best_Time_to_Buy_and_Sell_Stock_with_Cooldown {
-	public int maxProfit(int[] prices) {
-        //buy[i] = max(sell[i-2]-price, buy[i-1])
-        //sell[i] = max(buy[i-1]+price, sell[i-1])
-        //https://leetcode.com/discuss/71354/share-my-thinking-process
-        //can reduce O(n) space to O(1)
-		//https://leetcode.com/discuss/71391/easiest-java-solution-with-explanations
-        
-        if(prices==null || prices.length==0) return 0;
-        
-        int buy = Integer.MIN_VALUE, prebuy = buy, sell= 0, presell = sell;
-        for(int p:prices){
-            prebuy = buy;
-            buy = Math.max(presell-p,buy);
-            presell = sell;
-            sell = Math.max(prebuy+p, sell);
-        }
-        
-        return sell;
+    public int maxProfit(int[] prices) {
+	// buy[i] = max(sell[i-2]-price, buy[i-1])
+	// sell[i] = max(buy[i-1]+price, sell[i-1])
+	// https://leetcode.com/discuss/71354/share-my-thinking-process
+	// can reduce O(n) space to O(1)
+	// https://leetcode.com/discuss/71391/easiest-java-solution-with-explanations
+
+	if (prices == null || prices.length == 0)
+	    return 0;
+
+	int buy = Integer.MIN_VALUE, prebuy = buy, sell = 0, presell = sell;
+	for (int p : prices) {
+	    prebuy = buy;
+	    buy = Math.max(presell - p, buy);
+	    presell = sell;
+	    sell = Math.max(prebuy + p, sell);
 	}
+
+	return sell;
+    }
 }
