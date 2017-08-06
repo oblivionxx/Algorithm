@@ -50,6 +50,9 @@ public class LT010_Regular_Expression_Matching {
 				else
 					dp[i][j] = dp[i][j - 2]
 							|| (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') && dp[i - 1][j];
+			//dp meaning 0. dp[i][j] = dp[i][j-2] ;
+                    	//dp meaning one (s(i-1)==p(j-2) || p(j-2)='.') && dp[i-1][j] trick
+                    	//matches s->"x*x": dp[i-1][j] && s[i-1] == x.
 			}
 		}
 
