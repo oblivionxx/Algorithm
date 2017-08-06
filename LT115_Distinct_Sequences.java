@@ -22,6 +22,21 @@ public class LT115_Distinct_Sequences {
          *                 or 0                 (S[j] != T[i] so we could not use S[j])
          * while Path[0][j] = 1 and Path[i][0] = 0.
          */
+
+        //Here we construct a matrix matrixDP, where each cell matrixDP[i][j] represents the number of solutions of placing substring B[0..i] with A[0..j];
+
+        // Case 1). matrixDP[0][j] = 1, since placing B = “” with any substring of A would have only 1 solution which is to delete all characters in A.
+
+        // Case 2). when i > 0, matrixDP[i][j] can be derived by two cases:
+
+        //     case 2[a]). if B[i] != A[j], then the solution would be to ignore the character A[j] and align substring B[0..i] with A[0..(j-1)]. Therefore, matrixDP[i][j] = matrixDP[i][j-1].
+
+        //     case 2[b]). if B[i] == A[j], then first we could have the solution in case a), but also we could match the characters B[i] and A[j] and place the rest of them (i.e. B[0..(i-1)] and A[0..(j-1)]. As a result, matrixDP[i][j] = matrixDP[i][j-1] + matrixDP[i-1][j-1]
+
+        // e.g. B = "b", A = "abc"
+
+        // matrixDP[1][2]=1: Place B'=b and A'=ab, only one solution, which is to remove character a in A'.
+
         int sl = S.length();
         int tl = T.length();
 
