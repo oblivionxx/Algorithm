@@ -19,6 +19,11 @@ DP
  */
 public class LT600_Non_negative_Integers_without_Consecutive_Ones {
     //http://www.geeksforgeeks.org/count-number-binary-strings-without-consecutive-1s/
+    //Let a[i] be the number of binary strings of length i which do not contain any two consecutive 1’s and which end in 0.      
+    //let b[i] be the number of such strings which end in 1. 
+    // a[i] = a[i - 1] + b[i - 1]       we can append 1 on a[i-1] which end with 0, or append 0 on b[i-1] which end with 1
+    // b[i] = a[i - 1]                  we can only append 0 on a[i-1] to form new b[i]
+    // return a[n]+b[n] exclude numbers > num
     public int findIntegers(int num) {
         StringBuilder sb = new StringBuilder(Integer.toBinaryString(num)).reverse();
         int n = sb.length();
@@ -31,10 +36,12 @@ public class LT600_Non_negative_Integers_without_Consecutive_Ones {
             b[i] = a[i - 1];
         }
         
+        //https://discuss.leetcode.com/post/194125
+        //only keep number <=num
         int result = a[n - 1] + b[n - 1];
         for (int i = n - 2; i >= 0; i--) {
-            if (sb.charAt(i) == '1' && sb.charAt(i + 1) == '1') break;
-            if (sb.charAt(i) == '0' && sb.charAt(i + 1) == '0') result -= b[i];
+            if (sb.charAt(i) == '1' && sb.charAt(i + 1) == '1') break;				 //can include all values from dp. break
+            if (sb.charAt(i) == '0' && sb.charAt(i + 1) == '0') result -= b[i];			//check the discussion above
         }
         
         return result;
