@@ -28,7 +28,7 @@ public class LT498_Diagonal_Traverse {
             row -= d;
             col += d;
             
-            if (row >= m) { row = m - 1; col += 2; d = -d;}
+            if (row >= m) { row = m - 1; col += 2; d = -d;}    //cannot change order with two if with <0
             if (col >= n) { col = n - 1; row += 2; d = -d;}
             if (row < 0)  { row = 0; d = -d;}
             if (col < 0)  { col = 0; d = -d;}
