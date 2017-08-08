@@ -30,7 +30,7 @@ Heap.
  */
 import java.util.*;
 public class LT239_Sliding_Window_Maximum {
-	//1. deque
+	//1. deque. O(n)!!!
 	public int[] maxSlidingWindow(int[] nums, int k) {
         // Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.  
         if(k==0) return new int[0];  
@@ -53,7 +53,7 @@ public class LT239_Sliding_Window_Maximum {
         return res;  
     }  
 	
-	//2. heap
+	//2. heap. O(nlgk)
 	public int[] maxSlidingWindow2(int[] nums, int k) {
         int len = nums.length;
         int[] result = new int[len - k + 1];
