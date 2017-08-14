@@ -13,7 +13,7 @@ Stack
  */
 public class LT503_Next_Greater_Element_II {
     public int[] nextGreaterElements(int[] nums) {
-        //brute force
+        //brute force O(n^2)
         int[] res = new int[nums.length];
         for(int i=0;i<nums.length;i++){
             int j = i+1;
@@ -27,6 +27,20 @@ public class LT503_Next_Greater_Element_II {
             if(j==i+nums.length) res[i]=-1;
         }
         
+        return res;
+    }
+    
+    // Stack O(n)
+    public int[] nextGreaterElements2(int[] nums) {
+        int n = nums.length, res[] = new int[n];
+        Arrays.fill(res, -1);
+        Stack<Integer> stack = new Stack<>(); // index stack
+        for (int i = 0; i < n * 2; i++) {
+            int num = nums[i % n]; 
+            while (!stack.isEmpty() && nums[stack.peek()] < num)
+                res[stack.pop()] = num;
+            if (i < n) stack.push(i);
+        }   
         return res;
     }
 }
