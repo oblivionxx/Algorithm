@@ -13,7 +13,7 @@ public class LT142_Linked_List_Cycle_II {
         ListNode fast = head;
         ListNode slow = head;
         
-        while(true){
+        while(true){				//while true here!! either no cycle or fast/slow meet at a point
             if(fast==null || fast.next==null) return null;  //no cycle
             slow = slow.next;
             fast = fast.next.next;
