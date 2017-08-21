@@ -27,7 +27,7 @@ If M[i][j] = 1, then M[j][i] = 1.
 DFS, Union Find
  */
 public class LT547_Friend_Circles {
-    // DFS Solution
+    // DFS Solution. Similar to number of island
     public int findCircleNum(int[][] M) {
 	boolean[] visited = new boolean[M.length];
 	int count = 0;
@@ -45,5 +45,61 @@ public class LT547_Friend_Circles {
 		visited[j] = true;
 		dfs(M, visited, j);
 	    }
+    }
+    
+    public int findCircleNum2(int[][] M) {
+        //UF
+        int m = M.length;
+        QuickUnion qu = new QuickUnion(m);
+        for(int i=0;i<m-1;i++){
+            for(int j=i+1;j<m;j++){
+                if(M[i][j]==1)
+                    qu.union(i,j);
+            }
+        }
+        
+        return qu.getCount();
+    }
+    
+    public class QuickUnion{
+        private int[] id;
+        private int cnt;
+        
+        public QuickUnion(int N){
+            id = new int[N];
+            for (int i=0;i<N;i++) {
+                id[i] = i;
+            }
+            this.cnt = N;
+        }
+    
+        private int root(int i){
+            while(i!=id[i])
+                i = id[i];
+    
+            //root(id[id[i...]]) until i=id. so find the top root.
+            return i;
+        }
+    
+        public boolean connected(int p, int q){
+            return root(p)==root(q);
+        }
+    
+        public boolean union(int p, int q){
+            int i = root(p);
+            int j = root(q);
+            if(i!=j){
+                id[i] = j; //modify the root p to a pointer to root q
+                cnt--;
+                return true;
+            }
+            else        //p,q already connected
+                return false;
+        }
+        
+        public int getCount(){
+            return cnt;
+        }
+            
     }
 }
