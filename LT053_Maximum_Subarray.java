@@ -22,25 +22,10 @@ public class LT053_Maximum_Subarray {
 
 		return global;
 	}
-	
-	// can be reused in maximum subarray ii. more easy to understand. 
-	public int maxSubArray2(int[] nums) {
-		int size = nums.length;
-		int sum = 0;
-		int minSum = 0;
-		int max = Integer.MIN_VALUE;
-		for(int i = 0; i < size; i++){
-		    sum += nums[i];
-		    max = Math.max(max, sum - minSum);
-		    minSum = Math.min(sum, minSum);
-		}
-	}
-        
-        return max;
 
 	// divide and conquer. array is on the left half, right half, or cross
 	// center
-	public int maxSubArray3(int[] nums) {
+	public int maxSubArray2(int[] nums) {
 		return maxSubArray(nums, 0, nums.length - 1);
 	}
 

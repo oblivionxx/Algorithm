@@ -1,3 +1,4 @@
+
 /*
 There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
 
@@ -21,12 +22,12 @@ There may be multiple valid order of letters, return any one of them is fine.
 Graph, Topological Sort
  */
 import java.util.*;
+
 public class LT269_Alien_Dictionary {
-	recheck
-	//https://leetcode.com/discuss/77078/easiest-java-bfs-solution
-	//https://leetcode.com/discuss/54549/java-toposort-solution-clean
-	//https://leetcode.com/discuss/78602/3ms-clean-java-solution-dfs
-	public String alienOrder(String[] words) {
+    // https://leetcode.com/discuss/77078/easiest-java-bfs-solution
+    // https://leetcode.com/discuss/54549/java-toposort-solution-clean
+    // https://leetcode.com/discuss/78602/3ms-clean-java-solution-dfs
+    public String alienOrder(String[] words) {
         //adjacent list
         HashMap<Character, HashSet<Character>> adj = new HashMap<>();
         //calculate indegree
