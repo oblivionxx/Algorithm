@@ -37,7 +37,7 @@ public class LT337_House_Robber_III {
     }
 
     //dp[i][0]表示以i为根的子树不偷根节点能获得的最高价值，dp[i][1]表示以i为根的子树偷根节点能获得的最高价值
-    public int rob(TreeNode root) {
+    public int rob2(TreeNode root) {
         int[] ans = dp(root);
         return Math.max(ans[0], ans[1]);
     }
