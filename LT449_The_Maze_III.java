@@ -50,6 +50,8 @@ The maze contains at least 2 empty spaces, and the width and the height of the m
 DFS, BFS
  */
 public class LT449_The_Maze_III {
+    //https://discuss.leetcode.com/topic/77474/similar-to-the-maze-ii-easy-understanding-java-bfs-solution/8
+    //https://discuss.leetcode.com/topic/77074/clear-java-accepted-dfs-solution-with-explanation/2
     public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
 	int m = maze.length, n = maze[0].length;
 	int[][] length = new int[m][n];
