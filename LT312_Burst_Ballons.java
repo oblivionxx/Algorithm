@@ -19,6 +19,7 @@ Return 167
 Divide and Conquer, DP
  */
 public class LT312_Burst_Ballons {
+	//O(n^3)
 	public int maxCoins(int[] nums) {
         //https://leetcode.com/discuss/72216/share-some-analysis-and-explanations
         int len = nums.length;
@@ -42,5 +43,35 @@ public class LT312_Burst_Ballons {
         
 
         return dp[0][len+1];
+    }
+	
+	//<O(2^n)
+	int[][] dp;
+	int[] values;
+    public int maxCoins2(int[] nums) {
+        if (nums == null || nums.length == 0) {
+        	return 0;
+        }
+        int n = nums.length;
+        dp = new int[n + 2][n + 2];
+
+        //Initialize new array
+        values = new int[n + 2];
+        values[0] = values[n + 1] = 1;
+        for (int i = 1; i < n + 1; i++) {
+        	values[i] = nums[i - 1];
+        }
+       
+        return DP(1, n);
+    }
+
+    public int DP(int i, int j){
+    	if (dp[i][j] > 0) {//momorization
+    		return dp[i][j];
+    	}
+    	for (int x = i; x <= j; x++) {              //cut at x between [i,j]
+    		dp[i][j] = Math.max(dp[i][j], DP(i, x - 1) + values[i-1]*values[x]*values[j+1] + DP(x + 1, j));
+    	}
+    	return dp[i][j];
     }
 }
