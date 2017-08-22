@@ -45,7 +45,7 @@ public class LT312_Burst_Ballons {
         return dp[0][len+1];
     }
 	
-	//<O(2^n)
+	//<O(2^n) divide and conquer + memorization
 	int[][] dp;
 	int[] values;
     public int maxCoins2(int[] nums) {
@@ -66,7 +66,7 @@ public class LT312_Burst_Ballons {
     }
 
     public int DP(int i, int j){
-    	if (dp[i][j] > 0) {//momorization
+    	if (dp[i][j] > 0) {//memorization
     		return dp[i][j];
     	}
     	for (int x = i; x <= j; x++) {              //cut at x between [i,j]
