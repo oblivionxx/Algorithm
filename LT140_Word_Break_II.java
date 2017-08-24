@@ -35,4 +35,29 @@ public class LT140_Word_Break_II {
 			}
 		}
 	}
+	
+    //https://discuss.leetcode.com/topic/34260/java-dp-dfs-memoization-dfs-and-dp-pruning-solutions-with-analysis
+    public List<String> wordBreak2(String s, List<String> wordDict) {
+        return memDFS(s, wordDict, new HashMap<String, List<String>>());
+    }
+    
+    private List<String> memDFS(String s, List<String> wordDict, Map<String, List<String>> map) {
+        if (map.containsKey(s)) return map.get(s);
+        List<String> res = new ArrayList<>();
+        
+        for (String word : wordDict) {
+            if (s.startsWith(word)) {
+                if (word.length() == s.length()) {
+                    res.add(word);
+                    continue;
+                }
+                List<String> subList = memDFS(s.substring(word.length()), wordDict, map);
+                for (String sub : subList) {
+                    res.add(word + " " + sub);
+                }
+            }
+        }
+        map.put(s, res);
+        return res;
+    }
 }
