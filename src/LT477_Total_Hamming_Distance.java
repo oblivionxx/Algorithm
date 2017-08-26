@@ -19,22 +19,23 @@ Bit Manipulation
  */
 public class LT477_Total_Hamming_Distance {
     public int totalHammingDistance(int[] nums) {
-        //1. brute forcely iterate through each pair, then sum all Integer.bitCount(x ^ y)
-        //2. bit by bit
-        //Suppose that i numbers have a rightmost 0-bit, and j numbers have a 1-bit. Then out of the pairs, i * j of them will have 1 in the rightmost bit of the XOR. This is because there are i * j ways to choose one number that has a 0-bit and one that has a 1-bit. These bits will therefore contribute i * j towards the total of all the XORs.
-        
-        int n = 31;
-        int len = nums.length;
-        int[] countOfOnes = new int[n];
-        for (int i = 0; i < len; i++) {
-            for (int j = 0; j < n; j++) {
-                countOfOnes[j] += (nums[i] >> j) & 1;           //number of num that has digit j=1
-            }
-        }
-        int sum = 0;
-        for (int count: countOfOnes) {
-            sum += count * (len - count);                       //i*j
-        }
-        return sum;
+	// 1. brute forcely iterate through each pair, then sum all Integer.bitCount(x ^ y)
+	// 2. bit by bit
+	// Suppose that i numbers have a rightmost 0-bit, and j numbers have a 1-bit. Then out of the pairs, i * j of them will have 1 in the rightmost bit of the XOR. This is because there are i * j
+	// ways to choose one number that has a 0-bit and one that has a 1-bit. These bits will therefore contribute i * j towards the total of all the XORs.
+
+	int n = 31;
+	int len = nums.length;
+	int[] countOfOnes = new int[n];
+	for (int i = 0; i < len; i++) {
+	    for (int j = 0; j < n; j++) {
+		countOfOnes[j] += (nums[i] >> j) & 1; // number of num that has digit j=1
+	    }
+	}
+	int sum = 0;
+	for (int count : countOfOnes) {
+	    sum += count * (len - count); // i*j
+	}
+	return sum;
     }
 }

@@ -24,14 +24,17 @@ Two Pointers, Sort
  */
 public class LT524_Longest_Word_in_Dictionary_through_Deleting {
     public String findLongestWord(String s, List<String> d) {
-        //sort by length and then lexicographical
-        Collections.sort(d, (a,b) -> a.length() != b.length() ? -Integer.compare(a.length(), b.length()) :  a.compareTo(b));
-        for (String dictWord : d) {
-            int i = 0;
-            for (char c : s.toCharArray()) 
-                if (i < dictWord.length() && c == dictWord.charAt(i)) i++;
-            if (i == dictWord.length()) return dictWord;
-        }
-        return "";
+	// sort by length and then lexicographical
+	Collections.sort(d,
+		(a, b) -> a.length() != b.length() ? -Integer.compare(a.length(), b.length()) : a.compareTo(b));
+	for (String dictWord : d) {
+	    int i = 0;
+	    for (char c : s.toCharArray())
+		if (i < dictWord.length() && c == dictWord.charAt(i))
+		    i++;
+	    if (i == dictWord.length())
+		return dictWord;
+	}
+	return "";
     }
 }

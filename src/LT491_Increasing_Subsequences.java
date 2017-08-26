@@ -15,23 +15,23 @@ DFS
  */
 public class LT491_Increasing_Subsequences {
     public List<List<Integer>> findSubsequences(int[] nums) {
-        //backtracking
-        Set<List<Integer>> res= new HashSet<List<Integer>>();          //using set to avoid duplicate
-        findSequence(res, new ArrayList<Integer>(), 0, nums);
-        List<List<Integer>> result = new ArrayList<List<Integer>>(res);
-        return result;
+	// backtracking
+	Set<List<Integer>> res = new HashSet<List<Integer>>(); // using set to avoid duplicate
+	findSequence(res, new ArrayList<Integer>(), 0, nums);
+	List<List<Integer>> result = new ArrayList<List<Integer>>(res);
+	return result;
     }
 
-   public void findSequence(Set<List<Integer>> res, List<Integer> each, int index, int[] nums) {
-       if (each.size() >= 2) {
-           res.add(new ArrayList<>(each));
-       }
-       for (int i = index; i < nums.length; i++) {
-           if(each.size() == 0 || each.get(each.size() - 1) <= nums[i]) {
-               each.add(nums[i]);
-               findSequence(res, each, i + 1, nums);
-               each.remove(each.size() - 1);
-           }
-       }
-   }
+    public void findSequence(Set<List<Integer>> res, List<Integer> each, int index, int[] nums) {
+	if (each.size() >= 2) {
+	    res.add(new ArrayList<>(each));
+	}
+	for (int i = index; i < nums.length; i++) {
+	    if (each.size() == 0 || each.get(each.size() - 1) <= nums[i]) {
+		each.add(nums[i]);
+		findSequence(res, each, i + 1, nums);
+		each.remove(each.size() - 1);
+	    }
+	}
+    }
 }

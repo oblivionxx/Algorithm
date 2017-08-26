@@ -12,63 +12,58 @@ Note: you can assume that no duplicate edges will appear in edges. Since all edg
 DFS, BFS, Graph, Union Find
  */
 public class LT261_Graph_Valid_Tree {
-	//1. Union Find: if all nodes connected in one tree. And there's no loop.
-	public boolean validTree(int n, int[][] edges) {
-        QuickUnion qu = new QuickUnion(n);
-        for(int i = 0; i < edges.length; i++){
-            // 如果两个节点已经在同一集合中，说明新的边将产生环路
-            if(!qu.union(edges[i][0], edges[i][1])){        //two vertices: edges[i][0], edges[i][1]
-                return false;
-            }
-        }
-        return qu.getCount() == 1;
+    // 1. Union Find: if all nodes connected in one tree. And there's no loop.
+    public boolean validTree(int n, int[][] edges) {
+	QuickUnion qu = new QuickUnion(n);
+	for (int i = 0; i < edges.length; i++) {
+	    // 如果两个节点已经在同一集合中，说明新的边将产生环路
+	    if (!qu.union(edges[i][0], edges[i][1])) { // two vertices: edges[i][0], edges[i][1]
+		return false;
+	    }
+	}
+	return qu.getCount() == 1;
     }
-    
-    
-    public class QuickUnion{
-        private int[] id;
-        private int cnt;
-        
-        public QuickUnion(int N){
-            id = new int[N];
-            for (int i=0;i<N;i++) {
-                id[i] = i;
-            }
-            this.cnt = N;
-        }
-    
-    
-        private int root(int i){
-            while(i!=id[i])
-                i = id[i];
-    
-            //root(id[id[i...]]) until i=id. so find the top root.
-            return i;
-        }
-    
-    
-        public boolean connected(int p, int q){
-            return root(p)==root(q);
-        }
-    
-    
-        public boolean union(int p, int q){
-            int i = root(p);
-            int j = root(q);
-            if(i!=j){
-                id[i] = j; //modify the root p to a pointer to root q
-                cnt--;
-                return true;
-            }
-            else        //p,q already connected
-                return false;
-        }
-        
-        public int getCount(){
-            return cnt;
-        }
+
+    public class QuickUnion {
+	private int[] id;
+	private int cnt;
+
+	public QuickUnion(int N) {
+	    id = new int[N];
+	    for (int i = 0; i < N; i++) {
+		id[i] = i;
+	    }
+	    this.cnt = N;
+	}
+
+	private int root(int i) {
+	    while (i != id[i])
+		i = id[i];
+
+	    // root(id[id[i...]]) until i=id. so find the top root.
+	    return i;
+	}
+
+	public boolean connected(int p, int q) {
+	    return root(p) == root(q);
+	}
+
+	public boolean union(int p, int q) {
+	    int i = root(p);
+	    int j = root(q);
+	    if (i != j) {
+		id[i] = j; // modify the root p to a pointer to root q
+		cnt--;
+		return true;
+	    } else // p,q already connected
+		return false;
+	}
+
+	public int getCount() {
+	    return cnt;
+	}
     }
-    
-    //2. https://leetcode.com/discuss/54211/ac-java-solutions-union-find-bfs-dfs
-    //3. https://leetcode.com/discuss/52568/ac-java-graph-dfs-solution-with-adjacency-list
+
+    // 2. https://leetcode.com/discuss/54211/ac-java-solutions-union-find-bfs-dfs
+    // 3. https://leetcode.com/discuss/52568/ac-java-graph-dfs-solution-with-adjacency-list
 }

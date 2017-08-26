@@ -19,21 +19,21 @@ Array
  */
 public class LT448_Find_All_Numbers_Disappeared_in_an_Array {
     public List<Integer> findDisappearedNumbers(int[] nums) {
-        List<Integer> ret = new ArrayList<Integer>();
-        for(int i = 0; i < nums.length; i++) {
-            int val = Math.abs(nums[i]) - 1;
-            if(nums[val] > 0) {
-                nums[val] = -nums[val];
-            }
-        }
-        
-        for(int i = 0; i < nums.length; i++) {
-            if(nums[i] > 0) {
-                ret.add(i+1);
-            }
-        }
-        return ret;
-        //http://blog.csdn.net/yutianzuijin/article/details/53861485
-        //https://discuss.leetcode.com/topic/65738/java-accepted-simple-solution/2  save space. 
+	List<Integer> ret = new ArrayList<Integer>();
+	for (int i = 0; i < nums.length; i++) {
+	    int val = Math.abs(nums[i]) - 1;
+	    if (nums[val] > 0) {
+		nums[val] = -nums[val];
+	    }
+	}
+
+	for (int i = 0; i < nums.length; i++) {
+	    if (nums[i] > 0) {
+		ret.add(i + 1);
+	    }
+	}
+	return ret;
+	// http://blog.csdn.net/yutianzuijin/article/details/53861485
+	// https://discuss.leetcode.com/topic/65738/java-accepted-simple-solution/2 save space.
     }
 }

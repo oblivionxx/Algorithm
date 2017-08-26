@@ -18,23 +18,23 @@ Math.
 Digit root. dr(n)=n-9*[(n-1)/9]
  */
 public class LT258_Add_Digits {
-	public int addDigits(int num) {
-        //congruence O(1)
-        if(num==0) return num;
-        return (num-1)%9+1;
+    public int addDigits(int num) {
+	// congruence O(1)
+	if (num == 0)
+	    return num;
+	return (num - 1) % 9 + 1;
     }
-	
-	public int addDigits1(int num) {
-        while (num / 10 > 0) {
-            int sum = 0;
-            while (num > 0) {
-                sum += num % 10;
-                num /= 10;
-            }
-            num = sum;
-        }
-        return num;
-    
-        
+
+    public int addDigits1(int num) {
+	while (num / 10 > 0) {
+	    int sum = 0;
+	    while (num > 0) {
+		sum += num % 10;
+		num /= 10;
+	    }
+	    num = sum;
+	}
+	return num;
+
     }
 }

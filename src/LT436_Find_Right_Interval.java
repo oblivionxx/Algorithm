@@ -1,5 +1,7 @@
 import java.util.*;
 
+import utils.Interval;
+
 /*
  * Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the "right" of i.
 
@@ -34,21 +36,21 @@ Binary Search
  */
 public class LT436_Find_Right_Interval {
     public int[] findRightInterval(Interval[] intervals) {
-        //1. use treemap<start, index>
-        //2. if not sort by start. For each end, find leftmost start using binary search. need a map to store index
-        //https://discuss.leetcode.com/topic/67399/java-concise-binary-search
-        int[] result = new int[intervals.length];       //store index
-        TreeMap<Integer, Integer> intervalMap = new TreeMap<>();
-        
-        for (int i = 0; i < intervals.length; ++i) {
-            intervalMap.put(intervals[i].start, i);    
-        }
-        
-        for (int i = 0; i < intervals.length; ++i) {
-            Map.Entry<Integer, Integer> entry = intervalMap.ceilingEntry(intervals[i].end);  //find the entry > current_end
-            result[i] = (entry != null) ? entry.getValue() : -1;
-        }
-        
-        return result;
+	// 1. use treemap<start, index>
+	// 2. if not sort by start. For each end, find leftmost start using binary search. need a map to store index
+	// https://discuss.leetcode.com/topic/67399/java-concise-binary-search
+	int[] result = new int[intervals.length]; // store index
+	TreeMap<Integer, Integer> intervalMap = new TreeMap<>();
+
+	for (int i = 0; i < intervals.length; ++i) {
+	    intervalMap.put(intervals[i].start, i);
+	}
+
+	for (int i = 0; i < intervals.length; ++i) {
+	    Map.Entry<Integer, Integer> entry = intervalMap.ceilingEntry(intervals[i].end); // find the entry > current_end
+	    result[i] = (entry != null) ? entry.getValue() : -1;
+	}
+
+	return result;
     }
 }

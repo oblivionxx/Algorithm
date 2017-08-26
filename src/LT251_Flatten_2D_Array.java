@@ -1,3 +1,4 @@
+
 /*
 Implement an iterator to flatten a 2d vector.
 For example,
@@ -25,35 +26,34 @@ As an added challenge, try to code it using only iterators in C++ or iterators i
 Design
  */
 import java.util.*;
+
 public class LT251_Flatten_2D_Array {
-	List<Iterator<Integer>> its;
+    List<Iterator<Integer>> its;
     int curRow = 0;
-    
+
     public LT251_Flatten_2D_Array(List<List<Integer>> vec2d) {
-        this.its = new ArrayList<Iterator<Integer>>();
-        for(List<Integer> l : vec2d){
-            // 只将非空的迭代器加入数组
-            if(l.size() > 0){					//if add empty iterator, case: [[],[3]] will have [] not [3]. line 43 will return empty element which we dont want.
-               this.its.add(l.iterator());      //each line...has the iterator
-            }
-        }
+	this.its = new ArrayList<Iterator<Integer>>();
+	for (List<Integer> l : vec2d) {
+	    // 只将非空的迭代器加入数组
+	    if (l.size() > 0) { // if add empty iterator, case: [[],[3]] will have [] not [3]. line 43 will return empty element which we dont want.
+		this.its.add(l.iterator()); // each line...has the iterator
+	    }
+	}
     }
 
     public int next() {
-        int res =  its.get(curRow).next();
-        //update iterator
-        if(!its.get(curRow).hasNext())
-        	curRow++;
-        return res;
+	int res = its.get(curRow).next();
+	// update iterator
+	if (!its.get(curRow).hasNext())
+	    curRow++;
+	return res;
     }
 
     public boolean hasNext() {
-        return curRow < its.size() && its.get(curRow).hasNext();
+	return curRow < its.size() && its.get(curRow).hasNext();
     }
 }
 
 /**
- * Your Vector2D object will be instantiated and called as such:
- * Vector2D i = new Vector2D(vec2d);
- * while (i.hasNext()) v[f()] = i.next();
+ * Your Vector2D object will be instantiated and called as such: Vector2D i = new Vector2D(vec2d); while (i.hasNext()) v[f()] = i.next();
  */

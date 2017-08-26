@@ -86,10 +86,8 @@ public class LT411_Minimum_Unique_Word_Abbreviation {
 	    // check whether curResult mask conflicts with words in dict
 	    for (int mask : maskSet) {
 		/**
-		 * 单词manipulation的缩写m2ip6n可以转化为100110000001 m a n i p u l a t i
-		 * o n m 2 i p 6 n 1 0 0 1 1 0 0 0 0 0 0 1
-		 * 0代表随意不care,如果这个mask和dict中某个mask的所有1重合代表在意的位置完全相同,
-		 * 说明这个mask和dict中那个词冲突 我们要找的是不冲突的mask
+		 * 单词manipulation的缩写m2ip6n可以转化为100110000001 m a n i p u l a t i o n m 2 i p 6 n 1 0 0 1 1 0 0 0 0 0 0 1 0代表随意不care,如果这个mask和dict中某个mask的所有1重合代表在意的位置完全相同, 说明这个mask和dict中那个词冲突
+		 * 我们要找的是不冲突的mask
 		 */
 		if ((curResult & mask) == curResult) {
 		    return; // conflict

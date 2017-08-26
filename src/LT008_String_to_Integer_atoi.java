@@ -10,38 +10,38 @@
  * Further consideraton: 'e' might be valid.
  */
 public class LT008_String_to_Integer_atoi {
-	public int myAtoi(String str) {
-		double res = 0; // in case of overflow
-		int sign = 1;
+    public int myAtoi(String str) {
+	double res = 0; // in case of overflow
+	int sign = 1;
 
-		// 1.null or empty string
-		if (str == null || str.length() == 0)
-			return 0;
+	// 1.null or empty string
+	if (str == null || str.length() == 0)
+	    return 0;
 
-		// 2.trim starting and enging space
-		str = str.trim();
+	// 2.trim starting and enging space
+	str = str.trim();
 
-		int idx = 0;
-		// 3. get sign
-		if (str.charAt(0) == '-') {
-			sign = -1;
-			idx++;
-		} else if (str.charAt(0) == '+') {
-			idx++;
-		}
-
-		while (idx < str.length() && Character.isDigit(str.charAt(idx))) {
-			res = res * 10 + (str.charAt(idx) - '0');
-			idx++;
-		}
-
-		res = res * sign;
-		// 4. overflow
-		if (res > Integer.MAX_VALUE)
-			return Integer.MAX_VALUE;
-		if (res < Integer.MIN_VALUE)
-			return Integer.MIN_VALUE;
-
-		return (int) res;
+	int idx = 0;
+	// 3. get sign
+	if (str.charAt(0) == '-') {
+	    sign = -1;
+	    idx++;
+	} else if (str.charAt(0) == '+') {
+	    idx++;
 	}
+
+	while (idx < str.length() && Character.isDigit(str.charAt(idx))) {
+	    res = res * 10 + (str.charAt(idx) - '0');
+	    idx++;
+	}
+
+	res = res * sign;
+	// 4. overflow
+	if (res > Integer.MAX_VALUE)
+	    return Integer.MAX_VALUE;
+	if (res < Integer.MIN_VALUE)
+	    return Integer.MIN_VALUE;
+
+	return (int) res;
+    }
 }

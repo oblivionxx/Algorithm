@@ -111,7 +111,7 @@ public class LT587_Erect_the_Fence {
 	    y = b;
 	}
     }
-    
-    //Graham Scan
-    //https://leetcode.com/articles/erect-the-fence/#approach-2-graham-scan-accepted
+
+    // Graham Scan
+    // https://leetcode.com/articles/erect-the-fence/#approach-2-graham-scan-accepted
 }

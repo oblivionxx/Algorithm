@@ -14,17 +14,17 @@ DP, Bit Manipulation
  */
 public class LT338_Counting_Bits {
     public int[] countBits(int num) {
-        //use dp to save 
-        //Index : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
-        //num :   0 1 1 2 1 2 2 3 1 2  2  3  2  3  3  4
-        
-        // dp[i] = dp[i/2]+i%2
-        int[] dp = new int[num+1];
-        dp[0] = 0;
-        for(int i=1;i<=num;i++){
-            dp[i] = dp[i>>1]+i%2;
-        }
+	// use dp to save
+	// Index : 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+	// num : 0 1 1 2 1 2 2 3 1 2 2 3 2 3 3 4
 
-        return dp;
+	// dp[i] = dp[i/2]+i%2
+	int[] dp = new int[num + 1];
+	dp[0] = 0;
+	for (int i = 1; i <= num; i++) {
+	    dp[i] = dp[i >> 1] + i % 2;
+	}
+
+	return dp;
     }
 }

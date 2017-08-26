@@ -26,25 +26,31 @@ Math
  */
 public class LT592_Fraction_Addition_and_Subtraction {
     public String fractionAddition(String expression) {
-        //The (?=) part is a zero-width positive lookahead. Since [-,+] means - or +, the regex (?=[-,+]) means the next element is either - or +.Thus, expression.split("(?=[-,+])") is to split expression at the positions whose next element is either - or +. For example, when expression = "-1/2+1/2-1/3", expression.split("(?=[-,+])") generates an array of strings ["-1/2","+1/2", "-1/3"].
-        String[] fracs = expression.split("(?=[-,+])"); 
-        String res = "0/1";
-        for (String frac : fracs) res = add(res, frac); // add all fractions together
-        return res;
+	// The (?=) part is a zero-width positive lookahead. Since [-,+] means - or +, the regex (?=[-,+]) means the next element is either - or +.Thus, expression.split("(?=[-,+])") is to split
+	// expression at the positions whose next element is either - or +. For example, when expression = "-1/2+1/2-1/3", expression.split("(?=[-,+])") generates an array of strings ["-1/2","+1/2",
+	// "-1/3"].
+	String[] fracs = expression.split("(?=[-,+])");
+	String res = "0/1";
+	for (String frac : fracs)
+	    res = add(res, frac); // add all fractions together
+	return res;
     }
-    
+
     public String add(String frac1, String frac2) {
-        int[] f1 = Stream.of(frac1.split("/")).mapToInt(Integer::parseInt).toArray(), 
-              f2 = Stream.of(frac2.split("/")).mapToInt(Integer::parseInt).toArray();
-        int numer = f1[0]*f2[1] + f1[1]*f2[0], denom = f1[1]*f2[1];
-        String sign = "";
-        if (numer < 0) {sign = "-"; numer *= -1;}
-        return sign + numer/gcd(numer, denom) + "/" + denom/gcd(numer, denom); // construct reduced fraction
+	int[] f1 = Stream.of(frac1.split("/")).mapToInt(Integer::parseInt).toArray(),
+		f2 = Stream.of(frac2.split("/")).mapToInt(Integer::parseInt).toArray();
+	int numer = f1[0] * f2[1] + f1[1] * f2[0], denom = f1[1] * f2[1];
+	String sign = "";
+	if (numer < 0) {
+	    sign = "-";
+	    numer *= -1;
+	}
+	return sign + numer / gcd(numer, denom) + "/" + denom / gcd(numer, denom); // construct reduced fraction
     }
-    
+
     // Computes gcd using Euclidean algorithm
-    public int gcd(int x, int y) { 
-        return x == 0 || y == 0 ? x + y : gcd(y, x % y); 
-        
+    public int gcd(int x, int y) {
+	return x == 0 || y == 0 ? x + y : gcd(y, x % y);
+
     }
 }

@@ -17,9 +17,10 @@ Bit Manipulation
  */
 public class LT476_Number_Complement {
     public int findComplement(int num) {
-        //~will flip all. but should not flip the trailing 0s
-        int mask = Integer.MAX_VALUE;
-        while((num & mask) !=0) mask<<=1;      //will get 11110000
-        return ~mask & ~num;
+	// ~will flip all. but should not flip the trailing 0s
+	int mask = Integer.MAX_VALUE;
+	while ((num & mask) != 0)
+	    mask <<= 1; // will get 11110000
+	return ~mask & ~num;
     }
 }

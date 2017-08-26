@@ -18,34 +18,33 @@ You may assume that the secret number and your friend's guess only contain digit
 HashTable
  */
 public class LT299_Bulls_and_Cows {
-	//O(n)
+    // O(n)
     public String getHint(String secret, String guess) {
-        if (secret == null || guess == null || secret.length() != guess.length()) {
-            return "";
-        }
-         
-        int countA = 0;
-        int countB = 0;
-        int[] count = new int[10];		
-        //array that stores count of the number appearances in secret and in guess. Increment cows when either number from secret was already seen in guest or vice versa.
-         
-        for (int i = 0; i < secret.length(); i++) {
-            if (secret.charAt(i) == guess.charAt(i)) {
-                countA++;
-            } else {
-                count[secret.charAt(i) - '0']++;
-                if (count[secret.charAt(i) - '0'] <= 0) {
-                    countB++;
-                }
-                count[guess.charAt(i)- '0']--;
-                if (count[guess.charAt(i)- '0'] >= 0) {
-                    countB++;
-                }
-            }
-        }
-         
-        return String.valueOf(countA) + "A" + String.valueOf(countB) + "B";
-    
+	if (secret == null || guess == null || secret.length() != guess.length()) {
+	    return "";
+	}
+
+	int countA = 0;
+	int countB = 0;
+	int[] count = new int[10];
+	// array that stores count of the number appearances in secret and in guess. Increment cows when either number from secret was already seen in guest or vice versa.
+
+	for (int i = 0; i < secret.length(); i++) {
+	    if (secret.charAt(i) == guess.charAt(i)) {
+		countA++;
+	    } else {
+		count[secret.charAt(i) - '0']++;
+		if (count[secret.charAt(i) - '0'] <= 0) {
+		    countB++;
+		}
+		count[guess.charAt(i) - '0']--;
+		if (count[guess.charAt(i) - '0'] >= 0) {
+		    countB++;
+		}
+	    }
+	}
+
+	return String.valueOf(countA) + "A" + String.valueOf(countB) + "B";
 
     }
 }

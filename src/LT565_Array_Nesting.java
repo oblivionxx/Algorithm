@@ -26,20 +26,20 @@ Array
  */
 public class LT565_Array_Nesting {
     public int arrayNesting(int[] a) {
-        //find the circle or create a set. 
-        //start from i.go the next(mark as visited). record maxSetSize_i
-        //return maxSetSize_overall
-        int maxsize = 0;
-        for (int i = 0; i < a.length; i++) {
-            int size = 0;
-            for (int k = i; a[k] >= 0; size++) {  //trick
-                int ak = a[k];
-                a[k] = -1; // mark a[k] as visited. every time you find a set (a circle) mark every number as visited (-1) so that next time you won't step on it again. 
-                k = ak;
-            }
-            maxsize = Integer.max(maxsize, size);
-        }
+	// find the circle or create a set.
+	// start from i.go the next(mark as visited). record maxSetSize_i
+	// return maxSetSize_overall
+	int maxsize = 0;
+	for (int i = 0; i < a.length; i++) {
+	    int size = 0;
+	    for (int k = i; a[k] >= 0; size++) { // trick
+		int ak = a[k];
+		a[k] = -1; // mark a[k] as visited. every time you find a set (a circle) mark every number as visited (-1) so that next time you won't step on it again.
+		k = ak;
+	    }
+	    maxsize = Integer.max(maxsize, size);
+	}
 
-        return maxsize;
+	return maxsize;
     }
 }

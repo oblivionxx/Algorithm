@@ -1,5 +1,7 @@
 import java.util.Arrays;
 
+import utils.Interval;
+
 /*
  * Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
 
@@ -28,20 +30,21 @@ Explanation: You don't need to remove any of the intervals since they're already
 Greedy
  */
 public class LT435_Non_overlapping_Intervals {
-    //https://en.wikipedia.org/wiki/Interval_scheduling#Interval_Scheduling_Maximization
+    // https://en.wikipedia.org/wiki/Interval_scheduling#Interval_Scheduling_Maximization
     public int eraseOverlapIntervals(Interval[] intervals) {
-         Arrays.sort(intervals, (a,b)->a.end-b.end);            //sort by end is importaant. eg: [1,4],[2,3],[3,4]
+	Arrays.sort(intervals, (a, b) -> a.end - b.end); // sort by end is importaant. eg: [1,4],[2,3],[3,4]
 
-        int end = Integer.MIN_VALUE;
-        int count = 0;
-        for(int i=0;i<intervals.length;i++) {                   //start from the one which ends early.more no-overlap elements
-            //the interval with early start might be very long and incompatible with many intervals. But if we choose the interval that ends early, we'll have more space left to accommodate more interval
-            if(intervals[i].start>=end) {                           //no overlap
-                end = intervals[i].end;     
-                count++;                    
-            }
-        }
-    
-        return intervals.length - count;                        //remove no-overlap elements==>min remove
+	int end = Integer.MIN_VALUE;
+	int count = 0;
+	for (int i = 0; i < intervals.length; i++) { // start from the one which ends early.more no-overlap elements
+	    // the interval with early start might be very long and incompatible with many intervals. But if we choose the interval that ends early, we'll have more space left to accommodate more
+	    // interval
+	    if (intervals[i].start >= end) { // no overlap
+		end = intervals[i].end;
+		count++;
+	    }
+	}
+
+	return intervals.length - count; // remove no-overlap elements==>min remove
     }
 }

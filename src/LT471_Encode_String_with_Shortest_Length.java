@@ -36,54 +36,59 @@ Explanation: "abbbabbbc" occurs twice, but "abbbabbbc" can also be encoded to "2
 DP
  */
 public class LT471_Encode_String_with_Shortest_Length {
-    //dp[i][j] = string from index i to index j in encoded form. O(n^3)
+    // dp[i][j] = string from index i to index j in encoded form. O(n^3)
     private String[][] dp;
-    public String encode(String s) {
-        dp = new String[s.length()][s.length()];
-        return helper(s, 0,s.length()-1);
-    }
-    private String helper(String s, int left, int right){
-        if(dp[left][right]!=null) return dp[left][right];   //If we have get the optimal result, return it directly.
-        String substr = s.substring(left, right+1);
 
-        if(right - left < 4) {          //no need to encode. 
-            dp[left][right] = substr;
-            return dp[left][right];
-        } 
-        
-        dp[left][right] = substr;
-        
-        // the optimal solution is got from two part, one part is combined by the sub optimal encode
-        for(int k = left; k<right;k++) {
-            if((helper(s, left, k) + helper(s, k+1, right)).length() < dp[left][right].length()){
-                dp[left][right] = dp[left][k] + dp[k+1][right];
-            }
-        }
-        
-        // check substr if repeat itself. encode
-        for(int k=0;k<substr.length();k++) {
-            String repeatStr = substr.substring(0, k+1);
-            if(isRepeat(substr, repeatStr)) {
-                String ss = substr.length()/repeatStr.length() + "[" + dp[left][left+k] + "]";
-                if(ss.length() < dp[left][right].length()) {
-                    dp[left][right] = ss;
-                }
-            }
-        }
-        
-        return dp[left][right];
+    public String encode(String s) {
+	dp = new String[s.length()][s.length()];
+	return helper(s, 0, s.length() - 1);
     }
-        
-    //We check whether s1 is the repetitive ones of s2 by using the following function. Since most s1 is not established by repetitive s2, my algorithm can "fail" fast which enhance the speed of the total alogrithm
-    private boolean isRepeat(String longS, String shortS){
-        if(shortS==null||shortS.length()==0||longS.length()%shortS.length() != 0) 
-            return false;
-        int dup = longS.length()/shortS.length();
-        for(int i=0; i<shortS.length(); i++){
-            for(int j=1; j<dup; j++){
-                if(longS.charAt(j*shortS.length()+i)!=shortS.charAt(i)) return false;
-            }
-        }
-        return true;
+
+    private String helper(String s, int left, int right) {
+	if (dp[left][right] != null)
+	    return dp[left][right]; // If we have get the optimal result, return it directly.
+	String substr = s.substring(left, right + 1);
+
+	if (right - left < 4) { // no need to encode.
+	    dp[left][right] = substr;
+	    return dp[left][right];
+	}
+
+	dp[left][right] = substr;
+
+	// the optimal solution is got from two part, one part is combined by the sub optimal encode
+	for (int k = left; k < right; k++) {
+	    if ((helper(s, left, k) + helper(s, k + 1, right)).length() < dp[left][right].length()) {
+		dp[left][right] = dp[left][k] + dp[k + 1][right];
+	    }
+	}
+
+	// check substr if repeat itself. encode
+	for (int k = 0; k < substr.length(); k++) {
+	    String repeatStr = substr.substring(0, k + 1);
+	    if (isRepeat(substr, repeatStr)) {
+		String ss = substr.length() / repeatStr.length() + "[" + dp[left][left + k] + "]";
+		if (ss.length() < dp[left][right].length()) {
+		    dp[left][right] = ss;
+		}
+	    }
+	}
+
+	return dp[left][right];
+    }
+
+    // We check whether s1 is the repetitive ones of s2 by using the following function. Since most s1 is not established by repetitive s2, my algorithm can "fail" fast which enhance the speed of the
+    // total alogrithm
+    private boolean isRepeat(String longS, String shortS) {
+	if (shortS == null || shortS.length() == 0 || longS.length() % shortS.length() != 0)
+	    return false;
+	int dup = longS.length() / shortS.length();
+	for (int i = 0; i < shortS.length(); i++) {
+	    for (int j = 1; j < dup; j++) {
+		if (longS.charAt(j * shortS.length() + i) != shortS.charAt(i))
+		    return false;
+	    }
+	}
+	return true;
     }
 }

@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 /*
  * Given the root of a binary tree, then value v and depth d, you need to add a row of nodes with value v at the given depth d. The root node is at depth 1.
 
@@ -54,28 +56,28 @@ Tree
  */
 public class LT623_Add_One_Row_to_Tree {
     public TreeNode addOneRow(TreeNode t, int v, int d) {
-        if (d == 1) {
-            TreeNode n = new TreeNode(v);
-            n.left = t;
-            return n;
-        }
-        insert(v, t, 1, d);
-        return t;
+	if (d == 1) {
+	    TreeNode n = new TreeNode(v);
+	    n.left = t;
+	    return n;
+	}
+	insert(v, t, 1, d);
+	return t;
     }
 
     public void insert(int val, TreeNode node, int depth, int n) {
-        if (node == null)
-            return;
-        if (depth == n - 1) {
-            TreeNode t = node.left;
-            node.left = new TreeNode(val);
-            node.left.left = t;
-            t = node.right;
-            node.right = new TreeNode(val);
-            node.right.right = t;
-        } else {
-            insert(val, node.left, depth + 1, n);
-            insert(val, node.right, depth + 1, n);
-        }
+	if (node == null)
+	    return;
+	if (depth == n - 1) {
+	    TreeNode t = node.left;
+	    node.left = new TreeNode(val);
+	    node.left.left = t;
+	    t = node.right;
+	    node.right = new TreeNode(val);
+	    node.right.right = t;
+	} else {
+	    insert(val, node.left, depth + 1, n);
+	    insert(val, node.right, depth + 1, n);
+	}
     }
 }

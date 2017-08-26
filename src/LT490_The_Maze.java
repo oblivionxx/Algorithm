@@ -48,40 +48,41 @@ The maze contains at least 2 empty spaces, and both the width and height of the 
 DFS, BFS
  */
 public class LT490_The_Maze {
-int[][] dirs = new int[][]{ {-1, 0}, {1, 0}, {0, 1}, {0, -1} };
-    
+    int[][] dirs = new int[][] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 } };
+
     public boolean hasPath(int[][] maze, int[] start, int[] destination) {
-        if (Arrays.equals(start, destination)) return true;
-        boolean[][] visited = new boolean[maze.length][maze[0].length];
-        Queue<int[]> queue = new LinkedList<>();                //queue store new start
-        queue.offer(start);
-        visited[start[0]][start[1]] = true;
-        while(!queue.isEmpty()){
-            int[] cur = queue.poll();
-            if(cur[0]==destination[0] && cur[1]==destination[1]) return true;
-            
-            //put for direction into queue. 
-            for (int i = 0; i < dirs.length; i++) {
-                int[] d = dirs[i];
-                int row = cur[0];
-                int col = cur[1];
-                while (isValid(maze, row + d[0], col + d[1])) {        //can roll. reach the wall and change direction
-                    row += d[0];
-                    col += d[1];
-                }
-                
-                if(!visited[row][col]){
-                    visited[row][col]=true;
-                    queue.offer(new int[]{row,col});
-                }
-            }
-        }
-        
-        return false;
+	if (Arrays.equals(start, destination))
+	    return true;
+	boolean[][] visited = new boolean[maze.length][maze[0].length];
+	Queue<int[]> queue = new LinkedList<>(); // queue store new start
+	queue.offer(start);
+	visited[start[0]][start[1]] = true;
+	while (!queue.isEmpty()) {
+	    int[] cur = queue.poll();
+	    if (cur[0] == destination[0] && cur[1] == destination[1])
+		return true;
+
+	    // put for direction into queue.
+	    for (int i = 0; i < dirs.length; i++) {
+		int[] d = dirs[i];
+		int row = cur[0];
+		int col = cur[1];
+		while (isValid(maze, row + d[0], col + d[1])) { // can roll. reach the wall and change direction
+		    row += d[0];
+		    col += d[1];
+		}
+
+		if (!visited[row][col]) {
+		    visited[row][col] = true;
+		    queue.offer(new int[] { row, col });
+		}
+	    }
+	}
+
+	return false;
     }
 
-    
     private boolean isValid(int[][] maze, int row, int col) {
-        return row >= 0 && row < maze.length && col >= 0 && col < maze[0].length && maze[row][col] != 1;
+	return row >= 0 && row < maze.length && col >= 0 && col < maze[0].length && maze[row][col] != 1;
     }
 }

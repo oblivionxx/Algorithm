@@ -27,33 +27,33 @@ Explanation: The first 6 elements of magical string S is "12211" and it contains
  */
 public class LT481_Magical_String {
     /*
-    Value-of-Current-Element           Index-of-Element-to-Create (start from 1)
-    1                                                         1
-    2                                                         2, 3
-    2                                                         4, 5
-    1                                                         6
-    1                                                         7
-    2                                                         8, 9
-    */
+     * Value-of-Current-Element Index-of-Element-to-Create (start from 1) 1 1 2 2, 3 2 4, 5 1 6 1 7 2 8, 9
+     */
     public int magicalString(int n) {
-        if (n < 1) return 0;
-        if (n == 1) return 1;
-        
-        int[] s = new int[n + 1];           //s save the string [1-n]
-        int val = 1, index = 2, count=1;    //s[1] = 1. so count start from 1
-        for(int i=2;i<=n;i++){              //i loop the current position. index is the element to create
-            val = val==2?1:2;               //flip value
-            s[index++] = val;
-            if(val==1) count++;
-            if(index>n) break;
-            if(s[i]==2){                    //repeat. 
-                s[index++] = val;
-                if(val==1) count++;
-                if(index>n) break;
-            }
-            
-        }
-        
-        return count;
+	if (n < 1)
+	    return 0;
+	if (n == 1)
+	    return 1;
+
+	int[] s = new int[n + 1]; // s save the string [1-n]
+	int val = 1, index = 2, count = 1; // s[1] = 1. so count start from 1
+	for (int i = 2; i <= n; i++) { // i loop the current position. index is the element to create
+	    val = val == 2 ? 1 : 2; // flip value
+	    s[index++] = val;
+	    if (val == 1)
+		count++;
+	    if (index > n)
+		break;
+	    if (s[i] == 2) { // repeat.
+		s[index++] = val;
+		if (val == 1)
+		    count++;
+		if (index > n)
+		    break;
+	    }
+
+	}
+
+	return count;
     }
 }

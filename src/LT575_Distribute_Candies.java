@@ -24,11 +24,11 @@ Hash Table
  */
 public class LT575_Distribute_Candies {
     public int distributeCandies(int[] candies) {
-        //count total kinds. if kinds> candies/2. then return candies/2. else return kinds
-        HashSet<Integer> set =  new HashSet<>();
-        for(int i: candies){
-            set.add(i);
-        }
-        return Math.min(candies.length/2,set.size());
+	// count total kinds. if kinds> candies/2. then return candies/2. else return kinds
+	HashSet<Integer> set = new HashSet<>();
+	for (int i : candies) {
+	    set.add(i);
+	}
+	return Math.min(candies.length / 2, set.size());
     }
 }

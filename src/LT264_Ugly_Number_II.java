@@ -15,49 +15,51 @@ Assume you have Uk, the kth ugly number. Then Uk+1 must be Min(L1 * 2, L2 * 3, L
 DP, Heap, Math
  */
 public class LT264_Ugly_Number_II {
-	//dp. 3 single variable to store the number of min. 2,3,5 multiple
-	public int nthUglyNumber(int n) {
-        int[] result=new int[n];
-        result[0]=1;
-        int a=0;
-        int b=0;
-        int c=0;
-        int factora=2;
-        int factorb=3;
-        int factorc=5;
-        for(int i=1;i<n;i++){
-            int min=Math.min(Math.min(factora,factorb),factorc);
-            result[i]=min;
-            if(factora==min){
-                factora=2*result[++a];
-            }
-            if(factorb==min){
-                factorb=3*result[++b];
-            }
-            if(factorc==min){
-                factorc=5*result[++c];
-            }
-        }
-        return result[n-1];
-    }
-	
-	//heap. store factora, factorab...into heap
-	public static int nthUglyNumber2(int n) {
-	    if(n==1) return 1;
-	    PriorityQueue<Long> q = new PriorityQueue<Long>();
-	    q.add(1l);
-
-	    for(long i=1; i<n; i++) {
-	        long tmp = q.poll();
-	        while(!q.isEmpty() && q.peek()==tmp) tmp = q.poll();		//i.e we can get 2*3 and 3*2. so two times need to get rid of one.
-	        q.add(tmp*2);
-	        q.add(tmp*3);
-	        q.add(tmp*5);
+    // dp. 3 single variable to store the number of min. 2,3,5 multiple
+    public int nthUglyNumber(int n) {
+	int[] result = new int[n];
+	result[0] = 1;
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	int factora = 2;
+	int factorb = 3;
+	int factorc = 5;
+	for (int i = 1; i < n; i++) {
+	    int min = Math.min(Math.min(factora, factorb), factorc);
+	    result[i] = min;
+	    if (factora == min) {
+		factora = 2 * result[++a];
 	    }
-	    return q.poll().intValue();
+	    if (factorb == min) {
+		factorb = 3 * result[++b];
+	    }
+	    if (factorc == min) {
+		factorc = 5 * result[++c];
+	    }
 	}
-	
-	public static void main(String[] args){
-		nthUglyNumber2(15);
+	return result[n - 1];
+    }
+
+    // heap. store factora, factorab...into heap
+    public static int nthUglyNumber2(int n) {
+	if (n == 1)
+	    return 1;
+	PriorityQueue<Long> q = new PriorityQueue<Long>();
+	q.add(1l);
+
+	for (long i = 1; i < n; i++) {
+	    long tmp = q.poll();
+	    while (!q.isEmpty() && q.peek() == tmp)
+		tmp = q.poll(); // i.e we can get 2*3 and 3*2. so two times need to get rid of one.
+	    q.add(tmp * 2);
+	    q.add(tmp * 3);
+	    q.add(tmp * 5);
 	}
+	return q.poll().intValue();
+    }
+
+    public static void main(String[] args) {
+	nthUglyNumber2(15);
+    }
 }

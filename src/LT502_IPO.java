@@ -26,23 +26,24 @@ Heap, Greedy
  */
 public class LT502_IPO {
     public int findMaximizedCapital(int k, int W, int[] Profits, int[] Capital) {
-        //Time Complexity: For worst case, each project will be inserted and polled from both PriorityQueues once, so the overall runtime complexity should be O(NlgN), N is number of projects.
-        PriorityQueue<int[]> pqCap = new PriorityQueue<>((a, b) -> (a[0] - b[0]));      //minheap
-        PriorityQueue<int[]> pqPro  = new PriorityQueue<>((a, b) -> (b[1] - a[1]));     //maxheap
-        
-        for (int i = 0; i < Profits.length; i++) {
-            pqCap.add(new int[] {Capital[i], Profits[i]});          //projects ordered by required capital
-        }
-        
-        for (int i = 0; i < k; i++) {
-            while (!pqCap.isEmpty() && pqCap.peek()[0] <= W) {      //loop all possible projects within given capital W. find the max profit with heap pqPro
-                pqPro.add(pqCap.poll());
-            }
-            
-            if (pqPro.isEmpty()) break;
-            W += pqPro.poll()[1];                                   //add profit to capital
-        }
-        
-        return W;
+	// Time Complexity: For worst case, each project will be inserted and polled from both PriorityQueues once, so the overall runtime complexity should be O(NlgN), N is number of projects.
+	PriorityQueue<int[]> pqCap = new PriorityQueue<>((a, b) -> (a[0] - b[0])); // minheap
+	PriorityQueue<int[]> pqPro = new PriorityQueue<>((a, b) -> (b[1] - a[1])); // maxheap
+
+	for (int i = 0; i < Profits.length; i++) {
+	    pqCap.add(new int[] { Capital[i], Profits[i] }); // projects ordered by required capital
+	}
+
+	for (int i = 0; i < k; i++) {
+	    while (!pqCap.isEmpty() && pqCap.peek()[0] <= W) { // loop all possible projects within given capital W. find the max profit with heap pqPro
+		pqPro.add(pqCap.poll());
+	    }
+
+	    if (pqPro.isEmpty())
+		break;
+	    W += pqPro.poll()[1]; // add profit to capital
+	}
+
+	return W;
     }
 }

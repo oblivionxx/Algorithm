@@ -16,43 +16,45 @@ Tree, HashTable, Stack
  */
 import java.util.*;
 
+import utils.TreeNode;
+
 public class LT094_Binary_Tree_Inorder_Traversal {
-	// iterative
-	public List<Integer> inorderTraversal1(TreeNode root) {
-		List<Integer> res = new ArrayList<Integer>();
-		if (root == null)
-			return res;
-		Stack<TreeNode> stk = new Stack<TreeNode>();
-		TreeNode cur = root;
+    // iterative
+    public List<Integer> inorderTraversal1(TreeNode root) {
+	List<Integer> res = new ArrayList<Integer>();
+	if (root == null)
+	    return res;
+	Stack<TreeNode> stk = new Stack<TreeNode>();
+	TreeNode cur = root;
 
-		while (!stk.isEmpty() || cur != null) {
-			if (cur != null) {
-				stk.push(cur); // inOrder push left child.
-				cur = cur.left;
-			} else {
-				cur = stk.pop(); // get the left child
-				res.add(cur.val); // left child first
-				cur = cur.right;
-			}
-		}
-
-		return res;
+	while (!stk.isEmpty() || cur != null) {
+	    if (cur != null) {
+		stk.push(cur); // inOrder push left child.
+		cur = cur.left;
+	    } else {
+		cur = stk.pop(); // get the left child
+		res.add(cur.val); // left child first
+		cur = cur.right;
+	    }
 	}
 
-	// recursive
-	public List<Integer> inorderTraversal(TreeNode root) {
-		List<Integer> res = new ArrayList<Integer>();
-		addList(root, res);
-		return res;
-	}
+	return res;
+    }
 
-	private void addList(TreeNode root, List<Integer> result) {
-		if (root == null)
-			return;
-		else {
-			addList(root.left, result);
-			result.add(root.val);
-			addList(root.right, result);
-		}
+    // recursive
+    public List<Integer> inorderTraversal(TreeNode root) {
+	List<Integer> res = new ArrayList<Integer>();
+	addList(root, res);
+	return res;
+    }
+
+    private void addList(TreeNode root, List<Integer> result) {
+	if (root == null)
+	    return;
+	else {
+	    addList(root.left, result);
+	    result.add(root.val);
+	    addList(root.right, result);
 	}
+    }
 }

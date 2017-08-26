@@ -46,65 +46,73 @@ The seqs parameter had been changed to a list of list of strings (instead of a 2
 Graph, Topological Sort
  */
 public class LT444_Sequence_Reconstruction {
-    //The basic idea is to count how many numbers are smaller(self include) than the current number. We then compare this count to the org.
+    // The basic idea is to count how many numbers are smaller(self include) than the current number. We then compare this count to the org.
     public boolean sequenceReconstruction(int[] org, int[][] seqs) {
-        int len = org.length;
-        int[] map = new int[len + 1];//map number to its index
-        Arrays.fill(map, -1);
-        int[] memo = new int[org.length];//count how many numbers are smaller(on the right)
-        for (int i = 0; i < len; i++) {
-            map[org[i]] = i;
-        }
-        for (int[] seq : seqs) {
-            if (seq.length == 0) continue;
-            int prev = seq[0];
-            if (prev <= 0 || prev > len || map[prev] == -1) return false;
-            for (int i = 1; i < seq.length; i++) {
-                int curr = seq[i];
-                if (curr <= 0 || curr > len || map[curr] == -1) return false;
-                memo[map[prev]] = Math.max(memo[map[prev]], len - map[curr] + 1);
-                prev = curr;
-            }
-            memo[map[prev]] = Math.max(memo[map[prev]], 1);
-        }
-        for (int i = 0; i < memo.length; i++) {
-            if (memo[i] != len - i) return false;
-        }
-        return true;
+	int len = org.length;
+	int[] map = new int[len + 1];// map number to its index
+	Arrays.fill(map, -1);
+	int[] memo = new int[org.length];// count how many numbers are smaller(on the right)
+	for (int i = 0; i < len; i++) {
+	    map[org[i]] = i;
+	}
+	for (int[] seq : seqs) {
+	    if (seq.length == 0)
+		continue;
+	    int prev = seq[0];
+	    if (prev <= 0 || prev > len || map[prev] == -1)
+		return false;
+	    for (int i = 1; i < seq.length; i++) {
+		int curr = seq[i];
+		if (curr <= 0 || curr > len || map[curr] == -1)
+		    return false;
+		memo[map[prev]] = Math.max(memo[map[prev]], len - map[curr] + 1);
+		prev = curr;
+	    }
+	    memo[map[prev]] = Math.max(memo[map[prev]], 1);
+	}
+	for (int i = 0; i < memo.length; i++) {
+	    if (memo[i] != len - i)
+		return false;
+	}
+	return true;
     }
-    
+
     public boolean sequenceReconstruction2(int[] org, List<List<Integer>> seqs) {
-        Map<Integer, Set<Integer>> map = new HashMap<>();
-        Map<Integer, Integer> indegree = new HashMap<>();
-        for (List<Integer> seq : seqs) {
-            for (int i : seq) {
-                map.putIfAbsent(i, new HashSet<>());
-                indegree.putIfAbsent(i, 0);
-            }
-        }
+	Map<Integer, Set<Integer>> map = new HashMap<>();
+	Map<Integer, Integer> indegree = new HashMap<>();
+	for (List<Integer> seq : seqs) {
+	    for (int i : seq) {
+		map.putIfAbsent(i, new HashSet<>());
+		indegree.putIfAbsent(i, 0);
+	    }
+	}
 
-        for (List<Integer> seq : seqs) {
-            if (seq.size()== 1) continue;
-            for (int i = 1; i < seq.size(); i++)
-                if (map.get(seq.get(i - 1)).add(seq.get(i)))
-                    indegree.put(seq.get(i), indegree.get(seq.get(i)) + 1);
-        }
+	for (List<Integer> seq : seqs) {
+	    if (seq.size() == 1)
+		continue;
+	    for (int i = 1; i < seq.size(); i++)
+		if (map.get(seq.get(i - 1)).add(seq.get(i)))
+		    indegree.put(seq.get(i), indegree.get(seq.get(i)) + 1);
+	}
 
-        if (org.length != indegree.size()) return false;
+	if (org.length != indegree.size())
+	    return false;
 
-        Queue<Integer> q = new ArrayDeque<>();
-        for (int key : indegree.keySet()) 
-            if (indegree.get(key) == 0) q.add(key);
+	Queue<Integer> q = new ArrayDeque<>();
+	for (int key : indegree.keySet())
+	    if (indegree.get(key) == 0)
+		q.add(key);
 
-        int cnt = 0;
-        while (q.size() == 1) {
-            for (int next : map.get(q.poll())) {
-                indegree.put(next, indegree.get(next) - 1);
-                if (indegree.get(next) == 0) q.add(next);
-            }
-            cnt++;
-        }
+	int cnt = 0;
+	while (q.size() == 1) {
+	    for (int next : map.get(q.poll())) {
+		indegree.put(next, indegree.get(next) - 1);
+		if (indegree.get(next) == 0)
+		    q.add(next);
+	    }
+	    cnt++;
+	}
 
-        return cnt == indegree.size();
+	return cnt == indegree.size();
     }
 }

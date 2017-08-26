@@ -8,16 +8,16 @@ If this function is called many times, how would you optimize it?
 Bit Manipulation
  */
 public class LT190_Reverse_Bits {
-	// you need treat n as an unsigned value. loop 32 bits.
-	// res | (n&1). then res<<1. n>>1
+    // you need treat n as an unsigned value. loop 32 bits.
+    // res | (n&1). then res<<1. n>>1
     public int reverseBits(int n) {
-        int res = n&1;
-        for(int i=1;i<=31;i++){
-            n = n>>1;
-            res = res<<1;
-            res = res | (n&1);
-        }
-        
-        return res;
+	int res = n & 1;
+	for (int i = 1; i <= 31; i++) {
+	    n = n >> 1;
+	    res = res << 1;
+	    res = res | (n & 1);
+	}
+
+	return res;
     }
 }

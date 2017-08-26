@@ -12,30 +12,30 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 Bit Manipulation
  */
 public class LT260_Single_Number_III {
-	//these two number has at least one digit are different. 
-	//based on the last 1-bit in XOR result can group nums into two groups. 
-	//one contains A the other contains B. Each group xor, then the result is A and B.
-	public int[] singleNumber(int[] nums) {
-        int xor = 0;
-        for(int i=0;i<nums.length;i++){
-            xor ^=nums[i];
-        }
-        
-        int[] res = new int[2];
-        int a = 0, b=0;
-        //令lowbit = xor & -xor，lowbit的含义为xor从低位向高位，第一个非0位所对应的数字
-        int lowbit = xor & -xor;
-        for(int elm:nums){
-            if((elm & lowbit)==lowbit)
-                a ^= elm;
-            else
-                b ^= elm;
-        }
-        
-        res[0] = a;
-        res[1] = b;
-        
-        return res;
-        
+    // these two number has at least one digit are different.
+    // based on the last 1-bit in XOR result can group nums into two groups.
+    // one contains A the other contains B. Each group xor, then the result is A and B.
+    public int[] singleNumber(int[] nums) {
+	int xor = 0;
+	for (int i = 0; i < nums.length; i++) {
+	    xor ^= nums[i];
+	}
+
+	int[] res = new int[2];
+	int a = 0, b = 0;
+	// 令lowbit = xor & -xor，lowbit的含义为xor从低位向高位，第一个非0位所对应的数字
+	int lowbit = xor & -xor;
+	for (int elm : nums) {
+	    if ((elm & lowbit) == lowbit)
+		a ^= elm;
+	    else
+		b ^= elm;
+	}
+
+	res[0] = a;
+	res[1] = b;
+
+	return res;
+
     }
-}	
+}

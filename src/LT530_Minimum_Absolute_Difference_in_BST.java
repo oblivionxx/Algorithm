@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 /*
  * Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
 
@@ -28,6 +30,7 @@ public class LT530_Minimum_Absolute_Difference_in_BST {
 
     int min = Integer.MAX_VALUE;
     Integer prev = null;
+
     public int getMinimumDifference(TreeNode root) {
 	if (root == null)
 	    return min;
@@ -44,12 +47,6 @@ public class LT530_Minimum_Absolute_Difference_in_BST {
     // diff.
     // or use treeset. time complexity O(NlgN), space complexity O(N).
 
-    
-    
-    
-    
-    
-    
     public static int getMinimumDifference2(TreeNode root) {
 	int[] res = { Integer.MAX_VALUE };
 	helper(root, Integer.MIN_VALUE, Integer.MAX_VALUE, res);

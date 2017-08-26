@@ -25,22 +25,22 @@ Math
  */
 public class LT396_Rotate_Function {
     public int maxRotateFunction(int[] A) {
-        //F(k) - F(k-1) = Bk[1] + Bk[2] + ... + Bk[n-1] + (1-n)Bk[0]  = (Bk[0] + ... + Bk[n-1]) - nBk[0]
-        //F(k) = F(k - 1) + sum - n * A[n - k]
-        int allSum = 0;
-        int len = A.length;
-        int F = 0;
-        for (int i = 0; i < len; i++) {
-            F += i * A[i];
-            allSum += A[i];
-        }
-        
-        int max = F;
-        for (int i = len - 1; i >= 1; i--) {
-            F = F + allSum - len * A[i];            //update F. i=n-k
-            max = Math.max(F, max);
-        }
-        return max;   
-        
+	// F(k) - F(k-1) = Bk[1] + Bk[2] + ... + Bk[n-1] + (1-n)Bk[0] = (Bk[0] + ... + Bk[n-1]) - nBk[0]
+	// F(k) = F(k - 1) + sum - n * A[n - k]
+	int allSum = 0;
+	int len = A.length;
+	int F = 0;
+	for (int i = 0; i < len; i++) {
+	    F += i * A[i];
+	    allSum += A[i];
+	}
+
+	int max = F;
+	for (int i = len - 1; i >= 1; i--) {
+	    F = F + allSum - len * A[i]; // update F. i=n-k
+	    max = Math.max(F, max);
+	}
+	return max;
+
     }
 }

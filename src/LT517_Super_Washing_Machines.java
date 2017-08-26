@@ -39,22 +39,23 @@ The range of dresses number in a super washing machine is [0, 1e5].
 DP, Math
  */
 public class LT517_Super_Washing_Machines {
-    //your machines[] is [0,0,11,5]. So your total is 16 and the target value for each machine is 4. Convert the machines array to a kind of gain/lose array, we get: [-4,-4,7,1]
-    //To make the 1st machines 0, you need to give all its "load" to the 2nd machines. So we get: [0,-8,7,1] then: [0,0,-1,1] lastly: [0,0,0,0], done.
-    //compare. abs(min) and max. ==>8
+    // your machines[] is [0,0,11,5]. So your total is 16 and the target value for each machine is 4. Convert the machines array to a kind of gain/lose array, we get: [-4,-4,7,1]
+    // To make the 1st machines 0, you need to give all its "load" to the 2nd machines. So we get: [0,-8,7,1] then: [0,0,-1,1] lastly: [0,0,0,0], done.
+    // compare. abs(min) and max. ==>8
     public int findMinMoves(int[] machines) {
-        int total = 0; 
-        for(int i: machines){
-            total+=i;
-        }
-        if(total%machines.length!=0) return -1;
-        
-        int avg = total/machines.length, cnt = 0, max = 0;
-        for(int load: machines){
-            cnt += load-avg;                    //load-avg forms the gain/loss array. cnt(is negative) maximum closes need to move for one machine.
-            max = Math.max(Math.max(max, Math.abs(cnt)), load-avg);
-        }
-        return max;
+	int total = 0;
+	for (int i : machines) {
+	    total += i;
+	}
+	if (total % machines.length != 0)
+	    return -1;
+
+	int avg = total / machines.length, cnt = 0, max = 0;
+	for (int load : machines) {
+	    cnt += load - avg; // load-avg forms the gain/loss array. cnt(is negative) maximum closes need to move for one machine.
+	    max = Math.max(Math.max(max, Math.abs(cnt)), load - avg);
+	}
+	return max;
     }
-    //https://discuss.leetcode.com/topic/79923/c-16ms-o-n-solution-with-trivial-proof/2  --> more easy to understand solution. redo this
+    // https://discuss.leetcode.com/topic/79923/c-16ms-o-n-solution-with-trivial-proof/2 --> more easy to understand solution. redo this
 }

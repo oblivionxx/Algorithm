@@ -13,23 +13,24 @@ Example: 19 is a happy number
 Hashtable, Math
  */
 public class LT202_Happy_Number {
-	//may have loop with some number.
-	public boolean isHappy(int n) {
-        
-        int sum=0;
-        HashSet<Integer> set = new HashSet<Integer>();
-        
-        while(!set.contains(n)){			//important.
-            set.add(n);
-            sum = 0;
-            while(n!=0){
-                sum += (n%10)*(n%10);
-                n = n/10;
-            }
-            n = sum;
-            if(n==1) return true;
-        }
-        
-        return false;
+    // may have loop with some number.
+    public boolean isHappy(int n) {
+
+	int sum = 0;
+	HashSet<Integer> set = new HashSet<Integer>();
+
+	while (!set.contains(n)) { // important.
+	    set.add(n);
+	    sum = 0;
+	    while (n != 0) {
+		sum += (n % 10) * (n % 10);
+		n = n / 10;
+	    }
+	    n = sum;
+	    if (n == 1)
+		return true;
+	}
+
+	return false;
     }
 }

@@ -14,11 +14,11 @@ Math
  */
 public class LT660_Remove_9 {
     public int newInteger(int n) {
-        String res = "";
-        while (n!=0) {
-            res = (n % 9) + res;
-            n /= 9;
-        }
-        return Integer.parseInt(res);
+	String res = "";
+	while (n != 0) {
+	    res = (n % 9) + res;
+	    n /= 9;
+	}
+	return Integer.parseInt(res);
     }
 }

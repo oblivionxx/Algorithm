@@ -21,39 +21,39 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 import java.util.*;
 
 public class LT089_Gray_Code {
-	// use recursion to generate n-1th gray code. then add 0 and 1 to the
-	// beginning.
-	public List<Integer> grayCode(int n) {
-		if (n == 0) { // end condition
-			List<Integer> res = new ArrayList<Integer>();
-			res.add(0);
-			return res;
-		}
-		// 1位格雷码有两个码字
-		// (n+1)位格雷码中的前2^n个码字等于n位格雷码的码字，按顺序书写，加前缀0
-		List<Integer> res = grayCode(n - 1); // do recursion
-
-		int addOne = 1 << (n - 1);
-		int orginSize = res.size();
-		// (n+1)位格雷码中的后2^n个码字等于n位格雷码的码字，按逆序书写，加前缀1。
-		for (int i = orginSize - 1; i >= 0; i--) {
-			res.add(addOne + res.get(i));
-		}
-
-		return res;
+    // use recursion to generate n-1th gray code. then add 0 and 1 to the
+    // beginning.
+    public List<Integer> grayCode(int n) {
+	if (n == 0) { // end condition
+	    List<Integer> res = new ArrayList<Integer>();
+	    res.add(0);
+	    return res;
 	}
-	
-	public List<Integer> grayCode2(int n) {
-        //iterative.
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(0);
-        for(int i=0;i<n;i++){
-            int inc = 1<<i;
-            for(int j=arr.size()-1;j>=0;j--){
-                arr.add(arr.get(j)+inc);
-            }
-        }
-        return arr;
-    
+	// 1位格雷码有两个码字
+	// (n+1)位格雷码中的前2^n个码字等于n位格雷码的码字，按顺序书写，加前缀0
+	List<Integer> res = grayCode(n - 1); // do recursion
+
+	int addOne = 1 << (n - 1);
+	int orginSize = res.size();
+	// (n+1)位格雷码中的后2^n个码字等于n位格雷码的码字，按逆序书写，加前缀1。
+	for (int i = orginSize - 1; i >= 0; i--) {
+	    res.add(addOne + res.get(i));
+	}
+
+	return res;
+    }
+
+    public List<Integer> grayCode2(int n) {
+	// iterative.
+	ArrayList<Integer> arr = new ArrayList<Integer>();
+	arr.add(0);
+	for (int i = 0; i < n; i++) {
+	    int inc = 1 << i;
+	    for (int j = arr.size() - 1; j >= 0; j--) {
+		arr.add(arr.get(j) + inc);
+	    }
+	}
+	return arr;
+
     }
 }

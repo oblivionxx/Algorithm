@@ -1,3 +1,5 @@
+import utils.ListNode;
+
 /*
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
@@ -22,48 +24,46 @@ Your code should preferably run in O(n) time and use only O(1) memory.
 Linkedlist
  */
 public class LT160_Intersection_of_Two_Linked_Lists {
-	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if (headA == null || headB == null) {
-            return null;
-        }
-        
-        int len1 = getLength(headA);
-        int len2 = getLength(headB);
-        
-        if(len1>len2){
-            while(len1>len2){
-            	headA = headA.next;
-            	len1--;
-            }
-        }
-        if(len2>len1){
-            while(len2>len1){
-            	headB = headB.next;
-            	len2--;
-            }
-        }
-        
-       
-        while(headA!=null){
-            if(headA==headB){ 
-                return headA;
-                
-            }
-                
-            headA = headA.next;
-            headB = headB.next;
-      
-        }
-        return null;
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+	if (headA == null || headB == null) {
+	    return null;
 	}
-        
-    
-    private int getLength(ListNode head){
-        int len = 0;
-        while(head!=null){
-            len++;
-            head = head.next;
-        }
-        return len;
+
+	int len1 = getLength(headA);
+	int len2 = getLength(headB);
+
+	if (len1 > len2) {
+	    while (len1 > len2) {
+		headA = headA.next;
+		len1--;
+	    }
+	}
+	if (len2 > len1) {
+	    while (len2 > len1) {
+		headB = headB.next;
+		len2--;
+	    }
+	}
+
+	while (headA != null) {
+	    if (headA == headB) {
+		return headA;
+
+	    }
+
+	    headA = headA.next;
+	    headB = headB.next;
+
+	}
+	return null;
+    }
+
+    private int getLength(ListNode head) {
+	int len = 0;
+	while (head != null) {
+	    len++;
+	    head = head.next;
+	}
+	return len;
     }
 }

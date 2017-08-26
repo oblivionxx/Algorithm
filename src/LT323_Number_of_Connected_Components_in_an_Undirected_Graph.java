@@ -22,12 +22,9 @@ DFS, BFS, Union Find, Graph
  */
 public class LT323_Number_of_Connected_Components_in_an_Undirected_Graph {
     /*
-     * Union Find This is 1D version of Number of Islands II. For more
-     * explanations, check out this 2D Solution. n points = n islands = n trees
-     * = n roots. With each edge added, check which island is e[0] or e[1]
-     * belonging to. If e[0] and e[1] are in same islands, do nothing.
-     * Otherwise, union two islands, and reduce islands count by 1. Bonus: path
-     * compression can reduce time by 50%. Hope it helps!
+     * Union Find This is 1D version of Number of Islands II. For more explanations, check out this 2D Solution. n points = n islands = n trees = n roots. With each edge added, check which island is
+     * e[0] or e[1] belonging to. If e[0] and e[1] are in same islands, do nothing. Otherwise, union two islands, and reduce islands count by 1. Bonus: path compression can reduce time by 50%. Hope it
+     * helps!
      */
     public int countComponents(int n, int[][] edges) {
 	int[] roots = new int[n];

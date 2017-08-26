@@ -49,8 +49,8 @@ public class LT085_Maximum_Rectangle {
     /*
      * Open matrix from top to the bottom line by line. Let the maximal rectangle area at row i and column j be computed by [right(i,j) - left(i,j)]*height(i,j). left(i,j) = max(left(i-1,j), curleft),
      * curleft can be determined from the current row right(i,j) = min(right(i-1,j), curright), curright can be determined from the current row height(i,j) = height(i-1,j) + 1, if matrix[i][j]=='1';
-     * height(i,j) = 0, if matrix[i][j]=='0';
-     * 对于某个点(i,j)，以该点为底边上的一点，以这个点向上能到达的高度的最大值为高，以在这条高度轴线上每一行向左右两边展开能到达的距离的最小值为宽的矩形为该点能取的矩形的最大值（好像并不是最大值，但一定会有一个点能取到最大的矩形）。用height[i][j]来记录（i， j）这个点向上能取的最大高度，用left[i][j]来记录(i, j)能取的最左边的左边界，用right[i][j]来记录（i，j）能取的最右边的右边界。因为当前点的各个值都只和上一行的点有关
+     * height(i,j) = 0, if matrix[i][j]=='0'; 对于某个点(i,j)，以该点为底边上的一点，以这个点向上能到达的高度的最大值为高，以在这条高度轴线上每一行向左右两边展开能到达的距离的最小值为宽的矩形为该点能取的矩形的最大值（好像并不是最大值，但一定会有一个点能取到最大的矩形）。用height[i][j]来记录（i，
+     * j）这个点向上能取的最大高度，用left[i][j]来记录(i, j)能取的最左边的左边界，用right[i][j]来记录（i，j）能取的最右边的右边界。因为当前点的各个值都只和上一行的点有关
      */
     public static int maximalRectangle2(char[][] matrix) {
 	if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
@@ -94,18 +94,18 @@ public class LT085_Maximum_Rectangle {
 		    right[j] = Math.min(right[j], cur_right);
 		else {
 		    right[j] = n; // set default. since later will compute min.
-		    cur_right = j;		//if udpate curRight default = j-1. when calculate max should use right-left+1
+		    cur_right = j; // if udpate curRight default = j-1. when calculate max should use right-left+1
 		}
 	    }
 
 	    for (int j = 0; j < n; j++)
-		max = Math.max(max, (right[j] - left[j]) * height[j]);   //at j, how many coninuous 1s on left ang right. 
+		max = Math.max(max, (right[j] - left[j]) * height[j]); // at j, how many coninuous 1s on left ang right.
 	}
 	return max;
     }
 
-    public static void main(String[] args){
-	char[][] matrix = {{'0','1','0'},{'0','1','1'}};
+    public static void main(String[] args) {
+	char[][] matrix = { { '0', '1', '0' }, { '0', '1', '1' } };
 	maximalRectangle2(matrix);
     }
 }

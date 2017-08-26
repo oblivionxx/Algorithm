@@ -16,9 +16,9 @@ Math, Brain Teaser
  */
 public class LT319_Bulb_Switcher {
     public int bulbSwitch(int n) {
-        //if bulb switch odd number->turn on. --> divisor number = odd. --> to find --> only for 1,4,9...
-        //...............even.............off --> divisor number 
-        //find square number <n
-        return (int)Math.sqrt(n);
+	// if bulb switch odd number->turn on. --> divisor number = odd. --> to find --> only for 1,4,9...
+	// ...............even.............off --> divisor number
+	// find square number <n
+	return (int) Math.sqrt(n);
     }
 }

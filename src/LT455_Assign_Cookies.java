@@ -28,15 +28,15 @@ Greedy
  */
 public class LT455_Assign_Cookies {
     public int findContentChildren(int[] g, int[] s) {
-        Arrays.sort(g);
-        Arrays.sort(s);
-        int i=0;//, count=0;
-        for(int j=0;j<s.length;j++){
-            if(i<g.length && g[i]<=s[j]){
-                i++;
-                //count++;
-            }
-        }
-        return i;
+	Arrays.sort(g);
+	Arrays.sort(s);
+	int i = 0;// , count=0;
+	for (int j = 0; j < s.length; j++) {
+	    if (i < g.length && g[i] <= s[j]) {
+		i++;
+		// count++;
+	    }
+	}
+	return i;
     }
 }

@@ -20,27 +20,30 @@ The length of input string is a positive integer and will not exceed 10,000
 Greedy
  */
 public class LT484_Find_Permutation {
-	public int[] findPermutation(String s) {
-        //https://discuss.leetcode.com/topic/76276/1-liner-and-5-liner-visual-explanation
-        //find the rule where to reverse. 
-        int n = s.length(), arr[] = new int[n + 1];         //result len is always s.length+1
-        for (int i = 0; i <= n; i++) arr[i] = i + 1;        // sorted. 12345...
-        for (int h = 0; h < n; h++) {
-            if (s.charAt(h) == 'D') {
-                int l = h;
-                while (h < n && s.charAt(h) == 'D') h++;    //find how many digits need to reverse
-                reverse(arr, l, h);     
-            }   
-        }   
-        return arr;
-    }   
+    public int[] findPermutation(String s) {
+	// https://discuss.leetcode.com/topic/76276/1-liner-and-5-liner-visual-explanation
+	// find the rule where to reverse.
+	int n = s.length(), arr[] = new int[n + 1]; // result len is always s.length+1
+	for (int i = 0; i <= n; i++)
+	    arr[i] = i + 1; // sorted. 12345...
+	for (int h = 0; h < n; h++) {
+	    if (s.charAt(h) == 'D') {
+		int l = h;
+		while (h < n && s.charAt(h) == 'D')
+		    h++; // find how many digits need to reverse
+		reverse(arr, l, h);
+	    }
+	}
+	return arr;
+    }
 
     void reverse(int[] arr, int l, int h) {
-        while (l < h) {
-            arr[l] ^= arr[h];
-            arr[h] ^= arr[l];
-            arr[l] ^= arr[h];
-            l++; h--;
-        }   
+	while (l < h) {
+	    arr[l] ^= arr[h];
+	    arr[h] ^= arr[l];
+	    arr[l] ^= arr[h];
+	    l++;
+	    h--;
+	}
     }
 }

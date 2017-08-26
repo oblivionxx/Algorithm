@@ -36,51 +36,61 @@ String
  */
 public class LT468_Validate_IP_Address {
     public String validIPAddress(String IP) {
-        if(isValidIPv4(IP)) return "IPv4";
-    	else if(isValidIPv6(IP)) return "IPv6";
-    	else return "Neither";
+	if (isValidIPv4(IP))
+	    return "IPv4";
+	else if (isValidIPv6(IP))
+	    return "IPv6";
+	else
+	    return "Neither";
     }
-    
-    private boolean isValidIPv4(String IP){
-    	String[] tokens = IP.split("\\.",-1);
-    	if(tokens.length!=4) return false;
-    	for(String token:tokens) {
-    		if(!isValidIPv4Token(token)) return false;
-    	}
-    	return true;
+
+    private boolean isValidIPv4(String IP) {
+	String[] tokens = IP.split("\\.", -1);
+	if (tokens.length != 4)
+	    return false;
+	for (String token : tokens) {
+	    if (!isValidIPv4Token(token))
+		return false;
+	}
+	return true;
     }
-    
-    private boolean isValidIPv4Token(String s){
-        if(s.length()==0 || s.length()>3) return false;
-        if(s.charAt(0)=='0')  return s.equals("0");  
-        int foo = 0;
-        try{
-            foo = Integer.parseInt(s);
-        }catch(NumberFormatException e){            //string consisting letter
-            return false; 
-        }
-        
-        return foo>0 && foo<=255;
+
+    private boolean isValidIPv4Token(String s) {
+	if (s.length() == 0 || s.length() > 3)
+	    return false;
+	if (s.charAt(0) == '0')
+	    return s.equals("0");
+	int foo = 0;
+	try {
+	    foo = Integer.parseInt(s);
+	} catch (NumberFormatException e) { // string consisting letter
+	    return false;
+	}
+
+	return foo > 0 && foo <= 255;
     }
-    
-    private boolean isValidIPv6(String IP){
-        String[] tokens = IP.split("\\:", -1);      //so that if first or last character is : , including an empty token
-        if(tokens.length!=8) return false;
-    	for(String token:tokens) {
-    		if(!isValidIPv6Token(token)) return false;
-    	}
-    	return true;
+
+    private boolean isValidIPv6(String IP) {
+	String[] tokens = IP.split("\\:", -1); // so that if first or last character is : , including an empty token
+	if (tokens.length != 8)
+	    return false;
+	for (String token : tokens) {
+	    if (!isValidIPv6Token(token))
+		return false;
+	}
+	return true;
     }
-    
-    private boolean isValidIPv6Token(String s){
-        if(s.length()==0 || s.length()>4) return false;
-        char[] chars = s.toCharArray();
-    	for(char c:chars) {
-    	    boolean isUppercaseAF = c>=65 && c<=70;         //only use abcdef
-		    boolean isLowerCaseAF = c>=97 && c<=102;
-    		if(!(Character.isDigit(c) || isUppercaseAF || isLowerCaseAF)) 
-    			return false;
-    	}
-    	return true;
+
+    private boolean isValidIPv6Token(String s) {
+	if (s.length() == 0 || s.length() > 4)
+	    return false;
+	char[] chars = s.toCharArray();
+	for (char c : chars) {
+	    boolean isUppercaseAF = c >= 65 && c <= 70; // only use abcdef
+	    boolean isLowerCaseAF = c >= 97 && c <= 102;
+	    if (!(Character.isDigit(c) || isUppercaseAF || isLowerCaseAF))
+		return false;
+	}
+	return true;
     }
 }

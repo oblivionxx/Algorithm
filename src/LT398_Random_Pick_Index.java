@@ -24,20 +24,20 @@ public class LT398_Random_Pick_Index {
     Random rnd;
 
     public LT398_Random_Pick_Index(int[] nums) {
-        this.nums = nums;
-        this.rnd = new Random();
+	this.nums = nums;
+	this.rnd = new Random();
     }
-    
+
     public int pick(int target) {
-        int result = -1;
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != target)
-                continue;                        //stream start when nums[i]==target
-            if (rnd.nextInt(++count) == 0)        //For the nth target, ++count is n. Then the probability that rnd.nextInt(++count)==0 is 1/n. Thus, the probability that return nth target is 1/n.
-                result = i;
-        }
-        
-        return result;
+	int result = -1;
+	int count = 0;
+	for (int i = 0; i < nums.length; i++) {
+	    if (nums[i] != target)
+		continue; // stream start when nums[i]==target
+	    if (rnd.nextInt(++count) == 0) // For the nth target, ++count is n. Then the probability that rnd.nextInt(++count)==0 is 1/n. Thus, the probability that return nth target is 1/n.
+		result = i;
+	}
+
+	return result;
     }
 }

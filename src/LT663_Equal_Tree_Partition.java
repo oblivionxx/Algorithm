@@ -1,5 +1,7 @@
 import java.util.*;
 
+import utils.TreeNode;
+
 /*
  * Given a binary tree with n nodes, your task is to check if it's possible to partition the tree to two trees which have the equal sum of values after removing exactly one edge on the original tree.
 
@@ -41,18 +43,20 @@ The range of tree node value is in the range of [-100000, 100000].
 Tree
  */
 public class LT663_Equal_Tree_Partition {
- // not necessarily remove the edge next to root
+    // not necessarily remove the edge next to root
     public boolean checkEqualTree(TreeNode root) {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        int sum = getsum(root, map);
-        if(sum == 0) return map.getOrDefault(sum, 0) > 1;
-        return sum%2 == 0 && map.containsKey(sum/2);
+	Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+	int sum = getsum(root, map);
+	if (sum == 0)
+	    return map.getOrDefault(sum, 0) > 1;
+	return sum % 2 == 0 && map.containsKey(sum / 2);
     }
-    
-    public int getsum(TreeNode root, Map<Integer, Integer> map ){
-        if(root == null)return 0;
-        int cur = root.val + getsum(root.left, map) + getsum(root.right, map);
-        map.put(cur, map.getOrDefault(cur,0) + 1);
-        return cur;
+
+    public int getsum(TreeNode root, Map<Integer, Integer> map) {
+	if (root == null)
+	    return 0;
+	int cur = root.val + getsum(root.left, map) + getsum(root.right, map);
+	map.put(cur, map.getOrDefault(cur, 0) + 1);
+	return cur;
     }
 }

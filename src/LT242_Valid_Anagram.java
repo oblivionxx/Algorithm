@@ -16,17 +16,19 @@ What if the inputs contain unicode characters? How would you adapt your solution
 Hashtable, sort
  */
 public class LT242_Valid_Anagram {
-	public boolean isAnagram(String s, String t) {
-        if(s.length()!=t.length()) return false;
-        char[] ss = s.toCharArray();
-        char[] tt = t.toCharArray();
-        Arrays.sort(ss);
-        Arrays.sort(tt);
-        for(int i=0;i<ss.length;i++){
-            if(ss[i]!=tt[i]) return false;
-        }
-        return true;
+    public boolean isAnagram(String s, String t) {
+	if (s.length() != t.length())
+	    return false;
+	char[] ss = s.toCharArray();
+	char[] tt = t.toCharArray();
+	Arrays.sort(ss);
+	Arrays.sort(tt);
+	for (int i = 0; i < ss.length; i++) {
+	    if (ss[i] != tt[i])
+		return false;
+	}
+	return true;
     }
-	
-	//or use hashmap to count occurrence.
+
+    // or use hashmap to count occurrence.
 }

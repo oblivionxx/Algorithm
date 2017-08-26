@@ -51,34 +51,34 @@ We don't consider the impact of flight hours towards the calculation of vacation
 DP
  */
 public class LT568_Maximum_Vacation_Days {
-    //dp[i][j] stands for the max vacation days we can get in week i staying in city j. 
-    //dp[i][j] = max(dp[i - 1][k] + days[j][i]) (k = 0...N - 1, if we can go from city k to city j)
-    //can optimize to 1d. O(kn^2)
+    // dp[i][j] stands for the max vacation days we can get in week i staying in city j.
+    // dp[i][j] = max(dp[i - 1][k] + days[j][i]) (k = 0...N - 1, if we can go from city k to city j)
+    // can optimize to 1d. O(kn^2)
     public int maxVacationDays(int[][] flights, int[][] days) {
-        int N = flights.length;
-        int K = days[0].length;
-        int[] dp = new int[N];
-        Arrays.fill(dp, Integer.MIN_VALUE);
-        dp[0] = 0;
-        
-        for (int i = 0; i < K; i++) {
-            int[] temp = new int[N];                    //store the result for nextday
-            Arrays.fill(temp, Integer.MIN_VALUE);
-            for (int j = 0; j < N; j++) {               //end city
-                for(int k = 0; k < N; k++) {            //start city
-                    if (j == k || flights[k][j] == 1) {
-                        temp[j] = Math.max(temp[j], dp[k] + days[j][i]);
-                    }
-                }
-            }
-            dp = temp;
-        }
-        
-        int max = 0;
-        for (int v : dp) {
-            max = Math.max(max, v);
-        }
-        
-        return max;
+	int N = flights.length;
+	int K = days[0].length;
+	int[] dp = new int[N];
+	Arrays.fill(dp, Integer.MIN_VALUE);
+	dp[0] = 0;
+
+	for (int i = 0; i < K; i++) {
+	    int[] temp = new int[N]; // store the result for nextday
+	    Arrays.fill(temp, Integer.MIN_VALUE);
+	    for (int j = 0; j < N; j++) { // end city
+		for (int k = 0; k < N; k++) { // start city
+		    if (j == k || flights[k][j] == 1) {
+			temp[j] = Math.max(temp[j], dp[k] + days[j][i]);
+		    }
+		}
+	    }
+	    dp = temp;
+	}
+
+	int max = 0;
+	for (int v : dp) {
+	    max = Math.max(max, v);
+	}
+
+	return max;
     }
 }

@@ -16,13 +16,13 @@ For example:
 Math
  */
 public class LT171_Excel_Sheet_Column_Number {
-	public int titleToNumber(String s) {
-		int res = 0;
-		for (int i = 0; i < s.length(); i++) {
-			int cur = s.charAt(i) - 'A' + 1;
-			res = res * 26 + cur;
-		}
-
-		return res;
+    public int titleToNumber(String s) {
+	int res = 0;
+	for (int i = 0; i < s.length(); i++) {
+	    int cur = s.charAt(i) - 'A' + 1;
+	    res = res * 26 + cur;
 	}
+
+	return res;
+    }
 }

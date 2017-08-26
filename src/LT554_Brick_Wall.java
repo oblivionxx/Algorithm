@@ -28,22 +28,22 @@ Hash Table
  */
 public class LT554_Brick_Wall {
     public int leastBricks(List<List<Integer>> wall) {
-        //Cut from the edge of the most common location among all the levels
-        HashMap<Integer, Integer> map = new HashMap<>();    //save(index, how many bricks with border there) => max is useful 
-        int res = wall.size();
-        for(List<Integer> row: wall){
-            int index = 0;
-            for(int i=0;i<row.size()-1; i++){               //not consider the last one. as it will return 0!!!
-                index+=row.get(i);
-                int value = map.getOrDefault(index,0)+1;
-                map.put(index,value);
-            }
-        }
-        
-        for(int val:map.values()){
-            res = Math.min(res, wall.size() - val);
-        }
-       
-        return res;
+	// Cut from the edge of the most common location among all the levels
+	HashMap<Integer, Integer> map = new HashMap<>(); // save(index, how many bricks with border there) => max is useful
+	int res = wall.size();
+	for (List<Integer> row : wall) {
+	    int index = 0;
+	    for (int i = 0; i < row.size() - 1; i++) { // not consider the last one. as it will return 0!!!
+		index += row.get(i);
+		int value = map.getOrDefault(index, 0) + 1;
+		map.put(index, value);
+	    }
+	}
+
+	for (int val : map.values()) {
+	    res = Math.min(res, wall.size() - val);
+	}
+
+	return res;
     }
 }

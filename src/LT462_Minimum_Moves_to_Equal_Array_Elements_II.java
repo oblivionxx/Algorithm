@@ -22,23 +22,23 @@ Math
  */
 public class LT462_Minimum_Moves_to_Equal_Array_Elements_II {
     public int minMoves2(int[] nums) {
-        //find the median. larger --, smaller++
-        //1. sort and get the diff to median O(nlgn)
-        //Arrays.sort(nums);
-        //int median = nums[nums.length >> 1];
-        //return Arrays.stream(nums).map(i -> Math.abs(median - i)).sum();
-        
-        Arrays.sort(nums);
-        int i = 0, j = nums.length-1;
-        int count = 0;
-        while(i < j){
-            count += nums[j]-nums[i];
-            i++;
-            j--;
-        }
-        return count;
-        
-        //2. optimize to O(n) used quick select to select the median element
-        //https://discuss.leetcode.com/topic/68758/java-o-n-time-using-quickselect/2
+	// find the median. larger --, smaller++
+	// 1. sort and get the diff to median O(nlgn)
+	// Arrays.sort(nums);
+	// int median = nums[nums.length >> 1];
+	// return Arrays.stream(nums).map(i -> Math.abs(median - i)).sum();
+
+	Arrays.sort(nums);
+	int i = 0, j = nums.length - 1;
+	int count = 0;
+	while (i < j) {
+	    count += nums[j] - nums[i];
+	    i++;
+	    j--;
+	}
+	return count;
+
+	// 2. optimize to O(n) used quick select to select the median element
+	// https://discuss.leetcode.com/topic/68758/java-o-n-time-using-quickselect/2
     }
 }

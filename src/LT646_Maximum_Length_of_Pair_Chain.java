@@ -32,7 +32,7 @@ public class LT646_Maximum_Length_of_Pair_Chain {
 
     // dp
     public int findLongestChain2(int[][] pairs) {
-	Arrays.sort(pairs, (a, b) -> (a[1] - b[1]));			//doesn't matter sort by start or end.
+	Arrays.sort(pairs, (a, b) -> (a[1] - b[1])); // doesn't matter sort by start or end.
 	int i, j, max = 0, n = pairs.length;
 	int dp[] = new int[n];
 

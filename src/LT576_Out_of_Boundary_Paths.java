@@ -19,22 +19,22 @@ N is in range [0,50].
 DP, DFS
  */
 public class LT576_Out_of_Boundary_Paths {
-    //The number of paths for N moves is the sum of paths for N - 1 moves from the adjacent cells. If an adjacent cell is out of the border, the number of paths is 1.
-    //https://discuss.leetcode.com/topic/88492/c-6-lines-dp-o-n-m-n-6-ms
+    // The number of paths for N moves is the sum of paths for N - 1 moves from the adjacent cells. If an adjacent cell is out of the border, the number of paths is 1.
+    // https://discuss.leetcode.com/topic/88492/c-6-lines-dp-o-n-m-n-6-ms
     public int findPaths(int m, int n, int N, int i0, int j0) {
-        long limit = 1000000007;
-        long[][][] dp = new long[N + 1][m][n];
-        for (int k = 1; k <= N; k++) {
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    dp[k][i][j] += i == 0     ? 1 : dp[k - 1][i - 1][j];
-                    dp[k][i][j] += i == m - 1 ? 1 : dp[k - 1][i + 1][j];
-                    dp[k][i][j] += j == 0     ? 1 : dp[k - 1][i][j - 1];
-                    dp[k][i][j] += j == n - 1 ? 1 : dp[k - 1][i][j + 1];
-                    dp[k][i][j] %= limit;
-                }
-            }
-        }
-        return (int)dp[N][i0][j0];        
+	long limit = 1000000007;
+	long[][][] dp = new long[N + 1][m][n];
+	for (int k = 1; k <= N; k++) {
+	    for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+		    dp[k][i][j] += i == 0 ? 1 : dp[k - 1][i - 1][j];
+		    dp[k][i][j] += i == m - 1 ? 1 : dp[k - 1][i + 1][j];
+		    dp[k][i][j] += j == 0 ? 1 : dp[k - 1][i][j - 1];
+		    dp[k][i][j] += j == n - 1 ? 1 : dp[k - 1][i][j + 1];
+		    dp[k][i][j] %= limit;
+		}
+	    }
+	}
+	return (int) dp[N][i0][j0];
     }
 }

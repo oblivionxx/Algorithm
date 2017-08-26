@@ -25,23 +25,23 @@ Binary Search
  */
 public class LT475_Heaters {
     public int findRadius(int[] houses, int[] heaters) {
-        //sorted? assume houses are 1~n....
-        //can search nearest heater next to houses and local min(left, right)
-        //top solution. binary search house in heaters array. if found, radius =0, if not, get min(left, right)
-        Arrays.sort(heaters);       //binary search require sorted
-        int result = Integer.MIN_VALUE;
-        for(int house:houses){
-            int index = Arrays.binarySearch(heaters, house);        //if not found, index<0. left border = -index-1
-            if(index<0) index = -(index+1);
-            int dist1 = index-1>=0?house-heaters[index-1]:Integer.MAX_VALUE;         //careful corner case
-            int dist2 = index<heaters.length?heaters[index] - house:Integer.MAX_VALUE;
-            
-            result = Math.max(result, Math.min(dist1, dist2));
-        }
-        
-        return result;
-        
-        
-        //Time complexity: max(O(nlogn), O(mlogn)) - m is the length of houses, n is the length of heaters.
+	// sorted? assume houses are 1~n....
+	// can search nearest heater next to houses and local min(left, right)
+	// top solution. binary search house in heaters array. if found, radius =0, if not, get min(left, right)
+	Arrays.sort(heaters); // binary search require sorted
+	int result = Integer.MIN_VALUE;
+	for (int house : houses) {
+	    int index = Arrays.binarySearch(heaters, house); // if not found, index<0. left border = -index-1
+	    if (index < 0)
+		index = -(index + 1);
+	    int dist1 = index - 1 >= 0 ? house - heaters[index - 1] : Integer.MAX_VALUE; // careful corner case
+	    int dist2 = index < heaters.length ? heaters[index] - house : Integer.MAX_VALUE;
+
+	    result = Math.max(result, Math.min(dist1, dist2));
+	}
+
+	return result;
+
+	// Time complexity: max(O(nlogn), O(mlogn)) - m is the length of houses, n is the length of heaters.
     }
 }

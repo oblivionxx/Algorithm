@@ -25,12 +25,12 @@ String S is non-empty.
  */
 public class LT482_License_Key_Formatting {
     public String licenseKeyFormatting(String s, int k) {
-        StringBuilder sb = new StringBuilder();
-        //first part could be less than K letters. so start from the back
-        for (int i = s.length() - 1; i >= 0; i--){
-            if (s.charAt(i) != '-')
-                sb.append(sb.length() % (k + 1) == k ? '-' : "").append(s.charAt(i));
-        }
-        return sb.reverse().toString().toUpperCase();
+	StringBuilder sb = new StringBuilder();
+	// first part could be less than K letters. so start from the back
+	for (int i = s.length() - 1; i >= 0; i--) {
+	    if (s.charAt(i) != '-')
+		sb.append(sb.length() % (k + 1) == k ? '-' : "").append(s.charAt(i));
+	}
+	return sb.reverse().toString().toUpperCase();
     }
 }

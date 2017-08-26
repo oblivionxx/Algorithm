@@ -36,21 +36,22 @@ Array
  */
 public class LT566_Reshape_the_Matrix {
     public int[][] matrixReshape(int[][] nums, int r, int c) {
-        int m = nums.length, n=nums[0].length;
-        if(nums==null || m*n!=r*c) return nums;
-        int[][] res = new int[r][c];
-        for(int i=0;i<r;i++){
-            for(int j=0;j<c;j++){
-                int index = i*c+j;
-                res[i][j] = nums[index/n][index%n];
-            }
-        }
-        
-        //one loop
-        //for (int i = 0; i < r * c; ++i) {
-        //    res[i / c][i % c] = nums[i / n][i % n];
-        //}
-        
-        return res;
+	int m = nums.length, n = nums[0].length;
+	if (nums == null || m * n != r * c)
+	    return nums;
+	int[][] res = new int[r][c];
+	for (int i = 0; i < r; i++) {
+	    for (int j = 0; j < c; j++) {
+		int index = i * c + j;
+		res[i][j] = nums[index / n][index % n];
+	    }
+	}
+
+	// one loop
+	// for (int i = 0; i < r * c; ++i) {
+	// res[i / c][i % c] = nums[i / n][i % n];
+	// }
+
+	return res;
     }
 }

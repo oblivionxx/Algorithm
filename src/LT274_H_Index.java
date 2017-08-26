@@ -14,36 +14,40 @@ A faster approach is to use extra space.
 HashTable, Sort
  */
 public class LT274_H_Index {
-    //1. counting sort
+    // 1. counting sort
     public int hIndex(int[] citations) {
-        if(citations.length <=0) return 0;
-        int res = 0;
-        int len = citations.length;
-        int[] countarray = new int[len+1];
-        for(int i=0;i<len;i++) {
-            if(citations[i]>=len) {
-                countarray[len]++;
-            }else {
-                countarray[citations[i]]++;
-            }
-        }
-        if(countarray[len]>=len) return len;
-        for(int i=len-1;i>=0;i--){
-            countarray[i] = countarray[i] + countarray[i+1];
-            if(countarray[i]>=i) return i;			//remember, here i is the h-index. which is some value of citation[]. not index.
-        }
-        return res;
+	if (citations.length <= 0)
+	    return 0;
+	int res = 0;
+	int len = citations.length;
+	int[] countarray = new int[len + 1];
+	for (int i = 0; i < len; i++) {
+	    if (citations[i] >= len) {
+		countarray[len]++;
+	    } else {
+		countarray[citations[i]]++;
+	    }
+	}
+	if (countarray[len] >= len)
+	    return len;
+	for (int i = len - 1; i >= 0; i--) {
+	    countarray[i] = countarray[i] + countarray[i + 1];
+	    if (countarray[i] >= i)
+		return i; // remember, here i is the h-index. which is some value of citation[]. not index.
+	}
+	return res;
     }
-    
-    //2. Sort and check from bwd 
+
+    // 2. Sort and check from bwd
     public int hIndex2(int[] citations) {
-        Arrays.sort(citations);
-        int hIndex = 0;
-        for(int i=citations.length-1;i>=0;i--){
-            if(citations[i]<=hIndex) return hIndex;
-            hIndex++;
-        }
-        
-        return hIndex;
+	Arrays.sort(citations);
+	int hIndex = 0;
+	for (int i = citations.length - 1; i >= 0; i--) {
+	    if (citations[i] <= hIndex)
+		return hIndex;
+	    hIndex++;
+	}
+
+	return hIndex;
     }
 }

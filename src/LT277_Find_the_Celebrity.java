@@ -7,31 +7,35 @@ Note: There will be exactly one celebrity if he/she is in the party. Return the 
 Array
  */
 public class LT277_Find_the_Celebrity {
-	//find one candidate through one iteration. Two Pass O(n), O(1)
-	public int findCelebrity(int n) {
-        if (n < 2) return -1;
-        int candidate = 0;
-        for (int i = 1; i < n; i++) {
-            if (knows(candidate, i)) candidate = i;     //transition. candidate knows nobody. 
-            //A knows person B, then B could be the candidate of being a celebrity, A must not be a celebrity. 
-        }
-
-        for (int i = 0; i < n; i++) {
-            if (i != candidate) {
-                if (knows(candidate, i) || !knows(i, candidate)) return -1;     //check if candidate knows anybody, return -1
-                                                                                //or not everyone knows candidate. return -1
-            }
-        }
-        return candidate;   
-    }
-	
-	boolean knows(int a, int b){
-		return true;	
+    // find one candidate through one iteration. Two Pass O(n), O(1)
+    public int findCelebrity(int n) {
+	if (n < 2)
+	    return -1;
+	int candidate = 0;
+	for (int i = 1; i < n; i++) {
+	    if (knows(candidate, i))
+		candidate = i; // transition. candidate knows nobody.
+	    // A knows person B, then B could be the candidate of being a celebrity, A must not be a celebrity.
 	}
-	
-	//3 line version
-	//https://leetcode.com/discuss/74215/concise-recursive-divide-conquer-bonus-java-stream-solution
+
+	for (int i = 0; i < n; i++) {
+	    if (i != candidate) {
+		if (knows(candidate, i) || !knows(i, candidate))
+		    return -1; // check if candidate knows anybody, return -1
+			       // or not everyone knows candidate. return -1
+	    }
+	}
+	return candidate;
+    }
+
+    boolean knows(int a, int b) {
+	return true;
+    }
+
+    // 3 line version
+    // https://leetcode.com/discuss/74215/concise-recursive-divide-conquer-bonus-java-stream-solution
 }
 
-/* The knows API is defined in the parent class Relation.
-boolean knows(int a, int b); */
+/*
+ * The knows API is defined in the parent class Relation. boolean knows(int a, int b);
+ */

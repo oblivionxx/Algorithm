@@ -28,24 +28,26 @@ Backtracking
  */
 public class LT526_Beautiful_Arrangement {
     int count = 0;
+
     public int countArrangement(int N) {
-        if(N==0) return 0;
-        helper(N,1, new boolean[N+1]);
-        return count;
+	if (N == 0)
+	    return 0;
+	helper(N, 1, new boolean[N + 1]);
+	return count;
     }
-    
-    private void helper(int N, int idx, boolean[] visited){
-        if(idx>N){      //why not ==? need to compute the last element
-            count++;
-            return;
-        }
-        
-        for (int i = 1; i <= N; i++) {
-            if (!visited[i] && (i % idx == 0 || idx % i == 0)) {        //i hasn't been used. and can satisfy the two condition regarding index.
-                visited[i] = true;
-                helper(N, idx + 1, visited);
-                visited[i] = false;
-            }
-        }
+
+    private void helper(int N, int idx, boolean[] visited) {
+	if (idx > N) { // why not ==? need to compute the last element
+	    count++;
+	    return;
+	}
+
+	for (int i = 1; i <= N; i++) {
+	    if (!visited[i] && (i % idx == 0 || idx % i == 0)) { // i hasn't been used. and can satisfy the two condition regarding index.
+		visited[i] = true;
+		helper(N, idx + 1, visited);
+		visited[i] = false;
+	    }
+	}
     }
 }

@@ -22,19 +22,20 @@ String
  */
 public class LT459_Repeated_Substring_Pattern {
     public boolean repeatedSubstringPattern(String s) {
-        for(int i=s.length()/2;i>0;i--){
-            //get a substring with length i
-            if(s.length()%i==0){
-                String sub = s.substring(0,i);
-                StringBuilder sb = new StringBuilder();
-                int repeat = s.length()/i;
-    			for(int j=0;j<repeat;j++) {
-    				sb.append(sub);
-    			}
-    			if(sb.toString().equals(s)) return true;
-                }
-        }
-        
-        return false;
+	for (int i = s.length() / 2; i > 0; i--) {
+	    // get a substring with length i
+	    if (s.length() % i == 0) {
+		String sub = s.substring(0, i);
+		StringBuilder sb = new StringBuilder();
+		int repeat = s.length() / i;
+		for (int j = 0; j < repeat; j++) {
+		    sb.append(sub);
+		}
+		if (sb.toString().equals(s))
+		    return true;
+	    }
+	}
+
+	return false;
     }
 }

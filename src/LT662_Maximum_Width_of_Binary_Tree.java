@@ -1,5 +1,7 @@
 import java.util.*;
 
+import utils.TreeNode;
+
 /*
  * Given a binary tree, write a function to get the maximum width of the given tree. The width of a tree is the maximum width among all levels. The binary tree has the same structure as a full binary tree, but some nodes are null.
 
@@ -55,19 +57,22 @@ Note: Answer will in the range of 32-bit signed integer.
 Tree
  */
 public class LT662_Maximum_Width_of_Binary_Tree {
-  //Always make the id of left child as parent_id * 2; Always make the id of right child as parent_id * 2 + 1;
-    //So we can just: Record the id of left most node at each level of the tree
+    // Always make the id of left child as parent_id * 2; Always make the id of right child as parent_id * 2 + 1;
+    // So we can just: Record the id of left most node at each level of the tree
     public int widthOfBinaryTree(TreeNode root) {
-        List<Integer> lefts = new ArrayList<Integer>(); // left most nodes at each level;
-        int[] res = new int[1]; // max width
-        dfs(root, 1, 0, lefts, res);
-        return res[0];
+	List<Integer> lefts = new ArrayList<Integer>(); // left most nodes at each level;
+	int[] res = new int[1]; // max width
+	dfs(root, 1, 0, lefts, res);
+	return res[0];
     }
+
     private void dfs(TreeNode node, int id, int depth, List<Integer> lefts, int[] res) {
-        if (node == null) return;
-        if (depth >= lefts.size()) lefts.add(id);   // add left most node
-        res[0] = Integer.max(res[0], id + 1 - lefts.get(depth));
-        dfs(node.left,  id * 2,     depth + 1, lefts, res);
-        dfs(node.right, id * 2 + 1, depth + 1, lefts, res);
+	if (node == null)
+	    return;
+	if (depth >= lefts.size())
+	    lefts.add(id); // add left most node
+	res[0] = Integer.max(res[0], id + 1 - lefts.get(depth));
+	dfs(node.left, id * 2, depth + 1, lefts, res);
+	dfs(node.right, id * 2 + 1, depth + 1, lefts, res);
     }
 }

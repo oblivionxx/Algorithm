@@ -29,24 +29,24 @@ n >= 1.
 Tree, Queue
  */
 public class LT582_Kill_Process {
-	public List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        for (int i = 0; i < pid.size(); ++i) {
-            map.putIfAbsent(ppid.get(i), new ArrayList<>());
-            map.get(ppid.get(i)).add(pid.get(i));                   //map<parent, list of child>
-        }
-        
-        List<Integer> ans = new ArrayList<>();
-        Queue<Integer> q = new ArrayDeque<>();
-        q.add(kill);
-        while (!q.isEmpty()) {
-            int n = q.poll();
-            ans.add(n);                                             //add killed process id. 
-            if (map.containsKey(n)) {
-                q.addAll(map.get(n));                               //add children process to list.
-            }
-        }
-        return ans;
-    
+    public List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {
+	Map<Integer, List<Integer>> map = new HashMap<>();
+	for (int i = 0; i < pid.size(); ++i) {
+	    map.putIfAbsent(ppid.get(i), new ArrayList<>());
+	    map.get(ppid.get(i)).add(pid.get(i)); // map<parent, list of child>
+	}
+
+	List<Integer> ans = new ArrayList<>();
+	Queue<Integer> q = new ArrayDeque<>();
+	q.add(kill);
+	while (!q.isEmpty()) {
+	    int n = q.poll();
+	    ans.add(n); // add killed process id.
+	    if (map.containsKey(n)) {
+		q.addAll(map.get(n)); // add children process to list.
+	    }
+	}
+	return ans;
+
     }
 }

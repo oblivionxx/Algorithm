@@ -37,23 +37,32 @@ What if the number of hits per second could be very large? Does your design scal
 Design
  */
 public class LT362_Design_Hit_Counter {
-	Queue<Integer> q;
+    Queue<Integer> q;
+
     /** Initialize your data structure here. */
     public LT362_Design_Hit_Counter() {
-        q= new LinkedList<>();
+	q = new LinkedList<>();
     }
-    
-    /** Record a hit.
-        @param timestamp - The current timestamp (in seconds granularity). */
+
+    /**
+     * Record a hit.
+     * 
+     * @param timestamp
+     *            - The current timestamp (in seconds granularity).
+     */
     public void hit(int timestamp) {
-        q.offer(timestamp);
+	q.offer(timestamp);
     }
-    
-    /** Return the number of hits in the past 5 minutes.
-        @param timestamp - The current timestamp (in seconds granularity). */
+
+    /**
+     * Return the number of hits in the past 5 minutes.
+     * 
+     * @param timestamp
+     *            - The current timestamp (in seconds granularity).
+     */
     public int getHits(int timestamp) {
-        while(!q.isEmpty() && timestamp-q.peek()>=300)          //get rid of old hits
-            q.poll();
-        return q.size();
+	while (!q.isEmpty() && timestamp - q.peek() >= 300) // get rid of old hits
+	    q.poll();
+	return q.size();
     }
 }

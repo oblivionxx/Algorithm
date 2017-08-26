@@ -1,5 +1,7 @@
 import java.util.*;
 
+import utils.ListNode;
+
 /*
  * Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
 
@@ -22,16 +24,15 @@ Reservoir Sampling
 public class LT382_Linked_List_Random_Node {
     /**
      * @param head
-     *            The linked list's head. Note that the head is guaranteed to be
-     *            not null, so it contains at least one node.
+     *            The linked list's head. Note that the head is guaranteed to be not null, so it contains at least one node.
      */
     ListNode head = null;
     Random random = null;
 
     public LT382_Linked_List_Random_Node(ListNode head) {
-        //http://blog.jobbole.com/42550/
-        this.head = head;       
-        this.random = new Random();     
+	// http://blog.jobbole.com/42550/
+	this.head = head;
+	this.random = new Random();
     }
 
     /** Returns a random node's value. */

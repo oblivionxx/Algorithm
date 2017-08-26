@@ -36,44 +36,46 @@ public class LT381_Insert_Delete_GetRandom_O1_Duplicates_allowed {
     ArrayList<Integer> nums;
     HashMap<Integer, Set<Integer>> locs;
     Random rand = new Random();
-    
+
     /** Initialize your data structure here. */
     public LT381_Insert_Delete_GetRandom_O1_Duplicates_allowed() {
-        nums = new ArrayList<Integer>();
-	    locs = new HashMap<Integer, Set<Integer>>();
+	nums = new ArrayList<Integer>();
+	locs = new HashMap<Integer, Set<Integer>>();
     }
-    
+
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
-        boolean contain = locs.containsKey(val);
-        if (!contain) 
-            locs.put(val,new HashSet<Integer>()); 
-        locs.get(val).add(nums.size());        
-        nums.add(val);
-        return !contain ;
+	boolean contain = locs.containsKey(val);
+	if (!contain)
+	    locs.put(val, new HashSet<Integer>());
+	locs.get(val).add(nums.size());
+	nums.add(val);
+	return !contain;
     }
-    
+
     /** Removes a value from the collection. Returns true if the collection contained the specified element. */
-    //ie. After insert(1), insert(1), insert(2), getRandom() should have 2/3 chance return 1 and 1/3 chance return 2.Then, remove(1), 1 and 2 should have an equal chance of being selected by getRandom().
+    // ie. After insert(1), insert(1), insert(2), getRandom() should have 2/3 chance return 1 and 1/3 chance return 2.Then, remove(1), 1 and 2 should have an equal chance of being selected by
+    // getRandom().
     public boolean remove(int val) {
-        boolean contain = locs.containsKey(val);
-        if (!contain) return false;
-        int loc = locs.get(val).iterator().next();
-        locs.get(val).remove(loc);
-        if (loc< nums.size()- 1) {
-            int lastone = nums.get(nums.size() - 1);        //if loc is not last elm, swap with last elm in nums. used in line35.
-            nums.set(loc, lastone);
-            locs.get(lastone).remove(nums.size() - 1);      //update location in the hashmap
-            locs.get(lastone).add(loc);
-        }
-        nums.remove(nums.size() - 1);
-        if (locs.get(val).isEmpty()) 
-            locs.remove(val);
-        return true;
+	boolean contain = locs.containsKey(val);
+	if (!contain)
+	    return false;
+	int loc = locs.get(val).iterator().next();
+	locs.get(val).remove(loc);
+	if (loc < nums.size() - 1) {
+	    int lastone = nums.get(nums.size() - 1); // if loc is not last elm, swap with last elm in nums. used in line35.
+	    nums.set(loc, lastone);
+	    locs.get(lastone).remove(nums.size() - 1); // update location in the hashmap
+	    locs.get(lastone).add(loc);
+	}
+	nums.remove(nums.size() - 1);
+	if (locs.get(val).isEmpty())
+	    locs.remove(val);
+	return true;
     }
-    
+
     /** Get a random element from the collection. */
     public int getRandom() {
-        return nums.get(rand.nextInt(nums.size()));
+	return nums.get(rand.nextInt(nums.size()));
     }
 }

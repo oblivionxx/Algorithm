@@ -15,18 +15,18 @@ Hash Table
  */
 public class LT594_Longest_Harmonious_Subsequence {
     public int findLHS(int[] nums) {
-        //keep a count of all the numbers
-        //for each, check if there's any adjacent number. If it's present, then add the count of both - since these two numbers form subsequence in the array. get the max
-        Map<Long, Integer> map = new HashMap<>();
-        for (long num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
-        }
-        int result = 0;
-        for (long key : map.keySet()) {
-            if (map.containsKey(key + 1)) {
-                result = Math.max(result, map.get(key + 1) + map.get(key));
-            }
-        }
-        return result;
+	// keep a count of all the numbers
+	// for each, check if there's any adjacent number. If it's present, then add the count of both - since these two numbers form subsequence in the array. get the max
+	Map<Long, Integer> map = new HashMap<>();
+	for (long num : nums) {
+	    map.put(num, map.getOrDefault(num, 0) + 1);
+	}
+	int result = 0;
+	for (long key : map.keySet()) {
+	    if (map.containsKey(key + 1)) {
+		result = Math.max(result, map.get(key + 1) + map.get(key));
+	    }
+	}
+	return result;
     }
 }

@@ -33,43 +33,47 @@ Array, DFS
  */
 public class LT533_Lonely_Pixel_II {
     public int findBlackPixel(char[][] picture, int N) {
-        int row[] = new int[picture.length];
-        int col[] = new int[picture[0].length];
-        if(picture==null || picture.length==0) return 0;
-        for(int i=0;i<picture.length;i++){
-            for(int j=0;j<picture[0].length;j++){
-                row[i]+= picture[i][j]=='B'?1:0;
-                col[j]+= picture[i][j]=='B'?1:0;
-            }
-        }
-        
-        int lonely = 0;
-        for(int i=0;i<picture.length;i++){
-            for(int j=0;j<picture[0].length;j++){
-                //Check row2
-                boolean rule2 = obeysRule2(picture, i, j, picture.length, picture[0].length, row, col);
-                lonely += (picture[i][j] == 'B' && row[i] == N && col[j] == N && rule2) ? 1 : 0;       
-                    //only when row[i] col[j] only has one 'B'
-            }
-        }
+	int row[] = new int[picture.length];
+	int col[] = new int[picture[0].length];
+	if (picture == null || picture.length == 0)
+	    return 0;
+	for (int i = 0; i < picture.length; i++) {
+	    for (int j = 0; j < picture[0].length; j++) {
+		row[i] += picture[i][j] == 'B' ? 1 : 0;
+		col[j] += picture[i][j] == 'B' ? 1 : 0;
+	    }
+	}
 
-        return lonely;     
+	int lonely = 0;
+	for (int i = 0; i < picture.length; i++) {
+	    for (int j = 0; j < picture[0].length; j++) {
+		// Check row2
+		boolean rule2 = obeysRule2(picture, i, j, picture.length, picture[0].length, row, col);
+		lonely += (picture[i][j] == 'B' && row[i] == N && col[j] == N && rule2) ? 1 : 0;
+		// only when row[i] col[j] only has one 'B'
+	    }
+	}
+
+	return lonely;
     }
-    
-    //row2 meaning. if picture[i][j]=B. then all other picture[i'][j] = B the row should be exactly the same as row i
+
+    // row2 meaning. if picture[i][j]=B. then all other picture[i'][j] = B the row should be exactly the same as row i
     private boolean obeysRule2(char[][] picture, int index, int j, int m, int n, int[] rows, int[] cols) {
-        for (int i = 0; i < m; i++) {       //find other row except current row index.
-            if (i == index) continue;
-            if (picture[i][j] == 'B') {     //other row should be the same as row index
-            	if (rows[index] != rows[i]) return false; // violates rule2
-            	for (int col = 0; col < n; col++) {
-            		if (picture[i][col] != picture[index][col]) return false; 
-            	}
-            }
-        }
-        return true;
+	for (int i = 0; i < m; i++) { // find other row except current row index.
+	    if (i == index)
+		continue;
+	    if (picture[i][j] == 'B') { // other row should be the same as row index
+		if (rows[index] != rows[i])
+		    return false; // violates rule2
+		for (int col = 0; col < n; col++) {
+		    if (picture[i][col] != picture[index][col])
+			return false;
+		}
+	    }
+	}
+	return true;
     }
-    
-    //BETTER SOLUTION USING HASHMAP
-    //https://discuss.leetcode.com/topic/81686/verbose-java-o-m-n-solution-hashmap/2
+
+    // BETTER SOLUTION USING HASHMAP
+    // https://discuss.leetcode.com/topic/81686/verbose-java-o-m-n-solution-hashmap/2
 }

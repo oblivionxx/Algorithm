@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 /*
  * You are given a binary tree in which each node contains an integer value.
 
@@ -28,17 +30,20 @@ Return 3. The paths that sum to 8 are:
 Tree
  */
 public class LT437_Path_Sum_III {
-    public int pathSum(TreeNode root, int sum) {			//return number of path that start from root
-        if(root==null) return 0;
-        return helper(root, sum)+pathSum(root.left, sum)+pathSum(root.right, sum);
+    public int pathSum(TreeNode root, int sum) { // return number of path that start from root
+	if (root == null)
+	    return 0;
+	return helper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
     }
-    
-    public int helper(TreeNode node, int sum){
-        int res = 0;
-        if(node==null) return res;
-        if(node.val==sum) res++;
-        res += helper(node.left, sum-node.val)+helper(node.right, sum-node.val);
-        return res;
-        
+
+    public int helper(TreeNode node, int sum) {
+	int res = 0;
+	if (node == null)
+	    return res;
+	if (node.val == sum)
+	    res++;
+	res += helper(node.left, sum - node.val) + helper(node.right, sum - node.val);
+	return res;
+
     }
 }

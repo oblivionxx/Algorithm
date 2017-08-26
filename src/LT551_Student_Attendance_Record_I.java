@@ -19,12 +19,14 @@ String
  */
 public class LT551_Student_Attendance_Record_I {
     public boolean checkRecord(String s) {
-        //count 'A'>1 or contains 'LLL' return false;
-        int count = 0;
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)=='A') count++;
-        }
-        if(count>1||s.contains("LLL")) return false;
-        return true;
+	// count 'A'>1 or contains 'LLL' return false;
+	int count = 0;
+	for (int i = 0; i < s.length(); i++) {
+	    if (s.charAt(i) == 'A')
+		count++;
+	}
+	if (count > 1 || s.contains("LLL"))
+	    return false;
+	return true;
     }
 }

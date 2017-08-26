@@ -20,22 +20,26 @@ Could you do it in one-pass, using only O(1) extra memory and without modifying 
  */
 public class LT419_Battleships_in_a_Board {
     public int countBattleships(char[][] board) {
-        //starting from top left corner, if no adjcent x add count. given the assumption of valid battleship.         
-        int m = board.length;
-        if (m==0) return 0;
-        int n = board[0].length;
-        
-        int count=0;
-        
-        for (int i=0; i<m; i++) {
-            for (int j=0; j<n; j++) {
-                if (board[i][j] == '.') continue;
-                if (i > 0 && board[i-1][j] == 'X') continue;
-                if (j > 0 && board[i][j-1] == 'X') continue;
-                count++;
-            }
-        }
-        
-        return count;
+	// starting from top left corner, if no adjcent x add count. given the assumption of valid battleship.
+	int m = board.length;
+	if (m == 0)
+	    return 0;
+	int n = board[0].length;
+
+	int count = 0;
+
+	for (int i = 0; i < m; i++) {
+	    for (int j = 0; j < n; j++) {
+		if (board[i][j] == '.')
+		    continue;
+		if (i > 0 && board[i - 1][j] == 'X')
+		    continue;
+		if (j > 0 && board[i][j - 1] == 'X')
+		    continue;
+		count++;
+	    }
+	}
+
+	return count;
     }
 }

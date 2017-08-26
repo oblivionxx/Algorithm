@@ -24,41 +24,43 @@ DP, MinMax
  */
 public class LT486_Predict_the_Winner {
     public boolean PredictTheWinner(int[] nums) {
-        return helper(nums, 0, nums.length-1)>=0;
+	return helper(nums, 0, nums.length - 1) >= 0;
     }
-    private int helper(int[] nums, int s, int e){        
-        return s==e ? nums[e] : Math.max(nums[e] - helper(nums, s, e-1), nums[s] - helper(nums, s+1, e));
+
+    private int helper(int[] nums, int s, int e) {
+	return s == e ? nums[e] : Math.max(nums[e] - helper(nums, s, e - 1), nums[s] - helper(nums, s + 1, e));
     }
-    
-    //dp[i][j] means the max sum we can get if the array starts from i and ends to j.
-    //dp[i][i] means only one coin and we pick firstly, dp[i][i+1] means there are two coins, we pick the larger one.
-    //dp[i][j] = max( nums[i] + dp[i + 1][j], dp[i][j - 1] + nums[j]), But dp[i + 1][j] and dp[i][j - 1] depends on the move that our opponent make.
-    //dp[i+1][j] = min(dp[i + 1][j - 1], dp[i + 2][j])          //opponent pick larger one then smaller one for us.
-    //dp[i][j] = max(min(dp[i + 1][j - 1], dp[i + 2][ j]) + nums[i], min (dp[i][j - 2], dp[i + 1][ j - 1]) + nums[j]}) .
-    //sub problem is from i=j and extend to two sides. so loop j=0~len, loop i=j-1~0
+
+    // dp[i][j] means the max sum we can get if the array starts from i and ends to j.
+    // dp[i][i] means only one coin and we pick firstly, dp[i][i+1] means there are two coins, we pick the larger one.
+    // dp[i][j] = max( nums[i] + dp[i + 1][j], dp[i][j - 1] + nums[j]), But dp[i + 1][j] and dp[i][j - 1] depends on the move that our opponent make.
+    // dp[i+1][j] = min(dp[i + 1][j - 1], dp[i + 2][j]) //opponent pick larger one then smaller one for us.
+    // dp[i][j] = max(min(dp[i + 1][j - 1], dp[i + 2][ j]) + nums[i], min (dp[i][j - 2], dp[i + 1][ j - 1]) + nums[j]}) .
+    // sub problem is from i=j and extend to two sides. so loop j=0~len, loop i=j-1~0
     public boolean PredictTheWinner2(int[] nums) {
-        int n = nums.length, sum = 0;
-	    if(n % 2 == 0) return true;
-        int[][] dp = new int[n][n];
-        for(int i=0; i < n; i++) {
-            dp[i][i] = nums[i];
-            sum += nums[i];
-        }
+	int n = nums.length, sum = 0;
+	if (n % 2 == 0)
+	    return true;
+	int[][] dp = new int[n][n];
+	for (int i = 0; i < n; i++) {
+	    dp[i][i] = nums[i];
+	    sum += nums[i];
+	}
 
-        for(int j = 0; j < n; j++){
-            for(int i = j - 1; i >= 0; i--){
-                //border check
-            	int a = (i + 1 < n && j - 1 >= 0) ? dp[i + 1][j - 1] : 0;
-                int b = (i + 2 < n) ? dp[i + 2][ j] : 0;
-                int c = (j - 2 >= 0) ? dp[i][j - 2] : 0;
-                dp[i][j] = Math.max(Math.min(a, b) + nums[i], Math.min(a, c) + nums[j]);
-            }
-        }
+	for (int j = 0; j < n; j++) {
+	    for (int i = j - 1; i >= 0; i--) {
+		// border check
+		int a = (i + 1 < n && j - 1 >= 0) ? dp[i + 1][j - 1] : 0;
+		int b = (i + 2 < n) ? dp[i + 2][j] : 0;
+		int c = (j - 2 >= 0) ? dp[i][j - 2] : 0;
+		dp[i][j] = Math.max(Math.min(a, b) + nums[i], Math.min(a, c) + nums[j]);
+	    }
+	}
 
-        return sum-dp[0][n - 1] <=dp[0][n-1];
-        
+	return sum - dp[0][n - 1] <= dp[0][n - 1];
+
     }
 
-    //https://leetcode.com/articles/predict-the-winner/#approach-3-dynamic-programming-accepted
-    //1-d dp
+    // https://leetcode.com/articles/predict-the-winner/#approach-3-dynamic-programming-accepted
+    // 1-d dp
 }

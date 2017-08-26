@@ -15,15 +15,15 @@ n is in the range of [1, 106].
 Math
  */
 public class LT634_Find_the_Derangement_of_An_Array {
-	//dp. place 1 at i's position =>1) put i on 1's position = dp[i-2] 2) disarrange the rest. i is not on 1's position dp[i-1]
-	//d(i)=(i−1)∗[d(i−1)+d(i−2)]                //i could be put on 1~i-1 positions. 
-	//O(n)
-	public int findDerangement(int n) {
-	    int[] dp = new int[n + 1];
-	    dp[0] = 1;
-	    dp[1] = 0;
-	    for (int i = 2; i <= n; i++)
-	        dp[i] = (int)(((i - 1L) * (dp[i - 1] + dp[i - 2])) % 1000000007);
-	    return dp[n];
-	}
+    // dp. place 1 at i's position =>1) put i on 1's position = dp[i-2] 2) disarrange the rest. i is not on 1's position dp[i-1]
+    // d(i)=(i−1)∗[d(i−1)+d(i−2)] //i could be put on 1~i-1 positions.
+    // O(n)
+    public int findDerangement(int n) {
+	int[] dp = new int[n + 1];
+	dp[0] = 1;
+	dp[1] = 0;
+	for (int i = 2; i <= n; i++)
+	    dp[i] = (int) (((i - 1L) * (dp[i - 1] + dp[i - 2])) % 1000000007);
+	return dp[n];
+    }
 }

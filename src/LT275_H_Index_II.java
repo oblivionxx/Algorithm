@@ -6,7 +6,7 @@ Expected runtime complexity is in O(log n) and the input is sorted.
 Binary Search
  */
 public class LT275_H_Index_II {
-    //binary search find citations[mid] == len-mid
+    // binary search find citations[mid] == len-mid
     public int hIndex(int[] citations) {
 	if (citations == null || citations.length == 0)
 	    return 0;

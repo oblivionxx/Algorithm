@@ -20,18 +20,18 @@ DP
  */
 public class LT650_2_Keys_Keyboard {
     public int minSteps(int n) {
-        int[] dp = new int[n+1];
+	int[] dp = new int[n + 1];
 
-        for (int i = 2; i <= n; i++) {
-            dp[i] = i;
-            for (int j = i-1; j > 1; j--) {
-                if (i % j == 0) {
-                    dp[i] = dp[j] + (i/j);		//eg. 9 = (1+1+1)*3    dp[j]=3. i/j=3 which is repeat 3 times
-                    break;
-                }
-                
-            }
-        }
-        return dp[n];
+	for (int i = 2; i <= n; i++) {
+	    dp[i] = i;
+	    for (int j = i - 1; j > 1; j--) {
+		if (i % j == 0) {
+		    dp[i] = dp[j] + (i / j); // eg. 9 = (1+1+1)*3 dp[j]=3. i/j=3 which is repeat 3 times
+		    break;
+		}
+
+	    }
+	}
+	return dp[n];
     }
 }

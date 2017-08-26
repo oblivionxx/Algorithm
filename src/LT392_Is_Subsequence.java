@@ -22,16 +22,18 @@ Binary Search, DP, Greedy
  */
 public class LT392_Is_Subsequence {
     public boolean isSubsequence(String s, String t) {
-        //two pointer
-        if (s.length() == 0) return true;
-        int indexS = 0, indexT = 0;
-        while (indexT < t.length()) {
-            if (t.charAt(indexT) == s.charAt(indexS)) {
-                indexS++;
-                if (indexS == s.length()) return true;
-            }
-            indexT++;
-        }
-        return false;
+	// two pointer
+	if (s.length() == 0)
+	    return true;
+	int indexS = 0, indexT = 0;
+	while (indexT < t.length()) {
+	    if (t.charAt(indexT) == s.charAt(indexS)) {
+		indexS++;
+		if (indexS == s.length())
+		    return true;
+	    }
+	    indexT++;
+	}
+	return false;
     }
 }

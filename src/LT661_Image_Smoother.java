@@ -20,26 +20,27 @@ The length and width of the given matrix are in the range of [1, 150].
 Array
  */
 public class LT661_Image_Smoother {
-    int[][] dir = {{1,0},{-1,0},{0,1},{0,-1},{0,0},{1,1},{-1,1},{-1,-1},{1,-1}};
+    int[][] dir = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 }, { 0, 0 }, { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+
     public int[][] imageSmoother(int[][] M) {
-        int n = M.length;
-        int m = M[0].length;
-        int[][] ans = new int[n][m];
-        for (int i = 0; i < n; ++i){
-            for (int j = 0; j < m; ++j){
-                int sum = 0;
-                int cnt = 0;
-                for (int[] d : dir){
-                    int nx = i + d[0];
-                    int ny = j + d[1];
-                    if (nx >= 0 && nx < n && ny >= 0 && ny < m){
-                        cnt ++;
-                        sum += M[nx][ny];
-                    }
-                }
-                ans[i][j] = sum / cnt;
-            }
-        }
-        return ans;
+	int n = M.length;
+	int m = M[0].length;
+	int[][] ans = new int[n][m];
+	for (int i = 0; i < n; ++i) {
+	    for (int j = 0; j < m; ++j) {
+		int sum = 0;
+		int cnt = 0;
+		for (int[] d : dir) {
+		    int nx = i + d[0];
+		    int ny = j + d[1];
+		    if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
+			cnt++;
+			sum += M[nx][ny];
+		    }
+		}
+		ans[i][j] = sum / cnt;
+	    }
+	}
+	return ans;
     }
 }

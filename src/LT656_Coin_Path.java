@@ -25,32 +25,33 @@ DP
  */
 public class LT656_Coin_Path {
     public List<Integer> cheapestJump(int[] A, int B) {
-        //if cost same,  the longer index sequence has smaller lexicographically. eg: 12345<135
-        //dp[i] is used to store the minimum cost of jumping till the end of the array, starting from the index i. proceed backwards. With i as the current index, we consider all the next possible positions i+1~i+B. and determine the position, j, which leads to a minimum cost of reaching the end of A = A[i] + dp[j] We update next[i] with this corresponding index.
-        int[] next = new int[A.length];
-        long[] dp = new long[A.length];
-        Arrays.fill(next, -1);
-        List < Integer > res = new ArrayList<>();
-        for (int i = A.length - 2; i >= 0; i--) {
-            long min_cost = Integer.MAX_VALUE;
-            for (int j = i + 1; j <= i + B && j < A.length; j++) {
-                if (A[j] >= 0) {
-                    long cost = A[i] + dp[j];
-                    if (cost < min_cost) {
-                        min_cost = cost;
-                        next[i] = j;
-                    }
-                }
-            }
-            dp[i] = min_cost;
-        }
-        int i;
-        for (i = 0; i < A.length && next[i] > 0; i = next[i])
-            res.add(i + 1);
-        if (i == A.length - 1 && A[i] >= 0)
-            res.add(A.length);
-        else
-            return new ArrayList < Integer > ();
-        return res;
+	// if cost same, the longer index sequence has smaller lexicographically. eg: 12345<135
+	// dp[i] is used to store the minimum cost of jumping till the end of the array, starting from the index i. proceed backwards. With i as the current index, we consider all the next possible
+	// positions i+1~i+B. and determine the position, j, which leads to a minimum cost of reaching the end of A = A[i] + dp[j] We update next[i] with this corresponding index.
+	int[] next = new int[A.length];
+	long[] dp = new long[A.length];
+	Arrays.fill(next, -1);
+	List<Integer> res = new ArrayList<>();
+	for (int i = A.length - 2; i >= 0; i--) {
+	    long min_cost = Integer.MAX_VALUE;
+	    for (int j = i + 1; j <= i + B && j < A.length; j++) {
+		if (A[j] >= 0) {
+		    long cost = A[i] + dp[j];
+		    if (cost < min_cost) {
+			min_cost = cost;
+			next[i] = j;
+		    }
+		}
+	    }
+	    dp[i] = min_cost;
+	}
+	int i;
+	for (i = 0; i < A.length && next[i] > 0; i = next[i])
+	    res.add(i + 1);
+	if (i == A.length - 1 && A[i] >= 0)
+	    res.add(A.length);
+	else
+	    return new ArrayList<Integer>();
+	return res;
     }
 }

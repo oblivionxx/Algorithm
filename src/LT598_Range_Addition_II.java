@@ -36,11 +36,13 @@ Math
  */
 public class LT598_Range_Addition_II {
     public int maxCount(int m, int n, int[][] ops) {
-        //The top left square is incremented by every operation. so get the min of all As and Bs.
-        for(int i=0;i<ops.length;i++){
-            if(ops[i][0]<m) m=Math.min(m, ops[i][0]);
-            if(ops[i][1]<n) n=Math.min(n, ops[i][1]);
-        }
-        return m*n;
+	// The top left square is incremented by every operation. so get the min of all As and Bs.
+	for (int i = 0; i < ops.length; i++) {
+	    if (ops[i][0] < m)
+		m = Math.min(m, ops[i][0]);
+	    if (ops[i][1] < n)
+		n = Math.min(n, ops[i][1]);
+	}
+	return m * n;
     }
 }

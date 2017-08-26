@@ -35,12 +35,13 @@ the gap between the 5th and 6th stone is too large.
 DP
  */
 public class LT403_Frog_Jump {
-    //Use map to represent a mapping from the stone (not index) to the steps that can be taken from this stone.
-    //so this will be
-    //[0,1,3,5,6,8,12,17]
-    //{17=[], 0=[1], 1=[1, 2], 3=[1, 2, 3], 5=[1, 2, 3], 6=[1, 2, 3, 4], 8=[1, 2, 3, 4], 12=[3, 4, 5]}
-    //Notice that no need to calculate the last stone.
-    //On each step, we look if any other stone can be reached from it, if so, we update that stone's steps by adding step, step + 1, step - 1. If we can reach the final stone, we return true. No need to calculate to the last stone.
+    // Use map to represent a mapping from the stone (not index) to the steps that can be taken from this stone.
+    // so this will be
+    // [0,1,3,5,6,8,12,17]
+    // {17=[], 0=[1], 1=[1, 2], 3=[1, 2, 3], 5=[1, 2, 3], 6=[1, 2, 3, 4], 8=[1, 2, 3, 4], 12=[3, 4, 5]}
+    // Notice that no need to calculate the last stone.
+    // On each step, we look if any other stone can be reached from it, if so, we update that stone's steps by adding step, step + 1, step - 1. If we can reach the final stone, we return true. No need
+    // to calculate to the last stone.
     public boolean canCross(int[] stones) {
 	if (stones.length == 0) {
 	    return true;
@@ -72,23 +73,23 @@ public class LT403_Frog_Jump {
 
 	return false;
     }
-    
-    //dp
+
+    // dp
     public boolean canCross2(int[] stones) {
-        HashMap<Integer, Set<Integer>> map = new HashMap<>();
-        for (int i = 0; i < stones.length; i++) {
-            map.put(stones[i], new HashSet<Integer>());
-        }
-        map.get(0).add(0);
-        for (int i = 0; i < stones.length; i++) {
-            for (int k : map.get(stones[i])) {
-                for (int step = k - 1; step <= k + 1; step++) {
-                    if (step > 0 && map.containsKey(stones[i] + step)) {
-                        map.get(stones[i] + step).add(step);
-                    }
-                }
-            }
-        }
-        return map.get(stones[stones.length - 1]).size() > 0;
+	HashMap<Integer, Set<Integer>> map = new HashMap<>();
+	for (int i = 0; i < stones.length; i++) {
+	    map.put(stones[i], new HashSet<Integer>());
+	}
+	map.get(0).add(0);
+	for (int i = 0; i < stones.length; i++) {
+	    for (int k : map.get(stones[i])) {
+		for (int step = k - 1; step <= k + 1; step++) {
+		    if (step > 0 && map.containsKey(stones[i] + step)) {
+			map.get(stones[i] + step).add(step);
+		    }
+		}
+	    }
+	}
+	return map.get(stones[stones.length - 1]).size() > 0;
     }
 }

@@ -35,20 +35,26 @@ The length of the given string will in the range [1, 10,000].
 Greedy
  */
 public class LT649_Dota2_Senate {
-    //Each senate R must ban its next closest senate D who is from another party, or else D will ban its next senate from R's party. The idea is to use two queues to save the index of each senate from R's and D's parties. During each round, we delete the banned senates' indices; and plus each remainning senate's index with n(the length of the input string senate), then move it to the back of its respective queue.
+    // Each senate R must ban its next closest senate D who is from another party, or else D will ban its next senate from R's party. The idea is to use two queues to save the index of each senate
+    // from R's and D's parties. During each round, we delete the banned senates' indices; and plus each remainning senate's index with n(the length of the input string senate), then move it to the
+    // back of its respective queue.
     public String predictPartyVictory(String senate) {
-        Queue<Integer> q1 = new LinkedList<Integer>(), q2 = new LinkedList<Integer>();
-        int n = senate.length();
-        for(int i = 0; i<n; i++){
-            if(senate.charAt(i) == 'R') q1.add(i);
-            else q2.add(i);
-        }
-        while(!q1.isEmpty() && !q2.isEmpty()){
-            int r_index = q1.poll(), d_index = q2.poll();
-            if(r_index < d_index) q1.add(r_index + n);              //add to end for next round. eg."D(R)RRR(DDD)"-> "DRRR"
-            else q2.add(d_index + n);
-        }
-        
-        return (q1.size() > q2.size())? "Radiant" : "Dire";
+	Queue<Integer> q1 = new LinkedList<Integer>(), q2 = new LinkedList<Integer>();
+	int n = senate.length();
+	for (int i = 0; i < n; i++) {
+	    if (senate.charAt(i) == 'R')
+		q1.add(i);
+	    else
+		q2.add(i);
+	}
+	while (!q1.isEmpty() && !q2.isEmpty()) {
+	    int r_index = q1.poll(), d_index = q2.poll();
+	    if (r_index < d_index)
+		q1.add(r_index + n); // add to end for next round. eg."D(R)RRR(DDD)"-> "DRRR"
+	    else
+		q2.add(d_index + n);
+	}
+
+	return (q1.size() > q2.size()) ? "Radiant" : "Dire";
     }
 }

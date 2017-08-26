@@ -1,3 +1,4 @@
+
 /*
 Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
 
@@ -35,52 +36,56 @@ return its vertical order traversal as:
 HashTable
  */
 import java.util.*;
-public class LT314_Binary_Tree_Vertical_Order_Traversal {
-	public List<List<Integer>> verticalOrder(TreeNode root) {
-        HashMap<Integer,List<Integer>> map = new HashMap<>();
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        if(root==null) return res;
-        Queue<Pair> queue = new LinkedList<Pair>();
-        queue.offer(new Pair(root, 0));
-        //by level order
-        while(!queue.isEmpty()){
-            Pair rootPair = queue.poll();
-            TreeNode node = rootPair.root;
-            int curLocation = rootPair.location;
-            
-            List<Integer> cur = new ArrayList<Integer>();
-            if(!map.containsKey(curLocation)){
-                cur.add(node.val);
-                map.put(curLocation, cur);
-            }
-            else{
-                cur = map.get(curLocation);
-                cur.add(node.val);       //add new value to the list
-                map.put(curLocation, cur);
-            }
-                
-            if(node.left!=null)
-                queue.offer(new Pair(node.left, curLocation-1));
-            if(node.right!=null)
-                queue.offer(new Pair(node.right, curLocation+1));
-        }
-      
-        
-        Object[] keys = map.keySet().toArray();
-        Arrays.sort(keys);
-        
-        for(Object i:keys){
-            res.add(map.get(i));
-        }
-        
-        return res;
-    }
-    
 
-    
-    public class Pair{
-        TreeNode root;
-        int location=Integer.MIN_VALUE;
-        Pair(TreeNode root, int location) { this.root = root; this.location = location; }
+import utils.TreeNode;
+
+public class LT314_Binary_Tree_Vertical_Order_Traversal {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+	HashMap<Integer, List<Integer>> map = new HashMap<>();
+	List<List<Integer>> res = new ArrayList<List<Integer>>();
+	if (root == null)
+	    return res;
+	Queue<Pair> queue = new LinkedList<Pair>();
+	queue.offer(new Pair(root, 0));
+	// by level order
+	while (!queue.isEmpty()) {
+	    Pair rootPair = queue.poll();
+	    TreeNode node = rootPair.root;
+	    int curLocation = rootPair.location;
+
+	    List<Integer> cur = new ArrayList<Integer>();
+	    if (!map.containsKey(curLocation)) {
+		cur.add(node.val);
+		map.put(curLocation, cur);
+	    } else {
+		cur = map.get(curLocation);
+		cur.add(node.val); // add new value to the list
+		map.put(curLocation, cur);
+	    }
+
+	    if (node.left != null)
+		queue.offer(new Pair(node.left, curLocation - 1));
+	    if (node.right != null)
+		queue.offer(new Pair(node.right, curLocation + 1));
+	}
+
+	Object[] keys = map.keySet().toArray();
+	Arrays.sort(keys);
+
+	for (Object i : keys) {
+	    res.add(map.get(i));
+	}
+
+	return res;
+    }
+
+    public class Pair {
+	TreeNode root;
+	int location = Integer.MIN_VALUE;
+
+	Pair(TreeNode root, int location) {
+	    this.root = root;
+	    this.location = location;
+	}
     }
 }

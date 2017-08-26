@@ -19,11 +19,12 @@
  */
 public class LT079_Word_Search {
     // Should use DFS
-    public static void main(String[] args){
-	char[][] board = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-        String word = "SEE";
-        System.out.println(exist(board, word));
+    public static void main(String[] args) {
+	char[][] board = { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'C', 'S' }, { 'A', 'D', 'E', 'E' } };
+	String word = "SEE";
+	System.out.println(exist(board, word));
     }
+
     public static boolean exist(char[][] board, String word) {
 	int m = board.length;
 	int n = (m == 0 ? 0 : board[0].length);

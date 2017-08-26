@@ -12,28 +12,28 @@
  * String
  */
 public class LT038_Count_And_Say {
-	public String countAndSay(int n) {
-		if (n <= 0)
-			return null;
-		int count = 1;
-		String initString = "1";
+    public String countAndSay(int n) {
+	if (n <= 0)
+	    return null;
+	int count = 1;
+	String initString = "1";
 
-		for (int i = 1; i < n; i++) {
-			// read the preString and translate
-			StringBuilder sb = new StringBuilder();
-			for (int j = 0; j < initString.length(); j++) {
-				// loop the string. update count and form the new string
-				if (j < initString.length() - 1 && initString.charAt(j) == initString.charAt(j + 1)) {
-					count++;
-				} else {
-					sb.append(count).append(initString.charAt(j));
-					count = 1;
-				}
-			}
-
-			initString = sb.toString();
+	for (int i = 1; i < n; i++) {
+	    // read the preString and translate
+	    StringBuilder sb = new StringBuilder();
+	    for (int j = 0; j < initString.length(); j++) {
+		// loop the string. update count and form the new string
+		if (j < initString.length() - 1 && initString.charAt(j) == initString.charAt(j + 1)) {
+		    count++;
+		} else {
+		    sb.append(count).append(initString.charAt(j));
+		    count = 1;
 		}
+	    }
 
-		return initString;
+	    initString = sb.toString();
 	}
+
+	return initString;
+    }
 }

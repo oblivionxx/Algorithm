@@ -35,42 +35,49 @@ directory.check(2);
 Linkedlist, Design
  */
 public class LT379_Design_Phone_Directory {
-	Set<Integer> used = new HashSet<Integer>();
+    Set<Integer> used = new HashSet<Integer>();
     Queue<Integer> available = new LinkedList<Integer>();
     int max;
-    
-    /** Initialize your data structure here
-        @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+
+    /**
+     * Initialize your data structure here
+     * 
+     * @param maxNumbers
+     *            - The maximum numbers that can be stored in the phone directory.
+     */
     public LT379_Design_Phone_Directory(int maxNumbers) {
-        max = maxNumbers;
-        for (int i = 0; i < maxNumbers; i++) {
-            available.offer(i);
-        }
+	max = maxNumbers;
+	for (int i = 0; i < maxNumbers; i++) {
+	    available.offer(i);
+	}
     }
-    
-    /** Provide a number which is not assigned to anyone.
-        @return - Return an available number. Return -1 if none is available. */
+
+    /**
+     * Provide a number which is not assigned to anyone.
+     * 
+     * @return - Return an available number. Return -1 if none is available.
+     */
     public int get() {
-        Integer ret = available.poll();         //get one from available. 
-        if (ret == null) {
-            return -1;
-        }
-        used.add(ret);                          //put into used
-        return ret;
+	Integer ret = available.poll(); // get one from available.
+	if (ret == null) {
+	    return -1;
+	}
+	used.add(ret); // put into used
+	return ret;
     }
-    
+
     /** Check if a number is available or not. */
     public boolean check(int number) {
-        if (number >= max || number < 0) {
-            return false;
-        }
-        return !used.contains(number);
+	if (number >= max || number < 0) {
+	    return false;
+	}
+	return !used.contains(number);
     }
-    
+
     /** Recycle or release a number. */
     public void release(int number) {
-        if (used.remove(number)) {          //successfully removed from used set. then add to available
-            available.offer(number);
-        }
+	if (used.remove(number)) { // successfully removed from used set. then add to available
+	    available.offer(number);
+	}
     }
 }

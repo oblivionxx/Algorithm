@@ -6,11 +6,12 @@ Given an array of integers, find if the array contains any duplicates. Your func
 Array, HashTable
  */
 public class LT217_Contains_Duplicate {
-	public boolean containsDuplicate(int[] nums) {     
-        Set<Integer> mySet = new HashSet<>(); 
-        for(int i:nums){
-            if(!mySet.add(i)) return true;
-        }
-        return false;
+    public boolean containsDuplicate(int[] nums) {
+	Set<Integer> mySet = new HashSet<>();
+	for (int i : nums) {
+	    if (!mySet.add(i))
+		return true;
+	}
+	return false;
     }
 }

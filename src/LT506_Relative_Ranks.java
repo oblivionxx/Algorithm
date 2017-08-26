@@ -15,21 +15,25 @@ All the scores of athletes are guaranteed to be unique.
  */
 public class LT506_Relative_Ranks {
     public String[] findRelativeRanks(int[] nums) {
-        int[] copy = Arrays.copyOf(nums, nums.length);
-        Arrays.sort(copy);
-        Map<Integer, String> rankMap = new HashMap<>();
-        int len = nums.length;
-        for (int i = len-1; i >= 0; i--){
-            if (i == len-1) rankMap.put(copy[i], "Gold Medal");
-            else if (i == len-2) rankMap.put(copy[i], "Silver Medal");
-            else if (i == len-3) rankMap.put(copy[i], "Bronze Medal");
-            else rankMap.put(copy[i], String.valueOf(len-i));
-        }
-        
-        String[] result = new String[len];
-        for (int i = 0; i < len; i++){
-            result[i] = rankMap.get(nums[i]);
-        }
-        return result;
+	int[] copy = Arrays.copyOf(nums, nums.length);
+	Arrays.sort(copy);
+	Map<Integer, String> rankMap = new HashMap<>();
+	int len = nums.length;
+	for (int i = len - 1; i >= 0; i--) {
+	    if (i == len - 1)
+		rankMap.put(copy[i], "Gold Medal");
+	    else if (i == len - 2)
+		rankMap.put(copy[i], "Silver Medal");
+	    else if (i == len - 3)
+		rankMap.put(copy[i], "Bronze Medal");
+	    else
+		rankMap.put(copy[i], String.valueOf(len - i));
+	}
+
+	String[] result = new String[len];
+	for (int i = 0; i < len; i++) {
+	    result[i] = rankMap.get(nums[i]);
+	}
+	return result;
     }
 }

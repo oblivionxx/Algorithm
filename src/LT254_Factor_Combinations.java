@@ -1,3 +1,4 @@
+
 /*
 Numbers can be regarded as product of its factors. For example,
 
@@ -37,29 +38,30 @@ output:
 Backtracking
  */
 import java.util.*;
+
 public class LT254_Factor_Combinations {
-	public List<List<Integer>> getFactors(int n) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-    	if (n <=3)
-    		return result;
-     
-    	dfs(n, 2, new ArrayList<Integer>(), result); // because it need to begin from 1
-    	return result;
+    public List<List<Integer>> getFactors(int n) {
+	List<List<Integer>> result = new ArrayList<List<Integer>>();
+	if (n <= 3)
+	    return result;
+
+	dfs(n, 2, new ArrayList<Integer>(), result); // because it need to begin from 1
+	return result;
     }
-         
+
     private void dfs(int n, int lower, List<Integer> cur, List<List<Integer>> result) {
-    	if (n==1) {
-    	    if (cur.size() > 1) 
-                result.add(new ArrayList<Integer>(cur));
-            return;
-        }
-        
-        for (int i = lower; i <= n; ++i) {
-            if (n % i == 0) {
-                cur.add(i);
-                dfs(n / i, i, cur, result);
-                cur.remove(cur.size() - 1);
-            }
-        }
+	if (n == 1) {
+	    if (cur.size() > 1)
+		result.add(new ArrayList<Integer>(cur));
+	    return;
+	}
+
+	for (int i = lower; i <= n; ++i) {
+	    if (n % i == 0) {
+		cur.add(i);
+		dfs(n / i, i, cur, result);
+		cur.remove(cur.size() - 1);
+	    }
+	}
     }
 }

@@ -33,23 +33,24 @@ Functions could be called recursively, and will always end.
 Stack
  */
 public class LT636_Exclusive_Time_of_Functions {
-    //if new function start. add time diff.
-    //if function "end". add time diff"+1". 
+    // if new function start. add time diff.
+    // if function "end". add time diff"+1".
     public int[] exclusiveTime(int n, List<String> logs) {
-        int[] res = new int[n];
-        Stack<Integer> stack = new Stack<>();           //stack push id
-        int prevTime = 0;
-        for (String log : logs) {
-            String[] parts = log.split(":");
-            if (!stack.isEmpty()) res[stack.peek()] += Integer.parseInt(parts[2]) - prevTime; 
-            prevTime = Integer.parseInt(parts[2]);
-            if (parts[1].equals("start")) 
-                stack.push(Integer.parseInt(parts[0]));
-            else {
-                res[stack.pop()]++;
-                prevTime++;
-            }
-        }
-        return res;
+	int[] res = new int[n];
+	Stack<Integer> stack = new Stack<>(); // stack push id
+	int prevTime = 0;
+	for (String log : logs) {
+	    String[] parts = log.split(":");
+	    if (!stack.isEmpty())
+		res[stack.peek()] += Integer.parseInt(parts[2]) - prevTime;
+	    prevTime = Integer.parseInt(parts[2]);
+	    if (parts[1].equals("start"))
+		stack.push(Integer.parseInt(parts[0]));
+	    else {
+		res[stack.pop()]++;
+		prevTime++;
+	    }
+	}
+	return res;
     }
 }

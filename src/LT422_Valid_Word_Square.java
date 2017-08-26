@@ -69,23 +69,26 @@ Therefore, it is NOT a valid word square.
 
  */
 public class LT422_Valid_Word_Square {
-	public boolean validWordSquare(List<String> words) {
-        if(words==null||words.size()<1) return true;
-        //check size
-        if(words.get(0).length()!=words.size()) return false;
-        
-        for(int i=0;i<words.size();i++){                //ith row
-            for(int j=0;j<words.get(i).length();j++){   //jth col
-                char c1=words.get(i).charAt(j);         //compare [i,j] and [j,i]
-                
-                if(words.size()<j+1||words.get(j).length()<i+1) return false;
-                char c2=words.get(j).charAt(i);
-                if(c1!=c2){
-                    return false;
-                }
-            }
-        }
-        
-        return true;
+    public boolean validWordSquare(List<String> words) {
+	if (words == null || words.size() < 1)
+	    return true;
+	// check size
+	if (words.get(0).length() != words.size())
+	    return false;
+
+	for (int i = 0; i < words.size(); i++) { // ith row
+	    for (int j = 0; j < words.get(i).length(); j++) { // jth col
+		char c1 = words.get(i).charAt(j); // compare [i,j] and [j,i]
+
+		if (words.size() < j + 1 || words.get(j).length() < i + 1)
+		    return false;
+		char c2 = words.get(j).charAt(i);
+		if (c1 != c2) {
+		    return false;
+		}
+	    }
+	}
+
+	return true;
     }
 }

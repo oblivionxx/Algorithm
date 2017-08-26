@@ -87,16 +87,12 @@ public class LT301_Remove_Invalid_Parentheses {
 
     // DFS
     /*
-     * Limit max removal rmL and rmR for backtracking boundary. Otherwise it
-     * will exhaust all possible valid substrings, not shortest ones. Scan from
-     * left to right, avoiding invalid strs (on the fly) by checking num of open
-     * parens. If it's '(', either use it, or remove it. If it's '(', either use
-     * it, or remove it. Otherwise just append it. Lastly set StringBuilder to
-     * the last decision point. In each step, make sure:
+     * Limit max removal rmL and rmR for backtracking boundary. Otherwise it will exhaust all possible valid substrings, not shortest ones. Scan from left to right, avoiding invalid strs (on the fly)
+     * by checking num of open parens. If it's '(', either use it, or remove it. If it's '(', either use it, or remove it. Otherwise just append it. Lastly set StringBuilder to the last decision
+     * point. In each step, make sure:
      * 
-     * i does not exceed s.length(). Max removal rmL rmR and num of open parens
-     * are non negative. De-duplicate by adding to a HashSet. Compared to 106 ms
-     * BFS (Queue & Set), it's faster and easier. Hope it helps! Thanks.
+     * i does not exceed s.length(). Max removal rmL rmR and num of open parens are non negative. De-duplicate by adding to a HashSet. Compared to 106 ms BFS (Queue & Set), it's faster and easier.
+     * Hope it helps! Thanks.
      */
     public List<String> removeInvalidParentheses2(String s) {
 	Set<String> res = new HashSet<>();

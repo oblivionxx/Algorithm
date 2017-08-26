@@ -53,42 +53,49 @@ Return false. Because two of the rectangles overlap with each other.
 
  */
 public class LT391_Perfect_Rectangle {
-    //1. size of area = sum of individual one(no overlap situation case 4)
-    //2. count of corner points should 2 or 4. except four outside corner,  count=1 (odd is not allowed. case 2, 3)
+    // 1. size of area = sum of individual one(no overlap situation case 4)
+    // 2. count of corner points should 2 or 4. except four outside corner, count=1 (odd is not allowed. case 2, 3)
     public boolean isRectangleCover(int[][] rectangles) {
-        
-        if (rectangles.length == 0 || rectangles[0].length == 0) return false;
 
-        int x1 = Integer.MAX_VALUE;                 //for 4 outside corner
-        int x2 = Integer.MIN_VALUE;
-        int y1 = Integer.MAX_VALUE;
-        int y2 = Integer.MIN_VALUE;
-        
-        HashSet<String>  set = new HashSet<>();
-        int area = 0;
-        
-        for(int[] rect: rectangles){
-            x1 = Math.min(rect[0], x1);
-            y1 = Math.min(rect[1], y1);
-            x2 = Math.max(rect[2], x2);
-            y2 = Math.max(rect[3], y2);
-            
-            area += (rect[2]-rect[0])*(rect[3]-rect[1]);            //add each small rectangles
-            
-            String corner1 = rect[0]+" "+rect[1];           //count each corner
-            String corner2 = rect[0]+" "+rect[3]; 
-            String corner3 = rect[2]+" "+rect[1]; 
-            String corner4 = rect[2]+" "+rect[3]; 
-            
-            if (!set.add(corner1)) set.remove(corner1);           //try add. if already exist then remove. guarantee to be even
-            if (!set.add(corner2)) set.remove(corner2);
-            if (!set.add(corner3)) set.remove(corner3);
-            if (!set.add(corner4)) set.remove(corner4);
-        }
-        
-        //check if have four corner. 
-        if (!set.contains(x1 + " " + y1) || !set.contains(x1 + " " + y2) || !set.contains(x2 + " " + y1) || !set.contains(x2 + " " + y2) || set.size() != 4) return false;
-        
-        return area == (x2-x1)*(y2-y1);
+	if (rectangles.length == 0 || rectangles[0].length == 0)
+	    return false;
+
+	int x1 = Integer.MAX_VALUE; // for 4 outside corner
+	int x2 = Integer.MIN_VALUE;
+	int y1 = Integer.MAX_VALUE;
+	int y2 = Integer.MIN_VALUE;
+
+	HashSet<String> set = new HashSet<>();
+	int area = 0;
+
+	for (int[] rect : rectangles) {
+	    x1 = Math.min(rect[0], x1);
+	    y1 = Math.min(rect[1], y1);
+	    x2 = Math.max(rect[2], x2);
+	    y2 = Math.max(rect[3], y2);
+
+	    area += (rect[2] - rect[0]) * (rect[3] - rect[1]); // add each small rectangles
+
+	    String corner1 = rect[0] + " " + rect[1]; // count each corner
+	    String corner2 = rect[0] + " " + rect[3];
+	    String corner3 = rect[2] + " " + rect[1];
+	    String corner4 = rect[2] + " " + rect[3];
+
+	    if (!set.add(corner1))
+		set.remove(corner1); // try add. if already exist then remove. guarantee to be even
+	    if (!set.add(corner2))
+		set.remove(corner2);
+	    if (!set.add(corner3))
+		set.remove(corner3);
+	    if (!set.add(corner4))
+		set.remove(corner4);
+	}
+
+	// check if have four corner.
+	if (!set.contains(x1 + " " + y1) || !set.contains(x1 + " " + y2) || !set.contains(x2 + " " + y1)
+		|| !set.contains(x2 + " " + y2) || set.size() != 4)
+	    return false;
+
+	return area == (x2 - x1) * (y2 - y1);
     }
 }

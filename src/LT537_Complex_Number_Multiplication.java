@@ -20,17 +20,17 @@ Math, String
  */
 public class LT537_Complex_Number_Multiplication {
     public String complexNumberMultiply(String a, String b) {
-        //case: if a, b exist. check indexOf + and i
-        int[] partA = new int[2];
-    	String[] aa = a.split("\\+");
-    	partA[0] = Integer.valueOf(aa[0]);      //if no +, aa[0] would be ""
-    	partA[1] = Integer.valueOf(aa[1].substring(0, aa[1].length() - 1));
-        
-        int[] partB = new int[2];
-        String[] bb = b.split("\\+");
-    	partB[0] = Integer.valueOf(bb[0]);      //if no +, aa[0] would be ""
-    	partB[1] = Integer.valueOf(bb[1].substring(0, bb[1].length() - 1));
-    	
-    	return (partA[0]*partB[0]-partA[1]*partB[1])+"+"+(partA[0]*partB[1]+partA[1]*partB[0])+"i";
+	// case: if a, b exist. check indexOf + and i
+	int[] partA = new int[2];
+	String[] aa = a.split("\\+");
+	partA[0] = Integer.valueOf(aa[0]); // if no +, aa[0] would be ""
+	partA[1] = Integer.valueOf(aa[1].substring(0, aa[1].length() - 1));
+
+	int[] partB = new int[2];
+	String[] bb = b.split("\\+");
+	partB[0] = Integer.valueOf(bb[0]); // if no +, aa[0] would be ""
+	partB[1] = Integer.valueOf(bb[1].substring(0, bb[1].length() - 1));
+
+	return (partA[0] * partB[0] - partA[1] * partB[1]) + "+" + (partA[0] * partB[1] + partA[1] * partB[0]) + "i";
     }
 }

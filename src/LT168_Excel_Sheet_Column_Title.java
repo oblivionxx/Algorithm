@@ -14,15 +14,15 @@ For example:
 Math
  */
 public class LT168_Excel_Sheet_Column_Title {
-	public String convertToTitle(int n) {
-        StringBuilder sb = new StringBuilder();
-        while(n!=0){
-            n--;
-            char cur = (char)('A'+n%26);
-            sb.append(cur);
-            n/=26;
-        }
-        
-        return sb.reverse().toString();
+    public String convertToTitle(int n) {
+	StringBuilder sb = new StringBuilder();
+	while (n != 0) {
+	    n--;
+	    char cur = (char) ('A' + n % 26);
+	    sb.append(cur);
+	    n /= 26;
+	}
+
+	return sb.reverse().toString();
     }
 }

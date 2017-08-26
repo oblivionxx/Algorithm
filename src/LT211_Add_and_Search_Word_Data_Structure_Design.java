@@ -25,66 +25,67 @@ You should be familiar with how a Trie works. If not, please work on this proble
 
  */
 public class LT211_Add_and_Search_Word_Data_Structure_Design {
-	public class WordDictionary {
-	    public TrieNode root;
-	    
-	    public WordDictionary() {
-	        root = new TrieNode();
-	    }
-	    
-	    // Adds a word into the data structure. Trie insert(word)
-	    public void addWord(String word) {
-	        TrieNode node = root;
-	        for(int i=0;i<word.length();i++){
-	            if (!node.children.containsKey(word.charAt(i)))
-	                node.children.put(word.charAt(i), new TrieNode());
-	            
-	            node = node.children.get(word.charAt(i));
-	        }
-	        node.terminable = true;
-	    }
+    public class WordDictionary {
+	public TrieNode root;
 
-	    // Returns if the word is in the data structure. A word could
-	    // contain the dot character '.' to represent any one letter. DIFFERENCE.
-	    public boolean search(String word) {
-	        return dfsSearch(root, word, 0);
-	    }
-	    
-	    public boolean dfsSearch(TrieNode node, String word, int start) {
-	        if(start == word.length()){
-	           return node.terminable;
-	        }
-	 
-	        char c = word.charAt(start);    
-	        if(c=='.'){
-	            for (TrieNode child : node.children.values()) {
-	                if (dfsSearch(child, word, start+1)) {
-	                    return true;
-	                }
-	            }
-	        }else {
-	            TrieNode child = node.children.get(c);
-	            if (child != null) {
-	                return dfsSearch(child, word, start+1);
-	            }
-	        }
-	        
-	        return false;
-	    }
-	 
-	}
-	
-	class TrieNode {
-	    public HashMap<Character, TrieNode> children = new HashMap<>();
-	    public boolean terminable; 
-	    public TrieNode() {
-	        children = new HashMap<Character, TrieNode>();
-	        terminable = false; 
-	    }
+	public WordDictionary() {
+	    root = new TrieNode();
 	}
 
-	// Your WordDictionary object will be instantiated and called as such:
-	// WordDictionary wordDictionary = new WordDictionary();
-	// wordDictionary.addWord("word");
-	// wordDictionary.search("pattern");
+	// Adds a word into the data structure. Trie insert(word)
+	public void addWord(String word) {
+	    TrieNode node = root;
+	    for (int i = 0; i < word.length(); i++) {
+		if (!node.children.containsKey(word.charAt(i)))
+		    node.children.put(word.charAt(i), new TrieNode());
+
+		node = node.children.get(word.charAt(i));
+	    }
+	    node.terminable = true;
+	}
+
+	// Returns if the word is in the data structure. A word could
+	// contain the dot character '.' to represent any one letter. DIFFERENCE.
+	public boolean search(String word) {
+	    return dfsSearch(root, word, 0);
+	}
+
+	public boolean dfsSearch(TrieNode node, String word, int start) {
+	    if (start == word.length()) {
+		return node.terminable;
+	    }
+
+	    char c = word.charAt(start);
+	    if (c == '.') {
+		for (TrieNode child : node.children.values()) {
+		    if (dfsSearch(child, word, start + 1)) {
+			return true;
+		    }
+		}
+	    } else {
+		TrieNode child = node.children.get(c);
+		if (child != null) {
+		    return dfsSearch(child, word, start + 1);
+		}
+	    }
+
+	    return false;
+	}
+
+    }
+
+    class TrieNode {
+	public HashMap<Character, TrieNode> children = new HashMap<>();
+	public boolean terminable;
+
+	public TrieNode() {
+	    children = new HashMap<Character, TrieNode>();
+	    terminable = false;
+	}
+    }
+
+    // Your WordDictionary object will be instantiated and called as such:
+    // WordDictionary wordDictionary = new WordDictionary();
+    // wordDictionary.addWord("word");
+    // wordDictionary.search("pattern");
 }

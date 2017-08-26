@@ -5,15 +5,16 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 Array, Greedy
  */
 public class LT122_Best_Time_to_Buy_and_Sell_Stock_II {
-	//hackerrank has another definition.
-	//https://www.hackerrank.com/challenges/stockmax/submissions/code/15526407
-	public int maxProfit(int[] prices) {
-        if(prices==null || prices.length==0) return 0;
-        int max= 0;
-        for(int i=0;i<prices.length-1;i++){
-            max += Math.max(prices[i+1]-prices[i],0);
-        }
-        
-        return max;
+    // hackerrank has another definition.
+    // https://www.hackerrank.com/challenges/stockmax/submissions/code/15526407
+    public int maxProfit(int[] prices) {
+	if (prices == null || prices.length == 0)
+	    return 0;
+	int max = 0;
+	for (int i = 0; i < prices.length - 1; i++) {
+	    max += Math.max(prices[i + 1] - prices[i], 0);
+	}
+
+	return max;
     }
 }

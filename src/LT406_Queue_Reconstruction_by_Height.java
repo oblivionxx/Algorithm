@@ -18,17 +18,18 @@ Greedy
  */
 public class LT406_Queue_Reconstruction_by_Height {
     public int[][] reconstructQueue(int[][] people) {
-        //Pick out tallest group of people and sort them in a subarray (S). Since there's no other groups of people taller than them, therefore each guy's index will be just as same as his k value.For 2nd tallest group (and the rest), insert each one of them into (S) by k value. So on and so forth.
-        // E.g.
-        // input: [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
-        // subarray after step 1: [[7,0], [7,1]]
-        // subarray after step 2: [[7,0], [6,1], [7,1]]         short people 6 infront of 7 doesn't violate 7. so just put shorter people at kth position
-        Arrays.sort(people, (a, b) -> a[0] != b[0] ? b[0] - a[0] : a[1] - b[1]);
-        List<int[]> ans = new ArrayList<>();
-        for (int[] p : people) {
-            ans.add(p[1], p);           //add P at postion h
-        }
-        return ans.toArray(new int[0][0]);
-        
+	// Pick out tallest group of people and sort them in a subarray (S). Since there's no other groups of people taller than them, therefore each guy's index will be just as same as his k
+	// value.For 2nd tallest group (and the rest), insert each one of them into (S) by k value. So on and so forth.
+	// E.g.
+	// input: [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+	// subarray after step 1: [[7,0], [7,1]]
+	// subarray after step 2: [[7,0], [6,1], [7,1]] short people 6 infront of 7 doesn't violate 7. so just put shorter people at kth position
+	Arrays.sort(people, (a, b) -> a[0] != b[0] ? b[0] - a[0] : a[1] - b[1]);
+	List<int[]> ans = new ArrayList<>();
+	for (int[] p : people) {
+	    ans.add(p[1], p); // add P at postion h
+	}
+	return ans.toArray(new int[0][0]);
+
     }
 }

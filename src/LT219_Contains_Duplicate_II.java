@@ -6,20 +6,20 @@ Given an array of integers and an integer k, find out whether there are two dist
 Array, HashTable
  */
 public class LT219_Contains_Duplicate_II {
-	public boolean containsNearbyDuplicate(int[] nums, int k) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for(int i=0;i<nums.length;i++){
-            if(!map.containsKey(nums[i]))
-                map.put(nums[i],i);
-            else{
-                if(i-map.get(nums[i])<=k)
-                    return true;
-                else
-                    map.put(nums[i],i);		//update new index.
-            }
-                
-        }
-        
-        return false;
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+	HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	for (int i = 0; i < nums.length; i++) {
+	    if (!map.containsKey(nums[i]))
+		map.put(nums[i], i);
+	    else {
+		if (i - map.get(nums[i]) <= k)
+		    return true;
+		else
+		    map.put(nums[i], i); // update new index.
+	    }
+
+	}
+
+	return false;
     }
 }

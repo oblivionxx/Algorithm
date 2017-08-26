@@ -1,3 +1,4 @@
+
 /*
 Implement the following operations of a stack using queues.
 
@@ -15,37 +16,38 @@ The class name of the Java function had been updated to MyStack instead of Stack
 Design, Stack
  */
 import java.util.*;
+
 public class LT225_Implement_Stack_using_Queues {
-	public class MyStack {
-		//one Queue solution
-	    private Queue<Integer> q = new LinkedList<Integer>();
-	
-	    /** Initialize your data structure here. */
-	    public MyStack() {
-	        
-	    }
-	    
-	    /** Push element x onto stack. */
-	    public void push(int x) {
-	        q.add(x);
-	        for(int i = 1; i < q.size(); i ++) { //rotate the queue to make the tail be the head
-	            q.add(q.poll());
-	        }
-	    }
-	    
-	    /** Removes the element on top of the stack and returns that element. */
-	    public int pop() {
-	        return q.poll();
-	    }
-	    
-	    /** Get the top element. */
-	    public int top() {
-	        return q.peek();
-	    }
-	    
-	    /** Returns whether the stack is empty. */
-	    public boolean empty() {
-	        return q.isEmpty();
+    public class MyStack {
+	// one Queue solution
+	private Queue<Integer> q = new LinkedList<Integer>();
+
+	/** Initialize your data structure here. */
+	public MyStack() {
+
+	}
+
+	/** Push element x onto stack. */
+	public void push(int x) {
+	    q.add(x);
+	    for (int i = 1; i < q.size(); i++) { // rotate the queue to make the tail be the head
+		q.add(q.poll());
 	    }
 	}
+
+	/** Removes the element on top of the stack and returns that element. */
+	public int pop() {
+	    return q.poll();
+	}
+
+	/** Get the top element. */
+	public int top() {
+	    return q.peek();
+	}
+
+	/** Returns whether the stack is empty. */
+	public boolean empty() {
+	    return q.isEmpty();
+	}
+    }
 }

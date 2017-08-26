@@ -19,31 +19,31 @@ Hash Table
  */
 public class LT447_Number_of_Boomerangs {
     public int numberOfBoomerangs(int[][] points) {
-        //get all distance combination. store in a map O(n^2)
-        int res = 0;
-        Map<Integer, Integer> map = new HashMap<>();        //distance, how many points
-        for(int i=0; i<points.length; i++) {                
-            for(int j=0; j<points.length; j++) {            //get distance of two points
-                if(i == j)
-                    continue;
-                
-                int d = getDistance(points[i], points[j]);                
-                map.put(d, map.getOrDefault(d, 0) + 1);         
-            }
-            
-            for(int val : map.values()) {                   //for point[i] get combinations of distance d. 
-                res += val * (val-1);
-            }            
-            map.clear();                                    //clear map. recompute for point[j]
-        }
-        
-        return res;
+	// get all distance combination. store in a map O(n^2)
+	int res = 0;
+	Map<Integer, Integer> map = new HashMap<>(); // distance, how many points
+	for (int i = 0; i < points.length; i++) {
+	    for (int j = 0; j < points.length; j++) { // get distance of two points
+		if (i == j)
+		    continue;
+
+		int d = getDistance(points[i], points[j]);
+		map.put(d, map.getOrDefault(d, 0) + 1);
+	    }
+
+	    for (int val : map.values()) { // for point[i] get combinations of distance d.
+		res += val * (val - 1);
+	    }
+	    map.clear(); // clear map. recompute for point[j]
+	}
+
+	return res;
     }
-    
+
     private int getDistance(int[] a, int[] b) {
-        int dx = a[0] - b[0];
-        int dy = a[1] - b[1];
-        
-        return dx*dx + dy*dy;
+	int dx = a[0] - b[0];
+	int dy = a[1] - b[1];
+
+	return dx * dx + dy * dy;
     }
 }

@@ -16,12 +16,12 @@ Array
  */
 public class LT561_Array_Partition_I {
     public int arrayPairSum(int[] nums) {
-        //sum of 1st, 3rd, 5th... ai,bi should be as close as possible
-        Arrays.sort(nums);
-        int result = 0;
-        for (int i = 0; i < nums.length; i += 2) {
-            result += nums[i];
-        }
-        return result;
+	// sum of 1st, 3rd, 5th... ai,bi should be as close as possible
+	Arrays.sort(nums);
+	int result = 0;
+	for (int i = 0; i < nums.length; i += 2) {
+	    result += nums[i];
+	}
+	return result;
     }
 }

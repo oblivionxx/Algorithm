@@ -22,41 +22,47 @@ The length of the given matchstick array will not exceed 15.
 DFS
  */
 public class LT473_Matchsticks_to_Square {
-  //According to https://en.wikipedia.org/wiki/Partition_problem, the partition problem (or number partitioning) is the task of deciding whether a given multiset S of positive integers can be partitioned into two subsets S1 and S2 such that the sum of the numbers in S1 equals the sum of the numbers in S2. The partition problem is NP-complete.
+    // According to https://en.wikipedia.org/wiki/Partition_problem, the partition problem (or number partitioning) is the task of deciding whether a given multiset S of positive integers can be
+    // partitioned into two subsets S1 and S2 such that the sum of the numbers in S1 equals the sum of the numbers in S2. The partition problem is NP-complete.
     public boolean makesquare(int[] nums) {
-        int sum = 0;
-        for (int num : nums) sum += num;
-        if (sum % 4 != 0 || nums.length==0) return false;
-        Arrays.sort(nums);		//Sorting the input array DESC will make the DFS process run much faster. Collections.reverseOrder() only for Integer
-        reverse(nums);
-    	return dfs(nums, new int[4], 0, sum / 4);
+	int sum = 0;
+	for (int num : nums)
+	    sum += num;
+	if (sum % 4 != 0 || nums.length == 0)
+	    return false;
+	Arrays.sort(nums); // Sorting the input array DESC will make the DFS process run much faster. Collections.reverseOrder() only for Integer
+	reverse(nums);
+	return dfs(nums, new int[4], 0, sum / 4);
     }
-    
-    private boolean dfs(int[] nums, int[] sums, int index, int target) {			//index loop nums
-    	if (index == nums.length) {
-    	    if (sums[0] == target && sums[1] == target && sums[2] == target) {
-    		return true;
-    	    }
-    	    return false;
-    	}
-    	
-    	for (int i = 0; i < 4; i++) {
-    	    if (sums[i] + nums[index] > target) continue;
-    	    sums[i] += nums[index];
-            if (dfs(nums, sums, index + 1, target)) return true;
-    	    sums[i] -= nums[index];
-    	}
-    	
-    	return false;
+
+    private boolean dfs(int[] nums, int[] sums, int index, int target) { // index loop nums
+	if (index == nums.length) {
+	    if (sums[0] == target && sums[1] == target && sums[2] == target) {
+		return true;
+	    }
+	    return false;
+	}
+
+	for (int i = 0; i < 4; i++) {
+	    if (sums[i] + nums[index] > target)
+		continue;
+	    sums[i] += nums[index];
+	    if (dfs(nums, sums, index + 1, target))
+		return true;
+	    sums[i] -= nums[index];
+	}
+
+	return false;
     }
-    
+
     private void reverse(int[] nums) {
-        int i = 0, j = nums.length - 1;
-        while (i < j) {
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
-            i++; j--;
-        }
+	int i = 0, j = nums.length - 1;
+	while (i < j) {
+	    int temp = nums[i];
+	    nums[i] = nums[j];
+	    nums[j] = temp;
+	    i++;
+	    j--;
+	}
     }
 }

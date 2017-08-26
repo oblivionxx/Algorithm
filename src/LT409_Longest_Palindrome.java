@@ -23,24 +23,25 @@ Hash Table
  */
 public class LT409_Longest_Palindrome {
     public int longestPalindrome(String s) {
-        HashMap<Character, Integer> map = new HashMap<>();
-        int res = 0;
-        for(int i=0;i<s.length();i++){
-            if(!map.containsKey(s.charAt(i)))
-                map.put(s.charAt(i), 1);
-            else
-                map.put(s.charAt(i), map.get(s.charAt(i))+1);
-        }
-        
-        int odd = 0;
-        for(int i:map.values()){
-            if(i%2==0) res+=i;
-            else if(i%2==1){
-                odd=1;
-                res+=i-1;
-            }
-        }
-        
-        return odd+res;
+	HashMap<Character, Integer> map = new HashMap<>();
+	int res = 0;
+	for (int i = 0; i < s.length(); i++) {
+	    if (!map.containsKey(s.charAt(i)))
+		map.put(s.charAt(i), 1);
+	    else
+		map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+	}
+
+	int odd = 0;
+	for (int i : map.values()) {
+	    if (i % 2 == 0)
+		res += i;
+	    else if (i % 2 == 1) {
+		odd = 1;
+		res += i - 1;
+	    }
+	}
+
+	return odd + res;
     }
 }

@@ -19,38 +19,38 @@ import java.util.LinkedList;
  * Backtracking, Math
  */
 public class LT060_Permutation_Sequence {
-	public String getPermutation(int n, int k) {
-		// The basic idea is to decide which is the correct number starting from
-		// the highest digit use k/(n-1)!
-		// The right part is k%(n-1)!
+    public String getPermutation(int n, int k) {
+	// The basic idea is to decide which is the correct number starting from
+	// the highest digit use k/(n-1)!
+	// The right part is k%(n-1)!
 
-		// each number can be used only once.
-		LinkedList<Integer> notUsed = new LinkedList<Integer>();
+	// each number can be used only once.
+	LinkedList<Integer> notUsed = new LinkedList<Integer>();
 
-		int factorial = 1;
+	int factorial = 1;
 
-		for (int i = 1; i <= n; i++) {
-			notUsed.add(i);
-			if (i == n)
-				break;
-			factorial = factorial * i; // factorial of (n-1)
-		}
-
-		StringBuilder sb = new StringBuilder();
-		k = k - 1; // index starting from 0;
-		// do for n-1 round. n=1~n.
-		int round = n - 1;
-		while (round >= 0) {
-			int index = k / factorial; // k/(n-1)!
-			k %= factorial; // the rest. update k for next loop.
-			sb.append(notUsed.get(index));
-			notUsed.remove(index);
-			if (round > 0)
-				factorial /= round; // new (n-1)!. here round is also the size
-									// of notUsed list.
-			round--;
-		}
-
-		return sb.toString();
+	for (int i = 1; i <= n; i++) {
+	    notUsed.add(i);
+	    if (i == n)
+		break;
+	    factorial = factorial * i; // factorial of (n-1)
 	}
+
+	StringBuilder sb = new StringBuilder();
+	k = k - 1; // index starting from 0;
+	// do for n-1 round. n=1~n.
+	int round = n - 1;
+	while (round >= 0) {
+	    int index = k / factorial; // k/(n-1)!
+	    k %= factorial; // the rest. update k for next loop.
+	    sb.append(notUsed.get(index));
+	    notUsed.remove(index);
+	    if (round > 0)
+		factorial /= round; // new (n-1)!. here round is also the size
+				    // of notUsed list.
+	    round--;
+	}
+
+	return sb.toString();
+    }
 }

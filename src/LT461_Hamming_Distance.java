@@ -23,13 +23,13 @@ Bit Manipulation
  */
 public class LT461_Hamming_Distance {
     public int hammingDistance(int x, int y) {
-        int XOR =  x^y;      //XOR count 1s
-        int count = 0;
-        while(XOR!=0){
-            count++;
-            XOR = XOR&(XOR-1);      //remove right most bit 1
-        }
-        
-        return count;
+	int XOR = x ^ y; // XOR count 1s
+	int count = 0;
+	while (XOR != 0) {
+	    count++;
+	    XOR = XOR & (XOR - 1); // remove right most bit 1
+	}
+
+	return count;
     }
 }

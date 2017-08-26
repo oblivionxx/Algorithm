@@ -20,19 +20,19 @@ Greedy
  */
 public class LT452_Minimum_Number_of_Arrows_to_Burst_Balloons {
     public int findMinArrowShots(int[][] points) {
-        if (points.length == 0) {
-            return 0;
-        }
-        Arrays.sort(points, (a, b) -> a[1] - b[1]);  //sort by end
-        int arrowPos = points[0][1];                 //always choose end as the position   
-        int arrowCnt = 1;
-        for (int i = 1; i < points.length; i++) {
-            if (arrowPos >= points[i][0]) {
-                continue;
-            }
-            arrowCnt++;
-            arrowPos = points[i][1];
-        }
-        return arrowCnt;
+	if (points.length == 0) {
+	    return 0;
+	}
+	Arrays.sort(points, (a, b) -> a[1] - b[1]); // sort by end
+	int arrowPos = points[0][1]; // always choose end as the position
+	int arrowCnt = 1;
+	for (int i = 1; i < points.length; i++) {
+	    if (arrowPos >= points[i][0]) {
+		continue;
+	    }
+	    arrowCnt++;
+	    arrowPos = points[i][1];
+	}
+	return arrowCnt;
     }
 }

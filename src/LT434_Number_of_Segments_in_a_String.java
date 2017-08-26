@@ -12,6 +12,6 @@ String
  */
 public class LT434_Number_of_Segments_in_a_String {
     public int countSegments(String s) {
-        return (s==null || s.trim().length()==0)?0:s.trim().split("\\s+").length;
+	return (s == null || s.trim().length() == 0) ? 0 : s.trim().split("\\s+").length;
     }
 }

@@ -22,35 +22,39 @@ String
  */
 public class LT555_Split_Concatenated_Strings {
     public String splitLoopedString(String[] strs) {
-        //1. use strs[i] or reserve(strs[i])  <- lexicographically biggest string
-        //2. find strs[i] with maxCharacter. ["lc", "love", "ydc"]，-> "ylclovecd" 只有cut所在的字符串的翻转可能不按规律
-        char max = 'a';
-        for (int i = 0; i < strs.length; i++) {
-            for (char c : strs[i].toCharArray()) {
-                if (c > max) max = c;                       //find the maxCharacter. will be the start
-            }
-            String rev = new StringBuilder(strs[i]).reverse().toString();
-            if (strs[i].compareTo(rev) < 0) strs[i] = rev;      //update biggest string
-        }
-        
-        String res = "";
-        for (int i = 0; i < strs.length; i++) {
-            if(!strs[i].contains("" + max)) continue; 
-            String rev = new StringBuilder(strs[i]).reverse().toString();           //find str[i] contains maxCharacter
-            for (String st: new String[] {strs[i], rev}) {                          //try two directions.  ydc or cdy
-                for (int k = 0; k < st.length(); k++) {                             //ydc or cdy
-                    if (st.charAt(k) != max) continue;
-                    StringBuilder t = new StringBuilder(st.substring(k));           
-                    for (int j = i + 1; j < strs.length; j++)
-                        t.append(strs[j]);                                          //add strs[j] j>i (order of strs is same as given)
-                    for (int j = 0; j < i; j++)
-                        t.append(strs[j]);                                          //add strs[j] j<i
-                    t.append(st.substring(0, k));
-                    if (t.toString().compareTo(res) > 0)                            
-                        res = t.toString();
-                }
-            }
-        }
-        return res;
+	// 1. use strs[i] or reserve(strs[i]) <- lexicographically biggest string
+	// 2. find strs[i] with maxCharacter. ["lc", "love", "ydc"]，-> "ylclovecd" 只有cut所在的字符串的翻转可能不按规律
+	char max = 'a';
+	for (int i = 0; i < strs.length; i++) {
+	    for (char c : strs[i].toCharArray()) {
+		if (c > max)
+		    max = c; // find the maxCharacter. will be the start
+	    }
+	    String rev = new StringBuilder(strs[i]).reverse().toString();
+	    if (strs[i].compareTo(rev) < 0)
+		strs[i] = rev; // update biggest string
+	}
+
+	String res = "";
+	for (int i = 0; i < strs.length; i++) {
+	    if (!strs[i].contains("" + max))
+		continue;
+	    String rev = new StringBuilder(strs[i]).reverse().toString(); // find str[i] contains maxCharacter
+	    for (String st : new String[] { strs[i], rev }) { // try two directions. ydc or cdy
+		for (int k = 0; k < st.length(); k++) { // ydc or cdy
+		    if (st.charAt(k) != max)
+			continue;
+		    StringBuilder t = new StringBuilder(st.substring(k));
+		    for (int j = i + 1; j < strs.length; j++)
+			t.append(strs[j]); // add strs[j] j>i (order of strs is same as given)
+		    for (int j = 0; j < i; j++)
+			t.append(strs[j]); // add strs[j] j<i
+		    t.append(st.substring(0, k));
+		    if (t.toString().compareTo(res) > 0)
+			res = t.toString();
+		}
+	    }
+	}
+	return res;
     }
 }

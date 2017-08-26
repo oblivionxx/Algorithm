@@ -12,13 +12,13 @@ Output: False
 Math
  */
 public class LT633_Sum_of_Square_Numbers {
-    //An integer greater than one can be written as a sum of two squares if and only if its prime decomposition contains no prime congruent to 3 (mod 4) raised to an odd power.mod4=3的质因数 次方是偶数
+    // An integer greater than one can be written as a sum of two squares if and only if its prime decomposition contains no prime congruent to 3 (mod 4) raised to an odd power.mod4=3的质因数 次方是偶数
     public boolean judgeSquareSum(int c) {
-        for(int i=0;i<=Math.sqrt(c);i++){
-            if (Math.floor(Math.sqrt(c-i*i)) == Math.sqrt(c-i*i)) 
-                return true;
-        }
-        return false;
-        
+	for (int i = 0; i <= Math.sqrt(c); i++) {
+	    if (Math.floor(Math.sqrt(c - i * i)) == Math.sqrt(c - i * i))
+		return true;
+	}
+	return false;
+
     }
 }

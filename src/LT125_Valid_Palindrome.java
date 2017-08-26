@@ -12,23 +12,25 @@ For the purpose of this problem, we define empty string as valid palindrome.
 String, Two Pointer.
  */
 public class LT125_Valid_Palindrome {
-	//case: 1 with non-alphanumeric including the punctuation 
-    //      2. uppercase and lowercase
-	public boolean isPalindrome(String s) {
-        if(s.length()==0) return true;
-        
-        String str = s.replaceAll("[^A-Za-z0-9]","").toLowerCase(); //remove non-alphanumeric
-        int m=0;
-        int n=str.length()-1;
-        
-        while(m<=n){
-            if(str.charAt(m)!=str.charAt(n)) return false;
-            else{
-                    m++;
-                    n--;
-                }
-        }
-       
-        return true;
+    // case: 1 with non-alphanumeric including the punctuation
+    // 2. uppercase and lowercase
+    public boolean isPalindrome(String s) {
+	if (s.length() == 0)
+	    return true;
+
+	String str = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase(); // remove non-alphanumeric
+	int m = 0;
+	int n = str.length() - 1;
+
+	while (m <= n) {
+	    if (str.charAt(m) != str.charAt(n))
+		return false;
+	    else {
+		m++;
+		n--;
+	    }
+	}
+
+	return true;
     }
 }

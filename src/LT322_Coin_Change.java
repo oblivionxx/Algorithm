@@ -16,20 +16,20 @@ DP
  */
 public class LT322_Coin_Change {
     public int coinChange(int[] coins, int amount) {
-        //dp[i]=min number of coins when amount=i dp[i] = min(dp[i], dp[i - coins[j]] + 1);
-        int[] dp = new int[amount+1];
-        dp[0] = 0;
-        for(int i=1;i<=amount;i++){
-            dp[i] = Integer.MAX_VALUE;
-        }
-        for(int i=1;i<=amount;i++){
-            for(int j=0;j<coins.length;j++){
-                if(coins[j]<=i && dp[i - coins[j]]!=Integer.MAX_VALUE){
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
-                }
-            }
-        }
-        
-        return dp[amount]>amount?-1:dp[amount];         //dp[amount] = inf. cannot make amount
+	// dp[i]=min number of coins when amount=i dp[i] = min(dp[i], dp[i - coins[j]] + 1);
+	int[] dp = new int[amount + 1];
+	dp[0] = 0;
+	for (int i = 1; i <= amount; i++) {
+	    dp[i] = Integer.MAX_VALUE;
+	}
+	for (int i = 1; i <= amount; i++) {
+	    for (int j = 0; j < coins.length; j++) {
+		if (coins[j] <= i && dp[i - coins[j]] != Integer.MAX_VALUE) {
+		    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+		}
+	    }
+	}
+
+	return dp[amount] > amount ? -1 : dp[amount]; // dp[amount] = inf. cannot make amount
     }
 }

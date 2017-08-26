@@ -27,26 +27,26 @@ Hash Table
  */
 public class LT599_Minimum_Index_Sum_of_Two_Lists {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        List<String> minRes = new ArrayList<>();
-        HashMap<String, Integer> map = new HashMap<>();
-        int minIndex = Integer.MAX_VALUE;
-        for(int i=0;i<list1.length;i++){
-            map.put(list1[i], i);
-        }
-        
-        for(int i=0;i<list2.length;i++){
-            if(map.containsKey(list2[i])){
-                int sumIndex = i+map.get(list2[i]);
-                if(minIndex>sumIndex){
-                    minRes.clear();
-                    minRes.add(list2[i]);
-                    minIndex = sumIndex;
-                }else if(minIndex==sumIndex){
-                    minRes.add(list2[i]);
-                }
-            }
-        }
-        
-        return minRes.toArray(new String[minRes.size()]);
+	List<String> minRes = new ArrayList<>();
+	HashMap<String, Integer> map = new HashMap<>();
+	int minIndex = Integer.MAX_VALUE;
+	for (int i = 0; i < list1.length; i++) {
+	    map.put(list1[i], i);
+	}
+
+	for (int i = 0; i < list2.length; i++) {
+	    if (map.containsKey(list2[i])) {
+		int sumIndex = i + map.get(list2[i]);
+		if (minIndex > sumIndex) {
+		    minRes.clear();
+		    minRes.add(list2[i]);
+		    minIndex = sumIndex;
+		} else if (minIndex == sumIndex) {
+		    minRes.add(list2[i]);
+		}
+	    }
+	}
+
+	return minRes.toArray(new String[minRes.size()]);
     }
 }

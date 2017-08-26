@@ -19,11 +19,11 @@ The web page's width and length you designed must be positive integers.
  */
 public class LT492_Construct_the_Rectangle {
     public int[] constructRectangle(int area) {
-        int width = (int)Math.sqrt(area);
-        while(area%width!=0){
-            width--;
-        }
-        
-        return new int[]{area/width, width};
+	int width = (int) Math.sqrt(area);
+	while (area % width != 0) {
+	    width--;
+	}
+
+	return new int[] { area / width, width };
     }
 }

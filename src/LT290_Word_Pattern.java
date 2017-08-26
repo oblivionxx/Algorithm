@@ -16,29 +16,30 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 HashTable
  */
 public class LT290_Word_Pattern {
-	public boolean wordPattern(String pattern, String str) {
-        HashMap<String,Character> map1 = new HashMap<String,Character>();
-        HashMap<Character,String> map2 = new HashMap<Character,String>();
-        
-        char[] charArray = pattern.toCharArray();
-        String[] array = str.split(" ");
-        if(charArray.length!=array.length) return false;
-        
-        for(int i = 0;i<array.length;i++){
-            if(map1.containsKey(array[i])){
-                if(!map1.get(array[i]).equals(charArray[i]))
-                    return false;
-            }
-            
-            if(map2.containsKey(charArray[i])){
-                if(!map2.get(charArray[i]).equals(array[i]))
-                    return false;
-            }
-            
-            map1.put(array[i],charArray[i]);
-            map2.put(charArray[i],array[i]);
-        }
-        
-        return true;
+    public boolean wordPattern(String pattern, String str) {
+	HashMap<String, Character> map1 = new HashMap<String, Character>();
+	HashMap<Character, String> map2 = new HashMap<Character, String>();
+
+	char[] charArray = pattern.toCharArray();
+	String[] array = str.split(" ");
+	if (charArray.length != array.length)
+	    return false;
+
+	for (int i = 0; i < array.length; i++) {
+	    if (map1.containsKey(array[i])) {
+		if (!map1.get(array[i]).equals(charArray[i]))
+		    return false;
+	    }
+
+	    if (map2.containsKey(charArray[i])) {
+		if (!map2.get(charArray[i]).equals(array[i]))
+		    return false;
+	    }
+
+	    map1.put(array[i], charArray[i]);
+	    map2.put(charArray[i], array[i]);
+	}
+
+	return true;
     }
 }

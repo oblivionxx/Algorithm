@@ -23,58 +23,58 @@ DP
  */
 public class LT467_Unique_Substrings_in_Wraparound_String {
     // if we know the max number of unique substrings in p ends with 'a', 'b', ..., 'z', then the summary of them is the answer. Why is that?
-    //The max number of unique substring ends with a letter equals to the length of max contiguous substring ends with that letter. Example "abcd", the max number of unique substring ends with 'd' is 4, apparently they are "abcd", "bcd", "cd" and "d".
-    //If there are overlapping, we only need to consider the longest one because it covers all the possible substrings. Example: "abcdbcd", the max number of unique substring ends with 'd' is 4 and all substrings formed by the 2nd "bcd" part are covered in the 4 substrings already.
-    //No matter how long is a contiguous substring in p, it is in s since s has infinite length.
-    //Now we know the max number of unique substrings in p ends with 'a', 'b', ..., 'z' and those substrings are all in s. Summary is the answer, according to the question.
+    // The max number of unique substring ends with a letter equals to the length of max contiguous substring ends with that letter. Example "abcd", the max number of unique substring ends with 'd' is
+    // 4, apparently they are "abcd", "bcd", "cd" and "d".
+    // If there are overlapping, we only need to consider the longest one because it covers all the possible substrings. Example: "abcdbcd", the max number of unique substring ends with 'd' is 4 and
+    // all substrings formed by the 2nd "bcd" part are covered in the 4 substrings already.
+    // No matter how long is a contiguous substring in p, it is in s since s has infinite length.
+    // Now we know the max number of unique substrings in p ends with 'a', 'b', ..., 'z' and those substrings are all in s. Summary is the answer, according to the question.
     public int findSubstringInWraproundString(String p) {
-        // count[i] is the maximum unique substring end with ith letter.
-        // 0 - 'a', 1 - 'b', ..., 25 - 'z'.
-        int[] count = new int[26];
-        
-        // store longest contiguous substring ends at current position.
-        int maxLengthCur = 0; 
+	// count[i] is the maximum unique substring end with ith letter.
+	// 0 - 'a', 1 - 'b', ..., 25 - 'z'.
+	int[] count = new int[26];
 
-        for (int i = 0; i < p.length(); i++) {
-            if (i > 0 && (p.charAt(i) - p.charAt(i - 1) == 1 || (p.charAt(i - 1) - p.charAt(i) == 25))) {
-                maxLengthCur++;
-            }
-            else {
-                maxLengthCur = 1;
-            }
-            
-            int index = p.charAt(i) - 'a';
-            count[index] = Math.max(count[index], maxLengthCur);
-        }
-        
-        // Sum to get result
-        int sum = 0;
-        for (int i = 0; i < 26; i++) {
-            sum += count[i];
-        }
-        return sum;
+	// store longest contiguous substring ends at current position.
+	int maxLengthCur = 0;
+
+	for (int i = 0; i < p.length(); i++) {
+	    if (i > 0 && (p.charAt(i) - p.charAt(i - 1) == 1 || (p.charAt(i - 1) - p.charAt(i) == 25))) {
+		maxLengthCur++;
+	    } else {
+		maxLengthCur = 1;
+	    }
+
+	    int index = p.charAt(i) - 'a';
+	    count[index] = Math.max(count[index], maxLengthCur);
+	}
+
+	// Sum to get result
+	int sum = 0;
+	for (int i = 0; i < 26; i++) {
+	    sum += count[i];
+	}
+	return sum;
     }
-    
+
     public int findSubstringInWraproundString2(String p) {
-        int []dp=new int[26];
-        for(int i = 0;i < 26;i++)
-        dp[i]=0;
-        int len=p.length();
-        int pos = 0;
-        for(int i = 0;i < len;i++){
-            if(i > 0 && (p.charAt(i) - p.charAt(i-1) == 1 || p.charAt(i) == 'a' && p.charAt(i-1) == 'z')){
-                pos ++;
-            }
-            else{
-                pos = 1;
-            }
-            dp[p.charAt(i) - 'a'] = Math.max(dp[p.charAt(i) - 'a'],pos);
-        }
-        int ans = 0;
-        for(int i = 0;i < 26;i++){
-            ans+=dp[i];
-        }
-        return ans;
+	int[] dp = new int[26];
+	for (int i = 0; i < 26; i++)
+	    dp[i] = 0;
+	int len = p.length();
+	int pos = 0;
+	for (int i = 0; i < len; i++) {
+	    if (i > 0 && (p.charAt(i) - p.charAt(i - 1) == 1 || p.charAt(i) == 'a' && p.charAt(i - 1) == 'z')) {
+		pos++;
+	    } else {
+		pos = 1;
+	    }
+	    dp[p.charAt(i) - 'a'] = Math.max(dp[p.charAt(i) - 'a'], pos);
+	}
+	int ans = 0;
+	for (int i = 0; i < 26; i++) {
+	    ans += dp[i];
+	}
+	return ans;
     }
 
 }

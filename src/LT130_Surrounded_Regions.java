@@ -88,6 +88,7 @@ public class LT130_Surrounded_Regions {
 
     // Simplify
     int[][] dirs = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+
     public void fill2(char[][] board, int i, int j) {
 	if (board[i][j] != 'O')
 	    return;

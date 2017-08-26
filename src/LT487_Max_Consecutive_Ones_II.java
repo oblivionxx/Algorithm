@@ -16,16 +16,16 @@ What if the input numbers come in one by one as an infinite stream? In other wor
 Two Pointers
  */
 public class LT487_Max_Consecutive_Ones_II {
-	public int findMaxConsecutiveOnes(int[] nums) {
-        //follow up and generalize https://discuss.leetcode.com/topic/75445/java-clean-solution-easily-extensible-to-flipping-k-zero-and-follow-up-handled/2
-        int max = 0, q = -1;
-        for (int l = 0, h = 0; h < nums.length; h++) {
-            if (nums[h] == 0) {                 //011111011111110
-                l = q + 1;                      // l    q   h-> h
-                q = h;
-            }
-            max = Math.max(max, h - l + 1);
-        }                                                               
-        return max;   
+    public int findMaxConsecutiveOnes(int[] nums) {
+	// follow up and generalize https://discuss.leetcode.com/topic/75445/java-clean-solution-easily-extensible-to-flipping-k-zero-and-follow-up-handled/2
+	int max = 0, q = -1;
+	for (int l = 0, h = 0; h < nums.length; h++) {
+	    if (nums[h] == 0) { // 011111011111110
+		l = q + 1; // l q h-> h
+		q = h;
+	    }
+	    max = Math.max(max, h - l + 1);
+	}
+	return max;
     }
 }

@@ -41,19 +41,18 @@ Explanation: The conditional expressions group right-to-left. Using parenthesis,
 DFS, Stack
  */
 public class LT439_Ternary_Expression_Parser {
-	public String parseTernary(String expression) {
-        //find last ? =>index=i--> parse pos(i-1) if T use pos(i+1) else use pos(i+3). then add to a new string
-        while (expression.length() != 1) {
-            int i = expression.lastIndexOf("?");    // get the last shown '?'
-            char tmp;
-            if (expression.charAt(i-1) == 'T') { 
-                tmp = expression.charAt(i+1); 
-            }
-            else { 
-                tmp = expression.charAt(i+3); 
-            }
-            expression = expression.substring(0, i-1) + tmp + expression.substring(i+4);
-        }
-        return expression;
+    public String parseTernary(String expression) {
+	// find last ? =>index=i--> parse pos(i-1) if T use pos(i+1) else use pos(i+3). then add to a new string
+	while (expression.length() != 1) {
+	    int i = expression.lastIndexOf("?"); // get the last shown '?'
+	    char tmp;
+	    if (expression.charAt(i - 1) == 'T') {
+		tmp = expression.charAt(i + 1);
+	    } else {
+		tmp = expression.charAt(i + 3);
+	    }
+	    expression = expression.substring(0, i - 1) + tmp + expression.substring(i + 4);
+	}
+	return expression;
     }
 }

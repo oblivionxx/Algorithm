@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 /*
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
@@ -16,52 +18,48 @@ Note: Do not use class member/global/static variables to store states. Your seri
 Tree, Design
  */
 public class LT297_Serialize_and_Deserialize_Binary_Tree {
-    //Idea: pre-order traverse the tree
-    //plug in # in return if current node is null
+    // Idea: pre-order traverse the tree
+    // plug in # in return if current node is null
     public String serialize(TreeNode root) {
-        // write your code here
-        if(root == null) return "# ";
-        String rnt = new String();
-        rnt += (root.val + " ");
-        rnt += serialize(root.left);
-        rnt += serialize(root.right);
-        return rnt;
+	// write your code here
+	if (root == null)
+	    return "# ";
+	String rnt = new String();
+	rnt += (root.val + " ");
+	rnt += serialize(root.left);
+	rnt += serialize(root.right);
+	return rnt;
     }
-    
+
     /**
-     * This method will be invoked second, the argument data is what exactly
-     * you serialized at method "serialize", that means the data is not given by
-     * system, it's given by your own serialize method. So the format of data is
-     * designed by yourself, and deserialize it here as you serialize it in 
-     * "serialize" method.
+     * This method will be invoked second, the argument data is what exactly you serialized at method "serialize", that means the data is not given by system, it's given by your own serialize method.
+     * So the format of data is designed by yourself, and deserialize it here as you serialize it in "serialize" method.
      */
     public TreeNode deserialize(String data) {
-        // write your code here
-        String[] str = data.split(" ");
-        int[] index = new int[1];
-        return helpDeserial(str, index);
-        
+	// write your code here
+	String[] str = data.split(" ");
+	int[] index = new int[1];
+	return helpDeserial(str, index);
+
     }
-    
-    //Idea: recursive build the tree using the inorder traverse array
-    public TreeNode helpDeserial(String[] str, int[] index){
-        String curr = str[index[0]];
-        if(curr.equals("#")){
-            index[0]++;
-            return null;
-        }
-        else{
-            TreeNode node = new TreeNode(Integer.parseInt(str[index[0]]));
-            index[0]++;
-            node.left = helpDeserial(str, index);
-            node.right = helpDeserial(str, index);
-            
-            return node;
-        }
+
+    // Idea: recursive build the tree using the inorder traverse array
+    public TreeNode helpDeserial(String[] str, int[] index) {
+	String curr = str[index[0]];
+	if (curr.equals("#")) {
+	    index[0]++;
+	    return null;
+	} else {
+	    TreeNode node = new TreeNode(Integer.parseInt(str[index[0]]));
+	    index[0]++;
+	    node.left = helpDeserial(str, index);
+	    node.right = helpDeserial(str, index);
+
+	    return node;
+	}
     }
 }
 
 // Your Codec object will be instantiated and called as such:
 // Codec codec = new Codec();
 // codec.deserialize(codec.serialize(root));
-

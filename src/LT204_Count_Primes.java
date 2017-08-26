@@ -54,22 +54,24 @@ The Sieve of Eratosthenes uses an extra O(n) memory and its runtime complexity i
  */
 public class LT204_Count_Primes {
     public int countPrimes(int n) {
-        boolean[] isPrime = new boolean[n];
-        for (int i = 2; i < n; i++) {
-           isPrime[i] = true;
-        }
-        // Loop's ending condition is i * i < n instead of i < sqrt(n)
-        // to avoid repeatedly calling an expensive function sqrt().
-        for (int i = 2; i * i < n; i++) {
-           if (!isPrime[i]) continue;					// i is not prime
-           for (int j = i * i; j < n; j += i) {			//eg. we can mark off multiples of 5 starting at 5 × 5 = 25, because 5 × 2 = 10 was already marked off by multiple of 2, similarly 5 × 3
-              isPrime[j] = false;
-           }
-        }
-        int count = 0;
-        for (int i = 2; i < n; i++) {
-           if (isPrime[i]) count++;
-        }
-        return count;
-     }
+	boolean[] isPrime = new boolean[n];
+	for (int i = 2; i < n; i++) {
+	    isPrime[i] = true;
+	}
+	// Loop's ending condition is i * i < n instead of i < sqrt(n)
+	// to avoid repeatedly calling an expensive function sqrt().
+	for (int i = 2; i * i < n; i++) {
+	    if (!isPrime[i])
+		continue; // i is not prime
+	    for (int j = i * i; j < n; j += i) { // eg. we can mark off multiples of 5 starting at 5 × 5 = 25, because 5 × 2 = 10 was already marked off by multiple of 2, similarly 5 × 3
+		isPrime[j] = false;
+	    }
+	}
+	int count = 0;
+	for (int i = 2; i < n; i++) {
+	    if (isPrime[i])
+		count++;
+	}
+	return count;
+    }
 }

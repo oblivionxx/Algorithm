@@ -30,24 +30,27 @@ iterator.next(); // return ' '
 Design
  */
 public class LT604_Design_Compressed_String_Iterator {
-	int i;
+    int i;
     String[] arr;
     int[] counts;
 
     public LT604_Design_Compressed_String_Iterator(String str) {
-        arr = str.split("\\d+");
-        counts = Arrays.stream(str.substring(1).split("[a-zA-Z]+")).mapToInt(Integer::parseInt).toArray();      //substring(1) to avoid empty space
+	arr = str.split("\\d+");
+	counts = Arrays.stream(str.substring(1).split("[a-zA-Z]+")).mapToInt(Integer::parseInt).toArray(); // substring(1) to avoid empty space
     }
-    
+
     public char next() {
-        if(!hasNext()) return ' ';
-        char ch = arr[i].charAt(0);
-        if(--counts[i] == 0) ++i;
-        return ch;
+	if (!hasNext())
+	    return ' ';
+	char ch = arr[i].charAt(0);
+	if (--counts[i] == 0)
+	    ++i;
+	return ch;
     }
 
     public boolean hasNext() {
-        if(i == arr.length) return false;
-        return true;
+	if (i == arr.length)
+	    return false;
+	return true;
     }
 }

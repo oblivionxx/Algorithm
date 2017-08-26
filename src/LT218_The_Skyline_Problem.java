@@ -1,3 +1,4 @@
+
 /*
 A city's skyline is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Now suppose you are given the locations and height of all the buildings as shown on a cityscape photo (Figure A), write a program to output the skyline formed by these buildings collectively (Figure B).
 Buildings  Skyline Contour
@@ -16,35 +17,36 @@ There must be no consecutive horizontal lines of equal height in the output skyl
 Divide and Conquer, Heap
  */
 import java.util.*;
+
 public class LT218_The_Skyline_Problem {
-	public List<int[]> getSkyline(int[][] buildings) {
-        //1. heap
-        List<int[]> result = new ArrayList<>();
-        List<int[]> height = new ArrayList<>();
-        for(int[] b:buildings) {
-            height.add(new int[]{b[0], -b[2]});			//start, -height
-            height.add(new int[]{b[1], b[2]});			//end, height
-        }
-        Collections.sort(height, (a, b) -> {
-                if(a[0] != b[0]) 
-                    return a[0] - b[0];
-                return a[1] - b[1];
-        });
-        Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
-        pq.offer(0);
-        int prev = 0;
-        for(int[] h:height) {
-            if(h[1] < 0) {
-                pq.offer(-h[1]);
-            } else {
-                pq.remove(h[1]);
-            }
-            int cur = pq.peek();
-            if(prev != cur) {
-                result.add(new int[]{h[0], cur});
-                prev = cur;
-            }
-        }
-        return result;
+    public List<int[]> getSkyline(int[][] buildings) {
+	// 1. heap
+	List<int[]> result = new ArrayList<>();
+	List<int[]> height = new ArrayList<>();
+	for (int[] b : buildings) {
+	    height.add(new int[] { b[0], -b[2] }); // start, -height
+	    height.add(new int[] { b[1], b[2] }); // end, height
+	}
+	Collections.sort(height, (a, b) -> {
+	    if (a[0] != b[0])
+		return a[0] - b[0];
+	    return a[1] - b[1];
+	});
+	Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+	pq.offer(0);
+	int prev = 0;
+	for (int[] h : height) {
+	    if (h[1] < 0) {
+		pq.offer(-h[1]);
+	    } else {
+		pq.remove(h[1]);
+	    }
+	    int cur = pq.peek();
+	    if (prev != cur) {
+		result.add(new int[] { h[0], cur });
+		prev = cur;
+	    }
+	}
+	return result;
     }
 }

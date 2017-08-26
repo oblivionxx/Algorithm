@@ -14,22 +14,22 @@ Hash Table, Heap
  */
 public class LT347_Top_K_Frequent_Elements {
     public List<Integer> topKFrequent(int[] nums, int k) {
-        HashMap<Integer, Integer> map = new HashMap<>();    //save int, freq
-        for(int i:nums){
-            map.put(i, map.getOrDefault(i,0)+1);
-        }
-        
-        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> b.getValue()-a.getValue());
-        for(Map.Entry<Integer, Integer> entry: map.entrySet()){
-            pq.add(entry);
-        }
-        
-        List<Integer> res = new ArrayList<>();
-        while(res.size()<k){
-            Map.Entry<Integer, Integer> entry = pq.poll();
-            res.add(entry.getKey());
-        }
-        
-        return res;
+	HashMap<Integer, Integer> map = new HashMap<>(); // save int, freq
+	for (int i : nums) {
+	    map.put(i, map.getOrDefault(i, 0) + 1);
+	}
+
+	PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
+	for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+	    pq.add(entry);
+	}
+
+	List<Integer> res = new ArrayList<>();
+	while (res.size() < k) {
+	    Map.Entry<Integer, Integer> entry = pq.poll();
+	    res.add(entry.getKey());
+	}
+
+	return res;
     }
 }

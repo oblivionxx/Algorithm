@@ -26,20 +26,20 @@ Math
  */
 public class LT400_Nth_Digit {
     public int findNthDigit(int m) {
-        //1-9, 1digit. 9 
-        //10-99, 2digit. 90
-        //100-999, 3digit, 900...
-        long n = m;
-        long count = 9, len =1, start = 1;
-        while(n>len*count){         //determine which range
-            n-=len*count;           //n-9, -180, -2700...
-            len++;
-            start *=10;
-            count *=10;
-        }
-        
-        start = start + (n-1)/len;   //get the number. overflow
-        return String.valueOf(start).charAt((int)((n-1)%len))-'0';
-        
+	// 1-9, 1digit. 9
+	// 10-99, 2digit. 90
+	// 100-999, 3digit, 900...
+	long n = m;
+	long count = 9, len = 1, start = 1;
+	while (n > len * count) { // determine which range
+	    n -= len * count; // n-9, -180, -2700...
+	    len++;
+	    start *= 10;
+	    count *= 10;
+	}
+
+	start = start + (n - 1) / len; // get the number. overflow
+	return String.valueOf(start).charAt((int) ((n - 1) % len)) - '0';
+
     }
 }

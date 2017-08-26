@@ -22,31 +22,31 @@ solution.shuffle();
 public class LT384_Shuffle_an_Array {
     private int[] nums;
     private Random random = null;
-    
+
     public LT384_Shuffle_an_Array(int[] nums) {
-        this.nums = nums;    
-        random = new Random(System.currentTimeMillis());        //avoid same seeds
+	this.nums = nums;
+	random = new Random(System.currentTimeMillis()); // avoid same seeds
     }
-    
+
     /** Resets the array to its original configuration and return it. */
     public int[] reset() {
-        return nums;
+	return nums;
     }
-    
+
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
-        int[] ans = Arrays.copyOf(nums,nums.length); // create a copy
-        for(int i = 1 ; i < nums.length ; i++){
-            int swapIndex = random.nextInt(i+1); // generate a random number within visited elements including current index.
-            //nextInt(j + 1) returns a random num between [0, j]. By nextInt(j), you never get a chance to return the original order array.
-            swap(ans,i,swapIndex); // swap the index
-        }
-        return ans;
+	int[] ans = Arrays.copyOf(nums, nums.length); // create a copy
+	for (int i = 1; i < nums.length; i++) {
+	    int swapIndex = random.nextInt(i + 1); // generate a random number within visited elements including current index.
+	    // nextInt(j + 1) returns a random num between [0, j]. By nextInt(j), you never get a chance to return the original order array.
+	    swap(ans, i, swapIndex); // swap the index
+	}
+	return ans;
     }
-    
+
     private void swap(int[] a, int i, int j) {
-        int t = a[i];
-        a[i] = a[j];
-        a[j] = t;
+	int t = a[i];
+	a[i] = a[j];
+	a[j] = t;
     }
 }

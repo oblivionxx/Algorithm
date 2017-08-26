@@ -35,61 +35,65 @@ public class LT215_Kth_Largest_Element_In_an_Array {
     // 3. Quick Select. best and avg O(n). worst-case performance is quadratic:
     // O(n^2)
     public int findKthLargest3(int[] nums, int k) {
-        if (nums == null || nums.length == 0) return Integer.MAX_VALUE;
-        return findKthLargest(nums, 0, nums.length - 1, nums.length - k);		//quick select put smaller to left. so find nums.len-kth smallest number
-    }    
+	if (nums == null || nums.length == 0)
+	    return Integer.MAX_VALUE;
+	return findKthLargest(nums, 0, nums.length - 1, nums.length - k); // quick select put smaller to left. so find nums.len-kth smallest number
+    }
 
     public int findKthLargest(int[] nums, int start, int end, int k) {
-        if (start > end) return Integer.MAX_VALUE;
-        int left = partition(nums, start, end);				//find left from start to end.
-        if (left == k)// Found kth smallest number
-            return nums[left];
-        else if (left < k)// Check right part
-            return findKthLargest(nums, left + 1, end, k);		//restrict range
-        else // Check left part
-            return findKthLargest(nums, start, left - 1, k);
-    } 
-    
-    public int partition(int[] nums, int start, int end){
-        int pivot = nums[end];// Take A[end] as the pivot, 
-        int left = start;
-        for (int i = start; i < end; i++) {
-            if (nums[i] <= pivot) // Put numbers < pivot to pivot's left
-                swap(nums, left++, i);			
-        }
-        swap(nums, left, end);// Finally, swap A[end] with A[left]
-        return left;
+	if (start > end)
+	    return Integer.MAX_VALUE;
+	int left = partition(nums, start, end); // find left from start to end.
+	if (left == k)// Found kth smallest number
+	    return nums[left];
+	else if (left < k)// Check right part
+	    return findKthLargest(nums, left + 1, end, k); // restrict range
+	else // Check left part
+	    return findKthLargest(nums, start, left - 1, k);
+    }
+
+    public int partition(int[] nums, int start, int end) {
+	int pivot = nums[end];// Take A[end] as the pivot,
+	int left = start;
+	for (int i = start; i < end; i++) {
+	    if (nums[i] <= pivot) // Put numbers < pivot to pivot's left
+		swap(nums, left++, i);
+	}
+	swap(nums, left, end);// Finally, swap A[end] with A[left]
+	return left;
     }
 
     public void swap(int[] A, int i, int j) {
-        int tmp = A[i];
-        A[i] = A[j];
-        A[j] = tmp;				
+	int tmp = A[i];
+	A[i] = A[j];
+	A[j] = tmp;
     }
-      
-    //built in partition. easier to understand
+
+    // built in partition. easier to understand
     public int findKthLargest4(int[] nums, int k) {
-        if (nums == null || nums.length == 0) return Integer.MAX_VALUE;
-        return findKthLargest(nums, 0, nums.length - 1, nums.length - k);
-    }    
+	if (nums == null || nums.length == 0)
+	    return Integer.MAX_VALUE;
+	return findKthLargest(nums, 0, nums.length - 1, nums.length - k);
+    }
 
     public int findKthLargest4(int[] nums, int start, int end, int k) {
-        if (start > end) return Integer.MAX_VALUE;
+	if (start > end)
+	    return Integer.MAX_VALUE;
 
-        int pivot = nums[end];// Take A[end] as the pivot, 		
-        int left = start;
-        for (int i = start; i < end; i++) {
-            if (nums[i] <= pivot) // Put numbers < pivot to pivot's left
-                swap(nums, left++, i);			
-        }
-        swap(nums, left, end);// Finally, swap A[end] with A[left]
+	int pivot = nums[end];// Take A[end] as the pivot,
+	int left = start;
+	for (int i = start; i < end; i++) {
+	    if (nums[i] <= pivot) // Put numbers < pivot to pivot's left
+		swap(nums, left++, i);
+	}
+	swap(nums, left, end);// Finally, swap A[end] with A[left]
 
-        if (left == k)// Found kth smallest number						//find left from start to end
-            return nums[left];
-        else if (left < k)// Check right part
-            return findKthLargest(nums, left + 1, end, k);
-        else // Check left part
-            return findKthLargest(nums, start, left - 1, k);
-    } 
+	if (left == k)// Found kth smallest number //find left from start to end
+	    return nums[left];
+	else if (left < k)// Check right part
+	    return findKthLargest(nums, left + 1, end, k);
+	else // Check left part
+	    return findKthLargest(nums, start, left - 1, k);
+    }
 
 }

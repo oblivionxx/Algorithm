@@ -20,10 +20,11 @@ String
  */
 public class LT521_Longest_Uncommon_Subsequence_I {
     public int findLUSlength(String a, String b) {
-        //two strings are not of same length, it is clearly the longest one is the answer.
-        //Then for two strings with same length, if anyone of them has a char which the other string does not have, clearly the whole string's length is the answer.
-        //Then for two strings with same charset, one string is just a combination of chars of another string, I thought about the ordering of chars matters here. Then I got it, if they are not equal, we can quickly decide, which also covers case 2).
-        //you can always choose the longer string as the "Subsequence", and surely it cannot be the subsequence of the shorter one, the problem becomes a piece of cake.
-        return a.equals(b) ? -1 : Math.max(a.length(), b.length());
+	// two strings are not of same length, it is clearly the longest one is the answer.
+	// Then for two strings with same length, if anyone of them has a char which the other string does not have, clearly the whole string's length is the answer.
+	// Then for two strings with same charset, one string is just a combination of chars of another string, I thought about the ordering of chars matters here. Then I got it, if they are not
+	// equal, we can quickly decide, which also covers case 2).
+	// you can always choose the longer string as the "Subsequence", and surely it cannot be the subsequence of the shorter one, the problem becomes a piece of cake.
+	return a.equals(b) ? -1 : Math.max(a.length(), b.length());
     }
 }

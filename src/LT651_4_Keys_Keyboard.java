@@ -31,26 +31,27 @@ Math, Greedy, DP
  */
 public class LT651_4_Keys_Keyboard {
     public int maxA(int N) {
-        int[] dp = new int[N+1];
-        for(int i=1;i<=N;i++){
-            dp[i] = i;
-            for(int j=3;j<i;j++){
-                dp[i] = Math.max(dp[i], dp[i-j] * (j-1));           //dp[i-j] is how many As already there. (j-1) is to ctrl-c,a,v. j-1 at least *2. then j++, add one more ctrl-v. 
-            }
-        }
-        return dp[N];
+	int[] dp = new int[N + 1];
+	for (int i = 1; i <= N; i++) {
+	    dp[i] = i;
+	    for (int j = 3; j < i; j++) {
+		dp[i] = Math.max(dp[i], dp[i - j] * (j - 1)); // dp[i-j] is how many As already there. (j-1) is to ctrl-c,a,v. j-1 at least *2. then j++, add one more ctrl-v.
+	    }
+	}
+	return dp[N];
     }
-    
-     public int maxA2(int N) {
-         if (N <= 6)  return N;
-         int[] dp = new int[N + 1];
-         for (int i = 1; i <= 6; i++) {
-           dp[i] = i;
-         }
-         for (int i = 7; i <= N; i++) {
-           dp[i] = Math.max(dp[i - 4] * 3, dp[i - 5] * 4);
-           // dp[i] = Math.max(dp[i - 4] * 3, Math.max(dp[i - 5] * 4, dp[i - 6] * 5));
-         }
-         return dp[N];
-     }
+
+    public int maxA2(int N) {
+	if (N <= 6)
+	    return N;
+	int[] dp = new int[N + 1];
+	for (int i = 1; i <= 6; i++) {
+	    dp[i] = i;
+	}
+	for (int i = 7; i <= N; i++) {
+	    dp[i] = Math.max(dp[i - 4] * 3, dp[i - 5] * 4);
+	    // dp[i] = Math.max(dp[i - 4] * 3, Math.max(dp[i - 5] * 4, dp[i - 6] * 5));
+	}
+	return dp[N];
+    }
 }

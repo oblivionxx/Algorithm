@@ -6,34 +6,36 @@ Return a deep copy of the list.
 
 HashTable, Linkedlist
  */
-public class LT138_Copy_List_with_Random_Pointer {		
-	public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) return null;
-        Map<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
-        
-        // loop 1. copy all the nodes
-        RandomListNode node = head;
-        while (node != null) {
-            map.put(node, new RandomListNode(node.label));
-            node = node.next;
-        }
+public class LT138_Copy_List_with_Random_Pointer {
+    public RandomListNode copyRandomList(RandomListNode head) {
+	if (head == null)
+	    return null;
+	Map<RandomListNode, RandomListNode> map = new HashMap<RandomListNode, RandomListNode>();
 
-        // loop 2. assign next and random pointers. link with new next/random
-        node = head;
-        while (node != null) {
-            map.get(node).next = map.get(node.next);
-            map.get(node).random = map.get(node.random);
-            node = node.next;
-        }
+	// loop 1. copy all the nodes
+	RandomListNode node = head;
+	while (node != null) {
+	    map.put(node, new RandomListNode(node.label));
+	    node = node.next;
+	}
 
-        return map.get(head);
+	// loop 2. assign next and random pointers. link with new next/random
+	node = head;
+	while (node != null) {
+	    map.get(node).next = map.get(node.next);
+	    map.get(node).random = map.get(node.random);
+	    node = node.next;
+	}
+
+	return map.get(head);
     }
 }
 
 class RandomListNode {
-	int label;
-	RandomListNode next, random;
-	RandomListNode(int x){ 
-		this.label = x; 
-	}
+    int label;
+    RandomListNode next, random;
+
+    RandomListNode(int x) {
+	this.label = x;
+    }
 }

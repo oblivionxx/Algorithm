@@ -31,43 +31,52 @@ DP, Minimax
  */
 public class LT464_Can_I_Win {
     public boolean canIWin1(int maxChoosableInteger, int desiredTotal) {
-        if (desiredTotal<=0) return true;
-        if (maxChoosableInteger*(maxChoosableInteger+1)/2<desiredTotal) return false;
-        return canIWin1(desiredTotal, new int[maxChoosableInteger], new HashMap<>());
+	if (desiredTotal <= 0)
+	    return true;
+	if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal)
+	    return false;
+	return canIWin1(desiredTotal, new int[maxChoosableInteger], new HashMap<>());
     }
+
     private boolean canIWin1(int total, int[] state, HashMap<String, Boolean> hashMap) {
-        String curr=Arrays.toString(state);
-        if (hashMap.containsKey(curr)) return hashMap.get(curr);
-        for (int i=0;i<state.length;i++) {
-            if (state[i]==0) {
-                state[i]=1;
-                if (total<=i+1 || !canIWin1(total-(i+1), state, hashMap)) {
-                    hashMap.put(curr, true);
-                    state[i]=0;
-                    return true;
-                }
-                state[i]=0;
-            }
-        }
-        hashMap.put(curr, false);
-        return false;
+	String curr = Arrays.toString(state);
+	if (hashMap.containsKey(curr))
+	    return hashMap.get(curr);
+	for (int i = 0; i < state.length; i++) {
+	    if (state[i] == 0) {
+		state[i] = 1;
+		if (total <= i + 1 || !canIWin1(total - (i + 1), state, hashMap)) {
+		    hashMap.put(curr, true);
+		    state[i] = 0;
+		    return true;
+		}
+		state[i] = 0;
+	    }
+	}
+	hashMap.put(curr, false);
+	return false;
     }
-    
+
     public boolean canIWin2(int maxChoosableInteger, int desiredTotal) {
-        if (desiredTotal<=0) return true;
-        if (maxChoosableInteger*(maxChoosableInteger+1)/2<desiredTotal) return false;
-        return canIWin2(desiredTotal, maxChoosableInteger, 0, new HashMap<>());
+	if (desiredTotal <= 0)
+	    return true;
+	if (maxChoosableInteger * (maxChoosableInteger + 1) / 2 < desiredTotal)
+	    return false;
+	return canIWin2(desiredTotal, maxChoosableInteger, 0, new HashMap<>());
     }
+
     private boolean canIWin2(int total, int n, int state, HashMap<Integer, Boolean> hashMap) {
-        if (hashMap.containsKey(state)) return hashMap.get(state);
-        for (int i=0;i<n;i++) {
-            if ((state&(1<<i))!=0) continue;
-            if (total<=i+1 || !canIWin2(total-(i+1), n, state|(1<<i), hashMap)) {
-                hashMap.put(state, true);
-                return true;
-            }
-        }
-        hashMap.put(state, false);
-        return false;
+	if (hashMap.containsKey(state))
+	    return hashMap.get(state);
+	for (int i = 0; i < n; i++) {
+	    if ((state & (1 << i)) != 0)
+		continue;
+	    if (total <= i + 1 || !canIWin2(total - (i + 1), n, state | (1 << i), hashMap)) {
+		hashMap.put(state, true);
+		return true;
+	    }
+	}
+	hashMap.put(state, false);
+	return false;
     }
 }

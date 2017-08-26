@@ -10,26 +10,26 @@ BitManipulation, Array, Math
 
  */
 public class LT268_Missing_Number {
-	//1. XOR the array elements with 1~n
-	public int missingNumber(int[] nums) {
-        int res = 0;
-        for(int i=0;i<nums.length;i++){
-            res ^=(i+1)^nums[i];
-        }
-        
-        return res;
-    }
-	
-	//2. Sum up
-	public int missingNumber2(int[] nums) {
-        int len = nums.length;
+    // 1. XOR the array elements with 1~n
+    public int missingNumber(int[] nums) {
+	int res = 0;
+	for (int i = 0; i < nums.length; i++) {
+	    res ^= (i + 1) ^ nums[i];
+	}
 
-        int sum = 0;
-        for(int i=0;i<len;i++){   
-            sum+= nums[i];
-        }
- 
-        return (len+1)*len/2-sum;
- 
+	return res;
+    }
+
+    // 2. Sum up
+    public int missingNumber2(int[] nums) {
+	int len = nums.length;
+
+	int sum = 0;
+	for (int i = 0; i < len; i++) {
+	    sum += nums[i];
+	}
+
+	return (len + 1) * len / 2 - sum;
+
     }
 }

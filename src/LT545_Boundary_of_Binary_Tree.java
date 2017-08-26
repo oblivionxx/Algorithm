@@ -1,5 +1,7 @@
 import java.util.*;
 
+import utils.TreeNode;
+
 /*
  * Given a binary tree, return the values of its boundary in anti-clockwise direction starting from root. Boundary includes left boundary, leaves, and right boundary in order without duplicate nodes.
 
@@ -48,36 +50,48 @@ Tree
  */
 public class LT545_Boundary_of_Binary_Tree {
     List<Integer> res = new ArrayList<>(1000);
+
     public List<Integer> boundaryOfBinaryTree(TreeNode root) {
-        if(root == null) return res;
+	if (root == null)
+	    return res;
 
-        res.add(root.val);
-        leftBoundary(root.left);
-        leaves(root.left);
-        leaves(root.right);
-        rightBoundary(root.right);
+	res.add(root.val);
+	leftBoundary(root.left);
+	leaves(root.left);
+	leaves(root.right);
+	rightBoundary(root.right);
 
-        return res;
+	return res;
     }
+
     public void leftBoundary(TreeNode root) {
-        if(root == null || (root.left == null && root.right == null)) return;
-        res.add(root.val);
-        if(root.left == null) leftBoundary(root.right);
-        else leftBoundary(root.left);
+	if (root == null || (root.left == null && root.right == null))
+	    return;
+	res.add(root.val);
+	if (root.left == null)
+	    leftBoundary(root.right);
+	else
+	    leftBoundary(root.left);
     }
+
     public void rightBoundary(TreeNode root) {
-        if(root == null || (root.right == null && root.left == null)) return;
-        if(root.right == null)rightBoundary(root.left);
-        else rightBoundary(root.right);
-        res.add(root.val); // add after child visit(reverse)
+	if (root == null || (root.right == null && root.left == null))
+	    return;
+	if (root.right == null)
+	    rightBoundary(root.left);
+	else
+	    rightBoundary(root.right);
+	res.add(root.val); // add after child visit(reverse)
     }
+
     public void leaves(TreeNode root) {
-        if(root == null) return;
-        if(root.left == null && root.right == null) {
-            res.add(root.val);
-            return;
-        }
-        leaves(root.left);
-        leaves(root.right);
+	if (root == null)
+	    return;
+	if (root.left == null && root.right == null) {
+	    res.add(root.val);
+	    return;
+	}
+	leaves(root.left);
+	leaves(root.right);
     }
 }

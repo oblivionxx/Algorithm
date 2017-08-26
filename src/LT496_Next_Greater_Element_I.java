@@ -26,41 +26,43 @@ Stack
  */
 public class LT496_Next_Greater_Element_I {
     public int[] nextGreaterElement(int[] findNums, int[] nums) {
-        //loop findNums. find num in nums. then check its right in nums O(m*n)
-        int[] res = new int[findNums.length];
-        for(int i=0;i<findNums.length;i++){
-            int k=0, j=0;
-            for(;k<nums.length;k++){
-                if(findNums[i]==nums[k]) break;
-            }
-            
-            for(j=k+1;j<nums.length;j++){
-                if(nums[j]>nums[k]){
-                    res[i]=nums[j]; 
-                    break;
-                }
-            }
-            
-            if(j==nums.length) res[i]=-1;
-        }
-        
-        return res;
+	// loop findNums. find num in nums. then check its right in nums O(m*n)
+	int[] res = new int[findNums.length];
+	for (int i = 0; i < findNums.length; i++) {
+	    int k = 0, j = 0;
+	    for (; k < nums.length; k++) {
+		if (findNums[i] == nums[k])
+		    break;
+	    }
+
+	    for (j = k + 1; j < nums.length; j++) {
+		if (nums[j] > nums[k]) {
+		    res[i] = nums[j];
+		    break;
+		}
+	    }
+
+	    if (j == nums.length)
+		res[i] = -1;
+	}
+
+	return res;
     }
-    
+
     public int[] nextGreaterElement2(int[] findNums, int[] nums) {
-         //using stack O(n+m) to save the decreasing sequence. pop if find num in nums larger than stack
-         //using hashmap to store. <stack(i), num> num is the next greater for stack(i)
-         HashMap<Integer, Integer> map = new HashMap<>();
-         Stack<Integer> stk = new Stack<>();
-         for(int num:nums){
-             while(!stk.isEmpty() && stk.peek()<num){
-                 map.put(stk.pop(), num);
-             }
-             stk.push(num);
-         }
-         for(int i=0;i<findNums.length;i++){
-             findNums[i] = map.getOrDefault(findNums[i],-1);     //save space
-         }
-         return findNums;
+	// using stack O(n+m) to save the decreasing sequence. pop if find num in nums larger than stack
+	// using hashmap to store. <stack(i), num> num is the next greater for stack(i)
+	HashMap<Integer, Integer> map = new HashMap<>();
+	Stack<Integer> stk = new Stack<>();
+	for (int num : nums) {
+	    while (!stk.isEmpty() && stk.peek() < num) {
+		map.put(stk.pop(), num);
+	    }
+	    stk.push(num);
+	}
+	for (int i = 0; i < findNums.length; i++) {
+	    findNums[i] = map.getOrDefault(findNums[i], -1); // save space
+	}
+	return findNums;
     }
 }

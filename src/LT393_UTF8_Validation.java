@@ -36,33 +36,33 @@ Bit Manipulation
  */
 public class LT393_UTF8_Validation {
     public boolean validUtf8(int[] data) {
-        int i=0;
-        int count=0;
-        while(i<data.length){
-            int v = data[i];
-            if(count==0){                                   //check 1st data
-                if((v&240)==240 && (v&248)==240){           //1111xxxx     (248=11111000)
-                    count=3;
-                }else if(((v&224)==224) && (v&240)==224){   //111xxxxx
-                    count=2;
-                }else if((v&192)==192 && (v&224)==192){     //11xxxxxx
-                    count=1;
-                }else if((v|127)==127){                     //check 1byte character 0-127  0xx...xx|011...111=0111..1
-                    count=0;
-                }else{
-                    return false;
-                }
-            }else{                                         //check other data start with 10
-                if((v&128)==128 && (v&192)==128){          //10xxxxxxx
-                    count--;
-                }else{
-                    return false;
-                }
-            }
-     
-            i++;
-        }
-     
-        return count==0;
+	int i = 0;
+	int count = 0;
+	while (i < data.length) {
+	    int v = data[i];
+	    if (count == 0) { // check 1st data
+		if ((v & 240) == 240 && (v & 248) == 240) { // 1111xxxx (248=11111000)
+		    count = 3;
+		} else if (((v & 224) == 224) && (v & 240) == 224) { // 111xxxxx
+		    count = 2;
+		} else if ((v & 192) == 192 && (v & 224) == 192) { // 11xxxxxx
+		    count = 1;
+		} else if ((v | 127) == 127) { // check 1byte character 0-127 0xx...xx|011...111=0111..1
+		    count = 0;
+		} else {
+		    return false;
+		}
+	    } else { // check other data start with 10
+		if ((v & 128) == 128 && (v & 192) == 128) { // 10xxxxxxx
+		    count--;
+		} else {
+		    return false;
+		}
+	    }
+
+	    i++;
+	}
+
+	return count == 0;
     }
 }

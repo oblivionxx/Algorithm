@@ -1,4 +1,5 @@
 import java.util.*;
+import utils.Interval;
 
 /*
  Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
@@ -16,30 +17,30 @@ import java.util.*;
  * Array, Sort
  */
 public class LT057_Insert_Interval {
-	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-		List<Interval> res = new ArrayList<>();
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+	List<Interval> res = new ArrayList<>();
 
-		for (Interval elm : intervals) {
-			if (elm.end < newInterval.start) {
-				res.add(elm);
-			} else if (elm.start > newInterval.end) {
-				res.add(newInterval);
-				newInterval = elm;
-			} else { // need to merge elm and newInterval to newInterval
-				int nstart = Math.min(elm.start, newInterval.start);
-				int nend = Math.max(newInterval.end, elm.end);
-				newInterval = new Interval(nstart, nend); // cannot write to
-															// res.add(new
-															// Interval(nstart,
-															// nend))
-															// if like this,
-															// cannot pass
-															// [[1,5]], [2,3]
-															// case.
-			}
-		}
-
-		res.add(newInterval); // cannot forget
-		return res;
+	for (Interval elm : intervals) {
+	    if (elm.end < newInterval.start) {
+		res.add(elm);
+	    } else if (elm.start > newInterval.end) {
+		res.add(newInterval);
+		newInterval = elm;
+	    } else { // need to merge elm and newInterval to newInterval
+		int nstart = Math.min(elm.start, newInterval.start);
+		int nend = Math.max(newInterval.end, elm.end);
+		newInterval = new Interval(nstart, nend); // cannot write to
+							  // res.add(new
+							  // Interval(nstart,
+							  // nend))
+							  // if like this,
+							  // cannot pass
+							  // [[1,5]], [2,3]
+							  // case.
+	    }
 	}
+
+	res.add(newInterval); // cannot forget
+	return res;
+    }
 }

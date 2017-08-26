@@ -11,29 +11,27 @@ Array, Two Pointer, Binary Search
  */
 public class LT287_Find_the_Duplicate_Number {
 
-	public int findDuplicate(int[] nums) {
-	    /*
-	    那我们也就只能考虑用二分搜索法了，我们在区别[1, n]中搜索，首先求出中点mid，然后遍历整个数组，统计所有小于等于mid的数的个数，
-	    如果个数大于mid，重复值应在[1, mid-1]之间，
-	    此时的low就是我们要求的重复值，
-	    O(nlgn). binary O(lgn), each time search a<=mid. O(n)
-	    */
-        int low =1, high=nums.length-1;
-        while(low<=high){
-            int mid = (low+high)/2;
-            int cnt = 0;
-            for(int a:nums){
-                if(a<=mid) ++cnt;
-            }
-            
-            if(cnt<=mid)
-                low = mid+1;
-            else
-                high = mid-1;
-        }
-        
-        return low;
+    public int findDuplicate(int[] nums) {
+	/*
+	 * 那我们也就只能考虑用二分搜索法了，我们在区别[1, n]中搜索，首先求出中点mid，然后遍历整个数组，统计所有小于等于mid的数的个数， 如果个数大于mid，重复值应在[1, mid-1]之间， 此时的low就是我们要求的重复值， O(nlgn). binary O(lgn), each time search a<=mid. O(n)
+	 */
+	int low = 1, high = nums.length - 1;
+	while (low <= high) {
+	    int mid = (low + high) / 2;
+	    int cnt = 0;
+	    for (int a : nums) {
+		if (a <= mid)
+		    ++cnt;
+	    }
+
+	    if (cnt <= mid)
+		low = mid + 1;
+	    else
+		high = mid - 1;
+	}
+
+	return low;
     }
-	
-	//fast, slow pointer like linkedlist_cycle_ii
+
+    // fast, slow pointer like linkedlist_cycle_ii
 }
