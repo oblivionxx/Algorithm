@@ -54,4 +54,27 @@ public class LT467_Unique_Substrings_in_Wraparound_String {
         }
         return sum;
     }
+    
+    public int findSubstringInWraproundString2(String p) {
+        int []dp=new int[26];
+        for(int i = 0;i < 26;i++)
+        dp[i]=0;
+        int len=p.length();
+        int pos = 0;
+        for(int i = 0;i < len;i++){
+            if(i > 0 && (p.charAt(i) - p.charAt(i-1) == 1 || p.charAt(i) == 'a' && p.charAt(i-1) == 'z')){
+                pos ++;
+            }
+            else{
+                pos = 1;
+            }
+            dp[p.charAt(i) - 'a'] = Math.max(dp[p.charAt(i) - 'a'],pos);
+        }
+        int ans = 0;
+        for(int i = 0;i < 26;i++){
+            ans+=dp[i];
+        }
+        return ans;
+    }
+
 }
