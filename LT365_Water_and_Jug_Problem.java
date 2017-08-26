@@ -26,7 +26,7 @@ public class LT365_Water_and_Jug_Problem {
         //case x or y is zero
         if( x == z || y == z || x + y == z ) return true;
         
-        //get GCD, then we can use the property of Bézout's identity
+        ///get GCD, then we can use the property of Bézout's identity. ax+by=z 有整数解时当且仅当z是gcd的倍数
         return z%GCD(x, y) == 0;
     }
     

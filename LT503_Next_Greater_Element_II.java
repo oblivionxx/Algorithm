@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * Given a circular array (the next element of the last element is the first element of the array), print the Next Greater Number for every element. The Next Greater Number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, output -1 for this number.
 
@@ -13,34 +15,36 @@ Stack
  */
 public class LT503_Next_Greater_Element_II {
     public int[] nextGreaterElements(int[] nums) {
-        //brute force O(n^2)
-        int[] res = new int[nums.length];
-        for(int i=0;i<nums.length;i++){
-            int j = i+1;
-            for(;j<i+nums.length;j++){
-                if(nums[j%nums.length]>nums[i]){
-                    res[i] = nums[j%nums.length];
-                    break;
-                }
-                
-            }
-            if(j==i+nums.length) res[i]=-1;
-        }
-        
-        return res;
+	// brute force
+	int[] res = new int[nums.length];
+	for (int i = 0; i < nums.length; i++) {
+	    int j = i + 1;
+	    for (; j < i + nums.length; j++) {
+		if (nums[j % nums.length] > nums[i]) {
+		    res[i] = nums[j % nums.length];
+		    break;
+		}
+
+	    }
+	    if (j == i + nums.length)
+		res[i] = -1;
+	}
+
+	return res;
     }
-    
+
     // Stack O(n)
     public int[] nextGreaterElements2(int[] nums) {
-        int n = nums.length, res[] = new int[n];
-        Arrays.fill(res, -1);
-        Stack<Integer> stack = new Stack<>(); // index stack
-        for (int i = 0; i < n * 2; i++) {
-            int num = nums[i % n]; 
-            while (!stack.isEmpty() && nums[stack.peek()] < num)
-                res[stack.pop()] = num;
-            if (i < n) stack.push(i);
-        }   
-        return res;
+	int n = nums.length, res[] = new int[n];
+	Arrays.fill(res, -1);
+	Stack<Integer> stack = new Stack<>(); // index stack
+	for (int i = 0; i < n * 2; i++) {
+	    int num = nums[i % n];
+	    while (!stack.isEmpty() && nums[stack.peek()] < num)
+		res[stack.pop()] = num;
+	    if (i < n)
+		stack.push(i);
+	}
+	return res;
     }
 }

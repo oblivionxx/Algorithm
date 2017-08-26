@@ -56,8 +56,6 @@ public class LT044_Wildcard_Matching {
 					dp[i][j] = dp[i - 1][j - 1] && (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?');
 				} else {
 					dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
-					//match 0 sequence. dp[i][j] = dp[i][j-1]
-                    			//match >1 sequence, can be different letters. * can represent all letters in the end of s only if some dp[i-...][j]=true already. 
 				}
 			}
 		}

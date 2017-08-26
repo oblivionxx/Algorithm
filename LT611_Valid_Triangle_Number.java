@@ -19,6 +19,7 @@ Array
  */
 public class LT611_Valid_Triangle_Number {
     public int triangleNumber(int[] nums) {
+	//O(n^2 + nlogn)
         //Assume a=nums[i] is the longest edge, 
 	//b=nums[left] and c=nums[right] are shorter ones, to form a triangle, they need to satisfy len(b) + len(c) > len(a). Translate to 2sum smaller
         int result = 0;

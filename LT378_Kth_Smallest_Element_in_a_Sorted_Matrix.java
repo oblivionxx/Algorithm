@@ -47,4 +47,20 @@ public class LT378_Kth_Smallest_Element_in_a_Sorted_Matrix {
             return this.val - that.val;
         }
     }
+    
+    
+    // Can put all number in matrix to heap. just do a little bit more operations. 
+    public int kthSmallest2(int[][] matrix, int k) {
+        int n = matrix.length;
+        PriorityQueue<Tuple> pq = new PriorityQueue<Tuple>();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                pq.offer(new Tuple(i, j, matrix[i][j]));
+            }
+        }
+        for(int i = 0; i < k-1; i++) {
+            pq.poll();
+        }
+        return pq.poll().val;
+    }
 }

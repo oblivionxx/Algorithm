@@ -22,28 +22,32 @@ Reservoir Sampling
 public class LT382_Linked_List_Random_Node {
     /**
      * @param head
-     * The linked list's head. Note that the head is guaranteed to be not null, so it contains at least one node.
+     *            The linked list's head. Note that the head is guaranteed to be
+     *            not null, so it contains at least one node.
      */
-    ListNode head;
-    Random random;
+    ListNode head = null;
+    Random random = null;
 
     public LT382_Linked_List_Random_Node(ListNode head) {
         //http://blog.jobbole.com/42550/
         this.head = head;       
-        random = new Random();     
+        this.random = new Random();     
     }
 
     /** Returns a random node's value. */
     public int getRandom() {
 	// random. 1/i possibility to replace the value
-	ListNode c = head;
-	int r = c.val;
-	for (int i = 1; c.next != null; i++) { // read value in the stream
-	    c = c.next;
-	    if (random.nextInt(i + 1) == i) // random between [0,i+1)
-		r = c.val; // return value with 1/i possibility
+	ListNode result = null;
+	ListNode current = head;
+
+	for (int i = 1; current != null; i++) {
+	    if (random.nextInt(i) == 0) { // 1/i possibility
+		result = current;
+	    }
+	    current = current.next;
 	}
 
-	return r;
+	return result.val;
+
     }
 }

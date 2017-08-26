@@ -49,7 +49,6 @@ public class LT302_Smallest_Rectangle_Enclosing_Black_Pixels {
 
     //2.Normal DFS. Like island. O(mn)
     private int top, bottom, left, right;
-
     public int minArea2(char[][] image, int x, int y) {		//given x.y is a black pixel. connected black area
 	if (image.length == 0 || image[0].length == 0)
 	    return 0;
