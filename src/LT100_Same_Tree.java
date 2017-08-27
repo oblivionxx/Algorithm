@@ -7,7 +7,7 @@
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT100_Same_Tree {
     // Iterative

@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Reverse a linked list from position m to n. Do it in-place and in one-pass.

@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * Given a binary tree, return all duplicate subtrees. For each kind of duplicate subtrees, you only need to return the root node of any one of them.

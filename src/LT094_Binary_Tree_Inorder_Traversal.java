@@ -16,7 +16,7 @@ Tree, HashTable, Stack
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT094_Binary_Tree_Inorder_Traversal {
     // iterative

@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a binary tree, find the maximum path sum.

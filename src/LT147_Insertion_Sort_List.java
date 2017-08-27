@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Sort a linked list using insertion sort.

@@ -18,7 +18,7 @@ Tree
 
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT236_Lowest_Common_Ancestor_of_a_Binary_Tree {
     // recursive

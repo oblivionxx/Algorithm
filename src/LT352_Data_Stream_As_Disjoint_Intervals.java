@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.Interval;
+import common.Interval;
 
 /*
  * Given a data stream input of non-negative integers a1, a2, ..., an, ..., summarize the numbers seen so far as a list of disjoint intervals.

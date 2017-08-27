@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * You are given a binary tree in which each node contains an integer value.

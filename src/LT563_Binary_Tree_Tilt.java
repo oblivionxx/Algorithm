@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * Given a binary tree, return the tilt of the whole tree.

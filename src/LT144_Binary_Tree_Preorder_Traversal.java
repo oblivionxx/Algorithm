@@ -17,7 +17,7 @@ Tree, Stack
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT144_Binary_Tree_Preorder_Traversal {
     // 1. recursive

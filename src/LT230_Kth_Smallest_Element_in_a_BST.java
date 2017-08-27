@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.

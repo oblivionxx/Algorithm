@@ -16,7 +16,7 @@ Tree, DFS
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT257_Binary_Tree_Paths {
     public List<String> binaryTreePaths(TreeNode root) {

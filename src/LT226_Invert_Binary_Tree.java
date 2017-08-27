@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Invert a binary tree.

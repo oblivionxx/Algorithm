@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,

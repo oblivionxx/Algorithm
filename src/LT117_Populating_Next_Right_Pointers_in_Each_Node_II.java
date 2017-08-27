@@ -1,4 +1,4 @@
-import utils.TreeLinkNode;
+import common.TreeLinkNode;
 
 /*
 Follow up for problem "Populating Next Right Pointers in Each Node".

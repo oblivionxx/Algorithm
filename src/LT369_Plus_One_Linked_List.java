@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.

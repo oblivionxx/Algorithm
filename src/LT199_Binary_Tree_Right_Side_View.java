@@ -15,7 +15,7 @@ Tree, DFS, BFS
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT199_Binary_Tree_Right_Side_View {
     // BFS. Level order idea. when reach end of level, add to result.

@@ -37,7 +37,7 @@ HashTable
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT314_Binary_Tree_Vertical_Order_Traversal {
     public List<List<Integer>> verticalOrder(TreeNode root) {

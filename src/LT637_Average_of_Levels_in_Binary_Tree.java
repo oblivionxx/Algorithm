@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * Given a non-empty binary tree, return the average value of the nodes on each level in the form of an array.

@@ -1,4 +1,4 @@
-import utils.TreeLinkNode;
+import common.TreeLinkNode;
 
 /*
 Given a binary tree

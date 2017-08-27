@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * You need to find the largest value in each row of a binary tree.

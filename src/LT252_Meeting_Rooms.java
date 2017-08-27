@@ -10,7 +10,7 @@ Sort. check for overlap
  */
 import java.util.*;
 
-import utils.Interval;
+import common.Interval;
 
 public class LT252_Meeting_Rooms {
     public boolean canAttendMeetings(Interval[] intervals) {

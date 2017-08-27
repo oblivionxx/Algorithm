@@ -21,7 +21,7 @@ Tree, DFS
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT113_Path_Sum_II {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {

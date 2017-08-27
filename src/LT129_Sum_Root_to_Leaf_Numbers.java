@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.

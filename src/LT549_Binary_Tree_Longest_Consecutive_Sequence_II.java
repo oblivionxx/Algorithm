@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a binary tree, you need to find the length of Longest Consecutive Path in Binary Tree.

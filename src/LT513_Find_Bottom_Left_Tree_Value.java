@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
  * Given a binary tree, find the leftmost value in the last row of the tree.

@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Reverse a singly linked list.

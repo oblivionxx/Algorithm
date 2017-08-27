@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.NestedInteger;
+import common.NestedInteger;
 
 /*
  * Given a nested list of integers, implement an iterator to flatten it.

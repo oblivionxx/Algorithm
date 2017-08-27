@@ -1,4 +1,4 @@
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a complete binary tree, count the number of nodes.

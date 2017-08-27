@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-import utils.NestedInteger;
+import common.NestedInteger;
 
 /*
  * Given a nested list of integers represented as a string, implement a parser to deserialize it.

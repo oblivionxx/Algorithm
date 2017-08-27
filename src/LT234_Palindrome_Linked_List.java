@@ -1,4 +1,4 @@
-import utils.ListNode;
+import common.ListNode;
 
 /*
 Given a singly linked list, determine if it is a palindrome.

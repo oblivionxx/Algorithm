@@ -19,7 +19,7 @@ Tree, BFS
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT107_Binary_Tree_Level_Order_Traversal_II {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {

@@ -17,7 +17,7 @@ Tree, Stack
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT145_Binary_Tree_Postorder_Traversal {
     // recursion

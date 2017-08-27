@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.

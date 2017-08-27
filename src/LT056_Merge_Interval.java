@@ -11,7 +11,7 @@
  */
 import java.util.*;
 
-import utils.Interval;
+import common.Interval;
 
 public class LT056_Merge_Interval {
     public List<Interval> merge(List<Interval> intervals) {

@@ -15,7 +15,7 @@ Tree, DP
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT095_Unique_Binary_Search_Trees_II {
     public List<TreeNode> generateTrees(int n) {

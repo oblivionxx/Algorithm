@@ -1,5 +1,6 @@
 import java.util.*;
-import utils.Interval;
+
+import common.Interval;
 
 /*
  Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).

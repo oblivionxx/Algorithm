@@ -1,6 +1,6 @@
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 /*
 Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.

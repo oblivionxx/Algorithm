@@ -47,4 +47,56 @@ public class LT164_Maximum_Gap {
 
 	return maxGap;
     }
+
+    public int maximumGap2(int[] nums) {
+	// write your code here
+	// Bucket sort
+	int max = Integer.MIN_VALUE;
+	int min = Integer.MAX_VALUE;
+	int n = nums.length;
+	for (int num : nums) {
+	    max = Math.max(max, num);
+	    min = Math.min(min, num);
+	}
+
+	if (max == min) {
+	    return 0;
+	}
+
+	int bucketSize = (max - min) / n + 1;
+	int bucketNum = (max - min) / bucketSize + 1;
+	int[] bucketMin = new int[bucketNum];
+	int[] bucketMax = new int[bucketNum];
+	HashSet<Integer> set = new HashSet<Integer>();
+	for (int num : nums) {
+	    int index = (num - min) / bucketSize;
+	    if (!set.contains(index)) {
+		bucketMin[index] = num;
+		bucketMax[index] = num;
+		set.add(index);
+		continue;
+	    }
+
+	    if (bucketMin[index] > num) {
+		bucketMin[index] = num;
+	    }
+	    if (bucketMax[index] < num) {
+		bucketMax[index] = num;
+	    }
+	}
+
+	// 一定会有数落在0bucket里，因为index = (num - min) / bucketSize，当num = min时就落在0桶里，所以第一个非空的桶一定为0
+	int pre = 0;
+	int res = 0;
+	// 寻找下一个非空的桶，空的桶就跳过
+	for (int i = 1; i < bucketNum; i++) {
+	    if (!set.contains(i)) {
+		continue;
+	    }
+	    res = Math.max(res, bucketMin[i] - bucketMax[pre]);
+	    pre = i;
+	}
+
+	return res;
+    }
 }

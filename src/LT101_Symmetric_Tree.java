@@ -23,7 +23,7 @@ Bonus points if you could solve it both recursively and iteratively.
  */
 import java.util.*;
 
-import utils.TreeNode;
+import common.TreeNode;
 
 public class LT101_Symmetric_Tree {
     // iterative

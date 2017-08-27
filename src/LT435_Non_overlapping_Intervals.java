@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-import utils.Interval;
+import common.Interval;
 
 /*
  * Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
