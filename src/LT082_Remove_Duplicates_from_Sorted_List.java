@@ -22,9 +22,9 @@ public class LT082_Remove_Duplicates_from_Sorted_List {
 	    if (pre.next.val == pre.next.next.val) {
 		int dup = pre.next.val;
 		while (pre.next != null && pre.next.val == dup)
-		    pre.next = pre.next.next;
+		    pre.next = pre.next.next;					//update pre.next to point to non-duplicate ones
 	    } else {
-		pre = pre.next;
+		pre = pre.next;							//pre is always pointing to one before duplicated ones
 	    }
 	}
 

@@ -27,9 +27,7 @@ Heap, Design
 public class LT295_Find_Median_from_Data_Stream {
     /*
      * 维护MaxHeap + MinHeap 大顶堆中存储的元素 均不大于 小顶堆中的元素 MaxHeap.size() == MinHeap.size()，或者 MaxHeap.size() == MinHeap.size() + 1
-     * 
      * 当MaxHeap.size() == MinHeap.size() + 1时，中位数就是MaxHeap的堆顶元素 当MaxHeap.size() == MinHeap.size()时，中位数就是MaxHeap堆顶元素与MinHeap堆顶元素的均值
-     * 
      * PriorityQueue is minHeap, maxHeap可以通过对元素的值 * -1实现
      */
 

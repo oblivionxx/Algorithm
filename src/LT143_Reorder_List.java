@@ -12,51 +12,56 @@ Given {1,2,3,4}, reorder it to {1,4,2,3}.
 Linkedlist
  */
 public class LT143_Reorder_List {
-
-    // cut into two list. reverse the latter. combine together.
-    public void reorderList(ListNode head) {
-	if (head == null || head.next == null)
-	    return;
-
-	// find mid
-	ListNode slow = head;
-	ListNode fast = head;
-	while (fast.next != null && fast.next.next != null) {
-	    fast = fast.next.next;
-	    slow = slow.next;
-	}
-
-	// two start of the two halves
-	ListNode firsthalf = head;
-	ListNode secondhalf = slow.next;
-	slow.next = null;
-
-	// reverse next half
-	secondhalf = reverseList(secondhalf);
-
-	// connect. firsthalf is pointed to head.
-	while (firsthalf != null && secondhalf != null) {
-	    ListNode next = secondhalf.next; // tmp
-	    secondhalf.next = firsthalf.next;
-	    firsthalf.next = secondhalf;
-	    firsthalf = secondhalf.next;
-	    secondhalf = next;
-	}
+    private ListNode reverse(ListNode head) {
+        ListNode newHead = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = temp;
+        }
+        return newHead;
     }
 
-    public ListNode reverseList(ListNode head) {
-	if (head == null || head.next == null)
-	    return head;
+    private void merge(ListNode head1, ListNode head2) {
+        int index = 0;
+        ListNode dummy = new ListNode(0);
+        while (head1 != null && head2 != null) {
+            if (index % 2 == 0) {
+                dummy.next = head1;
+                head1 = head1.next;
+            } else {
+                dummy.next = head2;
+                head2 = head2.next;
+            }
+            dummy = dummy.next;
+            index ++;
+        }
+        if (head1 != null) {
+            dummy.next = head1;
+        } else {
+            dummy.next = head2;
+        }
+    }
 
-	ListNode next = null;
-	ListNode cur = null;
+    private ListNode findMiddle(ListNode head) {
+        ListNode slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
 
-	while (head != null) {
-	    next = head.next;
-	    head.next = cur;
-	    cur = head;
-	    head = next;
-	}
-	return cur;
+    public void reorderList(ListNode head) {
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        ListNode mid = findMiddle(head);
+        ListNode tail = reverse(mid.next);
+        mid.next = null;
+
+        merge(head, tail);
     }
 }

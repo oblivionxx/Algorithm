@@ -32,7 +32,10 @@ Heap.
 import java.util.*;
 
 public class LT239_Sliding_Window_Maximum {
-    // 1. deque. O(n)!!!
+    // 1. deque. O(n)  !!!
+    // 初始化第一个窗口（0-第k－1个元素），一次向deque中加入数组中的元素。每次加入新元素时，若deque中最后一个元素比新元素小，则删去，直到deque中最后一个元素比新元素大时停止（或deque为空时停止），然后加入新元素。
+    // 添加元素：从第k的元素开始，每次加入新元素时，若deque中最后一个元素比新元素小，则删去，直到deque中最后一个元素比新元素大时停止（或deque为空时停止），然后加入新元素。此时deque中第一个元素即为当前窗口的最大值，加入答案中。
+    // 删除元素：应该删去（当前位置－k）位置的元素，看deque第一个元素是否和要删除元素相等，若不相等则说明在之前的元素加入过程中该元素已经删去，则不用做任何操作，否则删去deque中第一个元素即可。
     public int[] maxSlidingWindow(int[] nums, int k) {
 	// Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
 	if (k == 0)

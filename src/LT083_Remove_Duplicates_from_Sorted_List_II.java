@@ -9,7 +9,7 @@ Given 1->1->2->3->3, return 1->2->3.
 
 LinkedList
  */
-public class LT083_Remove_Duplicates_from_Sorted_List {
+public class LT083_Remove_Duplicates_from_Sorted_List_II {
     public ListNode deleteDuplicates(ListNode head) {
 	if (head == null || head.next == null)
 	    return head;
