@@ -29,5 +29,26 @@ The k will be in the range [1, m * n]
 Binary Search
  */
 public class LT668_Kth_Largest_Number_In_Multiplication_Table {
-
+    //name is misleading. just find kth smallest.
+    public int findKthNumber(int m, int n, int k) {
+    	int low = 1 , high = m * n + 1;
+        
+    	while (low < high) {
+    	    int mid = low + (high - low) / 2;
+    	    int c = count(mid, m, n);
+    	    if (c >= k) high = mid;                 //mid" is not guaranteed to be an element in the m * n multiplication table. so cannot return mid when c=k
+            else low = mid + 1;
+    	}
+        
+    	return high;
+    }
+    
+    private int count(int v, int m, int n) {
+	    int count = 0;
+    	for (int i = 1; i <= m; i++) {
+            int temp = Math.min(v / i , n);         //count num <= target(v)
+            count += temp;
+	    }
+	    return count;
+    }
 }

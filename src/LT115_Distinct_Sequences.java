@@ -11,46 +11,28 @@ DP, String
 public class LT115_Distinct_Sequences {
     public int numDistinct(String S, String T) {
 	/**
-	 * Solution (DP): We keep a m*n matrix and scanning through string S, while m = T.length() + 1 and n = S.length() + 1 and each cell in matrix Path[i][j] means the number of distinct
-	 * subsequences of T.substr(1...i) in S(1...j)
-	 * 
-	 * Path[i][j] = Path[i][j-1] (discard S[j]) + Path[i-1][j-1] (S[j] == T[i] and we are going to use S[j]) or 0 (S[j] != T[i] so we could not use S[j]) while Path[0][j] = 1 and Path[i][0] = 0.
+	 * Solution (DP): DP[i][j]表示T的前j个字符能够在S的前i个字符中能够取的子字符串的数量。Scan in S. Init: DP[i][0]=1，即T的前0个字符总是能够成为S的一个子字符串. DP[0][j]=0(j>0)，即不可能有非空字符串是S的前0个字符的子字符串 对于S的第i位字符有两种情况：
+	 * 第一种为不能和T的j位字符匹配，则其值为S的前i－1位字符和T的前j位字符的匹配数；DP[i][j]=DP[i-1][j] 第二种情况为可以和T的第j位字符匹配，则其值为S的前i－1位字符和T的前j位字符的匹配数＋S的前i－1位字符和T的前j－1位字符的匹配数 DP[i][j]=DP[i-1][j]+DP[i-1][j-1]
 	 */
-
-	// Here we construct a matrix matrixDP, where each cell matrixDP[i][j] represents the number of solutions of placing substring B[0..i] with A[0..j];
-
-	// Case 1). matrixDP[0][j] = 1, since placing B = “” with any substring of A would have only 1 solution which is to delete all characters in A.
-
-	// Case 2). when i > 0, matrixDP[i][j] can be derived by two cases:
-
-	// case 2[a]). if B[i] != A[j], then the solution would be to ignore the character A[j] and align substring B[0..i] with A[0..(j-1)]. Therefore, matrixDP[i][j] = matrixDP[i][j-1].
-
-	// case 2[b]). if B[i] == A[j], then first we could have the solution in case a), but also we could match the characters B[i] and A[j] and place the rest of them (i.e. B[0..(i-1)] and
-	// A[0..(j-1)]. As a result, matrixDP[i][j] = matrixDP[i][j-1] + matrixDP[i-1][j-1]
-
-	// e.g. B = "b", A = "abc"
-
-	// matrixDP[1][2]=1: Place B'=b and A'=ab, only one solution, which is to remove character a in A'.
-
 	int sl = S.length();
 	int tl = T.length();
 
-	int[][] dp = new int[tl + 1][sl + 1];
+	int[][] dp = new int[sl + 1][tl + 1];
 
 	for (int i = 0; i <= sl; ++i) {
-	    dp[0][i] = 1;
+	    dp[i][0] = 1;
 	}
 
-	for (int t = 1; t <= tl; ++t) {
-	    for (int s = 1; s <= sl; ++s) {
-		if (T.charAt(t - 1) != S.charAt(s - 1)) {
-		    dp[t][s] = dp[t][s - 1];
+	for (int s = 1; s <= sl; s++) {
+	    for (int t = 1; t <= tl; t++) {
+		if (S.charAt(s - 1) != T.charAt(t - 1)) {
+		    dp[s][t] = dp[s - 1][t];
 		} else {
-		    dp[t][s] = dp[t][s - 1] + dp[t - 1][s - 1];
+		    dp[s][t] = dp[s - 1][t] + dp[s - 1][t - 1];
 		}
 	    }
 	}
 
-	return dp[tl][sl];
+	return dp[sl][tl];
     }
 }

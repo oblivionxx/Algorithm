@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /*
 Write a program to find the nth super ugly number.
@@ -73,42 +72,29 @@ public class LT313_Super_Ugly_Number {
 
     // Can we do better? Theoretically yes, by keep the one candidates for each
     // prime in a heap, it can improve the theoretical bound to O( log(k)N ),
-    // but in reality it's 58 ms. I think it's the result of using higher level
-    // object instead of primitive. Can be improved by writing an index heap
-    // (http://algs4.cs.princeton.edu/24pq/IndexMinPQ.java.html)
-    public int nthSuperUglyNumberHeap(int n, int[] primes) {
-	int[] ugly = new int[n];
+    public int nthSuperUglyNumber3(int n, int[] primes) {
+	// Write your code here
+	if (primes == null || primes.length == 0 || n <= 0) {
+	    return 0;
+	}
 
-	PriorityQueue<Num> pq = new PriorityQueue<>();
-	for (int i = 0; i < primes.length; i++)
-	    pq.add(new Num(primes[i], 1, primes[i]));
-	ugly[0] = 1;
+	Queue<Long> Q = new PriorityQueue<Long>();
+	HashSet<Long> inQ = new HashSet<Long>();
+	Q.add(Long.valueOf(1));
+	inQ.add(Long.valueOf(1));
 
 	for (int i = 1; i < n; i++) {
-	    ugly[i] = pq.peek().val;
-	    while (pq.peek().val == ugly[i]) {
-		Num nxt = pq.poll();
-		pq.add(new Num(nxt.p * ugly[nxt.idx], nxt.idx + 1, nxt.p));
+	    Long curt = Q.poll();
+	    for (int j = 0; j < primes.length; j++) {
+		Long next = curt * primes[j];
+		if (!inQ.contains(next)) {
+		    Q.add(next);
+		    inQ.add(next);
+		}
 	    }
 	}
 
-	return ugly[n - 1];
+	return Q.peek().intValue();
     }
 
-    private class Num implements Comparable<Num> {
-	int val;
-	int idx;
-	int p;
-
-	public Num(int val, int idx, int p) {
-	    this.val = val;
-	    this.idx = idx;
-	    this.p = p;
-	}
-
-	@Override
-	public int compareTo(Num that) {
-	    return this.val - that.val;
-	}
-    }
 }

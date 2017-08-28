@@ -11,7 +11,7 @@ The array may contain duplicates.
 
 Array, Binary Search
  */
-public class LT154_Find_Minimum_In_Rotated_Sorted_Array {
+public class LT154_Find_Minimum_In_Rotated_Sorted_Array_II {
     public int findMin(int[] nums) {
 	// allow duplicates
 	int left = 0, right = nums.length - 1;
@@ -28,5 +28,21 @@ public class LT154_Find_Minimum_In_Rotated_Sorted_Array {
 	}
 
 	return nums[left];
+    }
+    
+    public int findMin2(int[] num) {
+        // write your code here O(n)
+        if (num == null || num.length == 0){
+            return -1;
+        }
+        int mini = 0;
+
+        for(int i = 0; i < num.length; i++){
+            if(num[i] < num[mini]){
+                mini = i;
+            }
+        }
+
+        return num[mini];
     }
 }
