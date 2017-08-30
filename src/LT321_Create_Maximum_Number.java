@@ -23,26 +23,42 @@ DP, Greedy
  */
 public class LT321_Create_Maximum_Number {
     // In short we can first solve 2 simpler problem
-    // Create the maximum number of one array
-    // Create the maximum number of two array using all of their digits.
+    // Create the maximum number of one array with x numbers
+    // Create the maximum number of two array using all of their digits, k=m+n
     // The algorithm is O((m+n)^3) in the worst case. It runs in 22 ms.
+    // http://blog.csdn.net/u010025211/article/details/50527279
     public int[] maxNumber(int[] nums1, int[] nums2, int k) {
-	int n = nums1.length;
-	int m = nums2.length;
-	int[] ans = new int[k];
-	for (int i = Math.max(0, k - m); i <= k && i <= n; ++i) {
-	    int[] candidate = merge(maxArray(nums1, i), maxArray(nums2, k - i), k);
-	    if (greater(candidate, 0, ans, 0))
-		ans = candidate;
+	// Write your code here
+	int m = nums1.length, n = nums2.length;
+	int[] res = new int[k];
+	for (int i = Math.max(0, k - n); i <= k && i <= m; i++) {
+	    int[] candidate = mergeArray(maxArray(nums1, i), maxArray(nums2, k - i), k);
+	    if (greater(candidate, 0, res, 0))
+		res = candidate;
 	}
-	return ans;
+
+	return res;
     }
 
-    private int[] merge(int[] nums1, int[] nums2, int k) {
-	int[] ans = new int[k];
-	for (int i = 0, j = 0, r = 0; r < k; ++r)
-	    ans[r] = greater(nums1, i, nums2, j) ? nums1[i++] : nums2[j++];
-	return ans;
+    // find biggest number using k integers in nums
+    public int[] maxArray(int[] nums, int k) {
+	int[] res = new int[k];
+	for (int i = 0, j = 0; i < nums.length; i++) {
+	    while (nums.length - i + j > k && j > 0 && res[j - 1] < nums[i])
+		j--;
+	    if (j < k)
+		res[j++] = nums[i];
+	}
+	return res;
+    }
+
+    public int[] mergeArray(int[] nums1, int[] nums2, int k) {
+	int[] res = new int[k];
+	for (int i = 0, j = 0, r = 0; r < k; r++) {
+	    res[r] = greater(nums1, i, nums2, j) ? nums1[i++] : nums2[j++];
+	}
+
+	return res;
     }
 
     public boolean greater(int[] nums1, int i, int[] nums2, int j) {
@@ -51,17 +67,5 @@ public class LT321_Create_Maximum_Number {
 	    j++;
 	}
 	return j == nums2.length || (i < nums1.length && nums1[i] > nums2[j]);
-    }
-
-    public int[] maxArray(int[] nums, int k) {
-	int n = nums.length;
-	int[] ans = new int[k];
-	for (int i = 0, j = 0; i < n; ++i) {
-	    while (n - i + j > k && j > 0 && ans[j - 1] < nums[i])
-		j--;
-	    if (j < k)
-		ans[j++] = nums[i];
-	}
-	return ans;
     }
 }

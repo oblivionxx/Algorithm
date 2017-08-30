@@ -58,6 +58,38 @@ public class LT297_Serialize_and_Deserialize_Binary_Tree {
 	    return node;
 	}
     }
+
+//    // Encodes a tree to a single string.
+//    public String serialize(TreeNode root) {
+//	if (root == null) { // preorder sequence. split by , # for null
+//	    return "#,";
+//	}
+//	String res = root.val + ",";
+//	res += serialize(root.left);
+//	res += serialize(root.right);
+//	return res;
+//    }
+//
+//    // Decodes your encoded data to tree.
+//    public TreeNode deserialize(String data) {
+//	String[] strings = data.split(",");
+//	LinkedList<String> list = new LinkedList<>();
+//	for (String string : strings) {
+//	    list.add(string);
+//	}
+//	return reconPreOrder(list);
+//    }
+//
+//    public TreeNode reconPreOrder(LinkedList<String> queue) {
+//	String val = queue.poll();
+//	if (val.equals("#")) {
+//	    return null;
+//	}
+//	TreeNode head = new TreeNode(Integer.valueOf(val));
+//	head.left = reconPreOrder(queue); // in the preorder queue. root, left sub, right sub.
+//	head.right = reconPreOrder(queue); // after processing the left subtree nodes, the rest is for right subtree
+//	return head;
+//    }
 }
 
 // Your Codec object will be instantiated and called as such:
