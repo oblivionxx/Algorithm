@@ -40,7 +40,6 @@ public class LT369_Plus_One_Linked_List {
     }
 
     public ListNode reverseList(ListNode head) {
-
 	if (head == null)
 	    return head;
 	if (head.next == null)
@@ -50,4 +49,6 @@ public class LT369_Plus_One_Linked_List {
 	head.next = null;
 	return newHead;
     }
+    
+    //stack?
 }

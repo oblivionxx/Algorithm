@@ -37,6 +37,27 @@ public class LT374_Guess_Number_Higher_or_Lower {
     public int guess(int num) {
 	return 0;
     }
+
+    // jiuzhang template. 与传统的二分查找相比，该方法的最大差别就是不在while中就直接确定出最优解，而是通过 start + 1 < end, 保留两个可能的情况，然后再进行判定。
+    // 这种方式的好处是增加了算法的适用性，减少出错。dont have to check left=mid or mid+1 ... and avoid infinite loop in while.
+    public int guessNumber2(int n) {
+	int left = 1, right = n;
+	while (left < right - 1) {
+	    int mid = left + (right - left) / 2;
+	    int res = guess(mid);
+	    if (res == 0)
+		return mid;
+	    if (res == -1)
+		right = mid;
+	    else
+		left = mid;
+	}
+	if (guess(left) == 0)
+	    return left;
+	if (guess(right) == 0)
+	    return right;
+	return -1;
+    }
 }
 
 /*

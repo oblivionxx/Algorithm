@@ -34,7 +34,7 @@ public class LT398_Random_Pick_Index {
 	for (int i = 0; i < nums.length; i++) {
 	    if (nums[i] != target)
 		continue; // stream start when nums[i]==target
-	    if (rnd.nextInt(++count) == 0) // For the nth target, ++count is n. Then the probability that rnd.nextInt(++count)==0 is 1/n. Thus, the probability that return nth target is 1/n.
+	    if (rnd.nextInt(++count) == 0) // For the nth target, ++count is n+1. Then the probability that rnd.nextInt(++count)==0 is 1/n. Thus, the probability that return nth target is 1/n.
 		result = i;
 	}
 

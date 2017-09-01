@@ -65,4 +65,49 @@ public class LT362_Design_Hit_Counter {
 	    q.poll();
 	return q.size();
     }
+
+    // Follow up about concurrency and scale. hit 30000 in one timestamp, need lots of space to save in list. and need to delete all of them.
+    // what about save all the hit in one place. think about hashmap, linkedlist for a hash.
+    // no need to have a lock. will block the service
+    // 定义了两个大小为300的一维数组times和hits，分别用来保存时间戳和点击数，在点击函数中，将时间戳对300取余，然后看此位置中之前保存的时间戳和当前的时间戳是否一样,说明是同一个时间戳
+    // 那么对应的点击数自增1，如果不一样，说明已经过了五分钟了，那么将对应的点击数重置为1。那么在返回点击数时，我们需要遍历times数组，找出所有在5分中内的位置，然后把hits中对应位置的点击数都加起来即可，参见代码如下：
+    public class HitCounter {
+	private int[] times;
+	private int[] hits;
+
+	/** Initialize your data structure here. */
+	public HitCounter() {
+	    times = new int[300];
+	    hits = new int[300];
+	}
+
+	/**
+	 * Record a hit.
+	 * @param timestamp - The current timestamp (in seconds granularity).
+	 */
+	public void hit(int timestamp) {
+	    int index = timestamp % 300;
+	    if (times[index] != timestamp) {
+		times[index] = timestamp;
+		hits[index] = 1;
+	    } else {
+		hits[index]++;
+	    }
+	}
+
+	/**
+	 * Return the number of hits in the past 5 minutes.
+	 * 
+	 * @param timestamp - The current timestamp (in seconds granularity).
+	 */
+	public int getHits(int timestamp) {
+	    int total = 0;
+	    for (int i = 0; i < 300; i++) {
+		if (timestamp - times[i] < 300) {
+		    total += hits[i];
+		}
+	    }
+	    return total;
+	}
+    }
 }

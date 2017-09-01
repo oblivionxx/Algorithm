@@ -19,11 +19,13 @@ Return 167
 Divide and Conquer, DP
  */
 public class LT312_Burst_Ballons {
-    // O(n^3)
+    // O(n^3) https://kennyzhuang.gitbooks.io/algorithms-collection/content/burst_balloons.html
     public int maxCoins(int[] iNums) {
 	// O(n^3) coins you get for a balloon does not depend on the balloons already burst. Therefore instead of divide the problem by the first balloon to burst, we divide the problem by the last
 	// balloon to burst
 	// Find the maximal coins of a subrange by trying every possible final burst within that range
+	// Only the first and last balloons we are sure of their adjacent balloons before hand!
+	// For the first we have nums[i-1]nums[i]nums[i+1] for the last we have nums[-1]nums[i]nums[n].
 	int[] nums = new int[iNums.length + 2];
 	int n = 1;
 	for (int x : iNums)
@@ -37,7 +39,7 @@ public class LT312_Burst_Ballons {
 		int right = left + k;
 		for (int i = left + 1; i < right; ++i)
 		    dp[left][right] = Math.max(dp[left][right],
-			    nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);
+			    nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);			//left and right is outside range of i. so similar to nums[-1]*nums[i]*nums[n]
 	    }
 
 	return dp[0][n - 1];

@@ -33,10 +33,10 @@ public class LT356_Line_Reflection {
 	for (int i = 0; i < points.length; i++) {
 	    int x = points[i][0];
 	    int y = points[i][1];
-	    if (set.contains((sum - x) + " " + y))
-		set.remove((sum - x) + " " + y);
+	    if (!set.contains((sum - x) + " " + y))
+		return false;
 	}
 
-	return set.isEmpty();
+	return true;
     }
 }
