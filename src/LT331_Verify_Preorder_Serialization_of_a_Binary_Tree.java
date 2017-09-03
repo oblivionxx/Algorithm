@@ -38,7 +38,7 @@ public class LT331_Verify_Preorder_Serialization_of_a_Binary_Tree {
 	// case 1: we see a number, just push it to the stack
 	// case 2: we see #, check if the top of stack is also #
 	// if so, pop #, pop the number in a while loop, until top of stack is not #
-	// if not, push it to stack
+	// push it anyway to stack
 	// in the end, check if stack size is 1, and stack top is #
 	if (preorder == null) {
 	    return false;

@@ -37,8 +37,46 @@ public class LT462_Minimum_Moves_to_Equal_Array_Elements_II {
 	    j--;
 	}
 	return count;
-
-	// 2. optimize to O(n) used quick select to select the median element
-	// https://discuss.leetcode.com/topic/68758/java-o-n-time-using-quickselect/2
     }
+
+    // 2. optimize to O(n) used quick select to select the median element
+    // https://discuss.leetcode.com/topic/68758/java-o-n-time-using-quickselect/2
+    public int minMoves(int[] nums) {
+	int n = nums.length;
+	int median = findKth(nums, 0, n - 1, n / 2);
+	int sum = 0;
+	for (int i = 0; i < nums.length; i++)
+	    sum += Math.abs(nums[i] - median);
+	return sum;
+    }
+
+    public static int findKth(int[] nums, int start, int end, int k) {
+	if (start > end)
+	    return Integer.MAX_VALUE;
+	int left = partition(nums, start, end); // find left from start to end.
+	if (left == k)// Found kth smallest number
+	    return nums[left];
+	else if (left < k)// Check right part
+	    return findKth(nums, left + 1, end, k); // restrict range
+	else // Check left part
+	    return findKth(nums, start, left - 1, k);
+    }
+
+    public static int partition(int[] nums, int start, int end) {
+	int pivot = nums[end];// Take A[end] as the pivot,
+	int left = start;
+	for (int i = start; i < end; i++) {
+	    if (nums[i] <= pivot) // Put numbers < pivot to pivot's left
+		swap(nums, left++, i);
+	}
+	swap(nums, left, end);// Finally, swap A[end] with A[left]
+	return left;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+	int t = nums[i];
+	nums[i] = nums[j];
+	nums[j] = t;
+    }
+
 }

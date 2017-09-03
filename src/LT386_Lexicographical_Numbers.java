@@ -19,6 +19,7 @@ public class LT386_Lexicographical_Numbers {
 	    } else if (curr % 10 != 9 && curr + 1 <= n) {
 		curr++; // try 11, 12...19
 	    } else {
+		//eg. meet last number n or meet xx9
 		curr = curr / 10;
 		while (curr % 10 == 9) {
 		    curr = curr / 10;

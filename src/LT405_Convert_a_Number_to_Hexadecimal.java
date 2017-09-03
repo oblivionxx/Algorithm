@@ -32,7 +32,7 @@ public class LT405_Convert_a_Number_to_Hexadecimal {
 	    return "0";
 	String result = "";
 	while (num != 0) {
-	    result = map[(num & 15)] + result; // add before the calculated value
+	    result = map[(num & 15)] + result; // add before the calculated value. ~append(0,map[num%16])  ==> cannot use num%16 directly. as should use a not 10.
 	    num = (num >>> 4);
 	}
 	return result;

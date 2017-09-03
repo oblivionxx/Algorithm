@@ -35,7 +35,7 @@ public class LT324_Wiggle_Sort_II {
 	return (2 * i + 1) % (n | 1);
     }
 
-    public int findKth(int[] nums, int start, int end, int k) {
+    public static int findKth(int[] nums, int start, int end, int k) {
 	if (start > end)
 	    return Integer.MAX_VALUE;
 	int left = partition(nums, start, end); // find left from start to end.
@@ -47,7 +47,7 @@ public class LT324_Wiggle_Sort_II {
 	    return findKth(nums, start, left - 1, k);
     }
 
-    public int partition(int[] nums, int start, int end) {
+    public static int partition(int[] nums, int start, int end) {
 	int pivot = nums[end];// Take A[end] as the pivot,
 	int left = start;
 	for (int i = start; i < end; i++) {
@@ -58,13 +58,63 @@ public class LT324_Wiggle_Sort_II {
 	return left;
     }
 
-    private void swap(int[] nums, int i, int j) {
+    private static void swap(int[] nums, int i, int j) {
 	int t = nums[i];
 	nums[i] = nums[j];
 	nums[j] = t;
     }
     
+    public static void main(String[] args){
+	int[] nums = {1, 5, 1, 1, 6, 4};
+	System.out.println(findKth(nums, 0, 5, 3));
+    }
+
     // 若原数组长度为偶数，则为小->大->小。。。->大的形式，小的数从后往前(len - 2)寻找位置插入，大的数从前往后(1)寻找位置插入
     // 若原数组长度为奇数，则为大->小->大。。。->小的形式，小的数从前往后(0)寻找位置插入，大的数从后往前(len - 2)寻找位置插入
-}
+    // dumber insert.
+    public void wiggleSort2(int[] nums) {
+	// Write your code here
+	if (nums == null || nums.length <= 1) {
+	    return;
+	}
 
+	int n = nums.length, mid = (n + 1) >> 1;
+	int avg = findKth(nums, 0, n - 1, mid);
+	int[] ans = new int[nums.length];
+	for (int i = 0; i < nums.length; i++) {
+	    ans[i] = avg;
+	}
+
+	int l, r;
+	if (nums.length % 2 == 0) {
+	    l = nums.length - 2;
+	    r = 1;
+	    for (int i = 0; i < nums.length; i++) {
+		if (nums[i] < avg) {
+		    ans[l] = nums[i];
+		    l -= 2;
+		} else if (nums[i] > avg) {
+		    ans[r] = nums[i];
+		    r += 2;
+		}
+	    }
+	} else {
+	    l = 0;
+	    r = nums.length - 2;
+	    for (int i = 0; i < nums.length; i++) {
+		if (nums[i] < avg) {
+		    ans[l] = nums[i];
+		    l += 2;
+		} else if (nums[i] > avg) {
+		    ans[r] = nums[i];
+		    r -= 2;
+		}
+	    }
+	}
+
+	for (int i = 0; i < nums.length; i++) {
+	    nums[i] = ans[i];
+	}
+    }
+
+}

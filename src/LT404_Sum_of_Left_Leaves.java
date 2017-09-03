@@ -15,7 +15,7 @@ There are two left leaves in the binary tree, with values 9 and 15 respectively.
 
 Tree
  */
-public class LT403_Sum_of_Left_Leaves {
+public class LT404_Sum_of_Left_Leaves {
     public int sumOfLeftLeaves(TreeNode root) {
 	if (root == null)
 	    return 0;
