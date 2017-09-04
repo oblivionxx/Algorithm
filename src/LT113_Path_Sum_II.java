@@ -34,7 +34,6 @@ public class LT113_Path_Sum_II {
     }
 
     public void dfs(TreeNode root, int sum, List<List<Integer>> rst, List<Integer> cur) {
-
 	cur.add(root.val);
 	if (root.left == null && root.right == null && sum == root.val) {
 	    rst.add(cur);

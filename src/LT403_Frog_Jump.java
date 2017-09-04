@@ -50,23 +50,23 @@ public class LT403_Frog_Jump {
 	HashMap<Integer, HashSet<Integer>> map = new HashMap<Integer, HashSet<Integer>>(stones.length);
 	map.put(0, new HashSet<Integer>());
 	map.get(0).add(1);
-	for (int i = 1; i < stones.length; i++) {
+	for (int i = 1; i < stones.length; i++) { // map<stonePos, setOfPossibleStep>
 	    map.put(stones[i], new HashSet<Integer>());
 	}
 
 	for (int i = 0; i < stones.length - 1; i++) {
-	    int stone = stones[i];
-	    for (int step : map.get(stone)) {
-		int reach = step + stone;
-		if (reach == stones[stones.length - 1]) {
+	    int stone = stones[i]; 			// loop all possible step of curStone
+	    for (int step : map.get(stone)) { 		// map.get(stone) can be emptySet. as one stone could be NOT able to reach.
+		int reach = step + stone; 		// find possible reach.
+		if (reach == stones[stones.length - 1]) { // if reach the last stone. return true
 		    return true;
 		}
-		HashSet<Integer> set = map.get(reach);
-		if (set != null) {
-		    set.add(step);
+
+		if (map.containsKey(reach)) { 		// set could be null when reach is not a stone.
+		    map.get(reach).add(step);
 		    if (step - 1 > 0)
-			set.add(step - 1);
-		    set.add(step + 1);
+			map.get(reach).add(step - 1);
+		    map.get(reach).add(step + 1);
 		}
 	    }
 	}
@@ -74,7 +74,7 @@ public class LT403_Frog_Jump {
 	return false;
     }
 
-    // dp
+    // dp ?
     public boolean canCross2(int[] stones) {
 	HashMap<Integer, Set<Integer>> map = new HashMap<>();
 	for (int i = 0; i < stones.length; i++) {

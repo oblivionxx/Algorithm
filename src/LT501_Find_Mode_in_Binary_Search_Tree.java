@@ -55,4 +55,7 @@ public class LT501_Find_Mode_in_Binary_Search_Tree {
 	    inorder(node.right);
 	}
     }
+
+    // Follow up
+    // 二叉搜索树的中序遍历的结果恰好是所有数的递增序列，根据中序遍历结果，对于当前遍历结点，标记maxCount为最大出现次数，tempCount为当前数字出现的次数，currentVal为当前保存的值。
 }

@@ -18,8 +18,8 @@ The range of n is [1,8].
  */
 public class LT479_Largest_Palindrome_Product {
     /*
-     * find the max number that product of two number try first largest palindrome, then second ... verify if the palindrome can be formed by production of two i digit number. repeat this until the
-     * palindrome has been found.
+     * find the max number that product of two number try first largest palindrome, then second ... verify if the palindrome can be formed by production of two i digit number. 
+     * repeat this until the palindrome has been found.
      */
     public int largestPalindrome(int n) {
 	// if input is 1 then max is 9
@@ -27,7 +27,7 @@ public class LT479_Largest_Palindrome_Product {
 	    return 9;
 	}
 
-	// if n = 3 then upperBound = 999 and lowerBound = 99
+	// eg: if n = 3 then upperBound = 999 and lowerBound = 99
 	int upperBound = (int) Math.pow(10, n) - 1, lowerBound = upperBound / 10;
 	long maxNumber = (long) upperBound * (long) upperBound;
 

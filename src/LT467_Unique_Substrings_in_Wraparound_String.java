@@ -8,7 +8,6 @@ Note: p consists of only lowercase English letters and the size of p might be ov
 Example 1:
 Input: "a"
 Output: 1
-
 Explanation: Only the substring "a" of string "a" is in the string s.
 Example 2:
 Input: "cac"

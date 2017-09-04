@@ -43,10 +43,8 @@ public class LT530_Minimum_Absolute_Difference_in_BST {
 	return min;
     }
 
-    // follow up. just BS. traverse the tree and then sort the values. get min
-    // diff.
+    // follow up. just BS. traverse the tree and then sort the values. get min diff.
     // or use treeset. time complexity O(NlgN), space complexity O(N).
-
     public static int getMinimumDifference2(TreeNode root) {
 	int[] res = { Integer.MAX_VALUE };
 	helper(root, Integer.MIN_VALUE, Integer.MAX_VALUE, res);
