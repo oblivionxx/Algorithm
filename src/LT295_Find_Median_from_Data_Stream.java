@@ -30,7 +30,6 @@ public class LT295_Find_Median_from_Data_Stream {
      * 当MaxHeap.size() == MinHeap.size() + 1时，中位数就是MaxHeap的堆顶元素 当MaxHeap.size() == MinHeap.size()时，中位数就是MaxHeap堆顶元素与MinHeap堆顶元素的均值
      * PriorityQueue is minHeap, maxHeap可以通过对元素的值 * -1实现
      */
-
     PriorityQueue<Integer> minheap = new PriorityQueue<>(); // store bigger
 							    // elements
     PriorityQueue<Integer> maxheap = new PriorityQueue<>(new Comparator<Integer>() {

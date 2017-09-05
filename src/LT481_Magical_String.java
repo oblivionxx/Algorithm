@@ -11,7 +11,7 @@ If we group the consecutive '1's and '2's in S, it will be:
 
 and the occurrences of '1's or '2's in each group are:
 
-1 2	2 1 1 2 1 2 2 1 2 2 ......
+1 2 2 1 1 2 1 2 2 1 2 2 ......
 
 You can see that the occurrence sequence above is the S itself.
 

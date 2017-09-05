@@ -24,7 +24,6 @@ public class LT493_Reverse_Pairs {
     // https://discuss.leetcode.com/topic/79227/general-principles-behind-problems-similar-to-reverse-pairs
 
     // 1. MergeSort
-    //
     // Explanation: In each round, we divide our array into two parts and sort them. So after "int cnt = mergeSort(nums, s, mid) + mergeSort(nums, mid+1, e); ", the left part and the right part are
     // sorted and now our only job is to count how many pairs of number (leftPart[i], rightPart[j]) satisfies leftPart[i] <= 2*rightPart[j].
     // For example,

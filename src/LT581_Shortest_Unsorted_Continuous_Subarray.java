@@ -22,7 +22,7 @@ public class LT581_Shortest_Unsorted_Continuous_Subarray {
 	int n = nums.length;
 	int[] temp = new int[n];
 	for (int i = 0; i < n; i++)
-	    temp[i] = nums[i];
+	    temp[i] = nums[i];			//copyOf
 	Arrays.sort(temp);
 
 	int start = 0;

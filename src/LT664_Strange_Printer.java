@@ -19,11 +19,9 @@ DP, DFS
  */
 public class LT664_Strange_Printer {
     /*
-     * 就拿aba来说，最优路径是aaa -> b，所以对于打印机来说，打印单个a和多个a的代价是一样的，在考虑问题时，直接打印多个即可。那么接下来就要找出代价会变小的原因。 aabb 方案1： aaaa -> bb 方案2： aa —> bb 方案1与方案2等价
-     * 
-     * aaba 方案1： aaaa —> b 方案2： aa -> b -> a 方案1优于方案2
-     * 
-     * 所以找到了优化准则： 对于被a包裹的子问题b可以用递归求解，那么问题就变成了，如何遍历所有可能的包裹方案。 用dp[i][j]表示在某个区间内的最小代价， 现在假设第i个位置的字符为a，那么在i和j的范围内，找寻下一个字符为a，记作下标为m，则可以将问题划分为：dp[i + 1][m - 1] 和 dp[m][j]
+     * 就拿aba来说，最优路径是aaa -> b，所以对于打印机来说，打印单个a和多个a的代价是一样的，在考虑问题时，直接打印多个即可。那么接下来就要找出代价会变小的原因。 aabb 方案1： aaaa -> bb 方案2： aa —> bb 方案1与方案2等价 aaba 方案1： aaaa —> b 方案2： aa -> b -> a 方案1优于方案2 所以找到了优化准则：
+     * 对于被a包裹的子问题b可以用递归求解，那么问题就变成了，如何遍历所有可能的包裹方案aa...b...a。 用dp[i][j]表示在某个区间内的最小代价， 现在假设第i个位置的字符为a，那么在i和j的范围内，找寻下一个字符为a，记作下标为m，则可以将问题划分为：dp[i + 1][m - 1] 和 dp[m][j]
+     * https://discuss.leetcode.com/topic/100240/java-o-n-3-dp-solution-with-explanation-and-simple-optimization
      */
     public int strangePrinter(String s) {
 	int[][] dp = new int[101][101];

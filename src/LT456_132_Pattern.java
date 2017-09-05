@@ -27,6 +27,7 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 Stack
  */
 public class LT456_132_Pattern {
+    //O(n^2)
     public boolean find132pattern(int[] nums) {
 	for (int j = 0, min = Integer.MAX_VALUE; j < nums.length; j++) {
 	    min = Math.min(nums[j], min);
@@ -42,6 +43,7 @@ public class LT456_132_Pattern {
 	return false;
     }
 
+    // O(n)
     // https://leetcode.com/problems/132-pattern/solution/#approach-4-using-stack-accepted
     public boolean find132pattern2(int[] nums) {
 	if (nums.length < 3)
@@ -50,10 +52,10 @@ public class LT456_132_Pattern {
 	int[] min = new int[nums.length];
 	min[0] = nums[0];
 	for (int i = 1; i < nums.length; i++)
-	    min[i] = Math.min(min[i - 1], nums[i]);
+	    min[i] = Math.min(min[i - 1], nums[i]);		//track min on the left of current number.min[p]≤min[q] for every p>q.
 	for (int j = nums.length - 1; j >= 0; j--) {
-	    if (nums[j] > min[j]) {
-		while (!stack.isEmpty() && stack.peek() <= min[j])
+	    if (nums[j] > min[j]) {				
+		while (!stack.isEmpty() && stack.peek() <= min[j])		//stack.peek<nums[j]. stack.peek>min[j]
 		    stack.pop();
 		if (!stack.isEmpty() && stack.peek() < nums[j])
 		    return true;

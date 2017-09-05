@@ -40,4 +40,11 @@ public class LT658_Find_K_Closest_Elements {
 	    return arr.subList(low, high + 1);
 	}
     }
+
+    public List<Integer> findClosestElements2(List<Integer> arr, int k, int x) {
+	Collections.sort(arr, (a, b) -> a == b ? a - b : Math.abs(a - x) - Math.abs(b - x));
+	arr = arr.subList(0, k);
+	Collections.sort(arr);
+	return arr;
+    }
 }

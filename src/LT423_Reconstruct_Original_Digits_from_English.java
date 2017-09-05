@@ -1,5 +1,5 @@
 /*
- * iven a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
+ * Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
 
 Note:
 Input contains only lowercase English letters.

@@ -25,6 +25,10 @@ public class LT487_Max_Consecutive_Ones_II {
 		q = h;
 	    }
 	    max = Math.max(max, h - l + 1);
+	    //update max when h meet 1. 
+	    //update l and q when h meet 0.
+	    //q is the position of 0s in the middle
+	    //l is always move to 0s.
 	}
 	return max;
     }

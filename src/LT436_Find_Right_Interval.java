@@ -37,8 +37,7 @@ Binary Search
 public class LT436_Find_Right_Interval {
     public int[] findRightInterval(Interval[] intervals) {
 	// 1. use treemap<start, index>
-	// 2. if not sort by start. For each end, find leftmost start using binary search. need a map to store index
-	// https://discuss.leetcode.com/topic/67399/java-concise-binary-search
+	
 	int[] result = new int[intervals.length]; // store index
 	TreeMap<Integer, Integer> intervalMap = new TreeMap<>();
 
@@ -52,5 +51,42 @@ public class LT436_Find_Right_Interval {
 	}
 
 	return result;
+    }
+    
+    // 2. sort by start. For each end, find leftmost start using binary search. need a map to store index
+    // Binary Search
+    public int[] findRightInterval2(Interval[] intervals) {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> starts = new ArrayList<>();
+        for (int i = 0; i < intervals.length; i++) {
+            map.put(intervals[i].start, i);
+            starts.add(intervals[i].start);
+        }
+
+        Collections.sort(starts);
+        int[] res = new int[intervals.length];
+        for (int i = 0; i < intervals.length; i++) {
+            int end = intervals[i].end;
+            int start = binarySearch(starts, end);          //dont use Arrays.binarySearch. will not return the correct start index that >"=" end
+            if (start < end) {
+                res[i] = -1;
+            } else {
+                res[i] = map.get(start);
+            }
+        }
+        return res;
+    }
+
+    public int binarySearch(List<Integer> list, int x) {
+        int left = 0, right = list.size() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (list.get(mid) < x) { 
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return list.get(left);
     }
 }

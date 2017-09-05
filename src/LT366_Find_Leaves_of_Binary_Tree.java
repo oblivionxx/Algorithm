@@ -32,8 +32,8 @@ Returns [4, 5, 3], [2], [1].
 Tree, DFS
  */
 public class LT366_Find_Leaves_of_Binary_Tree {
+    //Bottom up
     List<List<Integer>> res = new ArrayList<>();
-
     public List<List<Integer>> findLeaves(TreeNode root) {
 	helper(root);
 	return res;

@@ -104,7 +104,7 @@ public class LT425_Word_Squares {
     }
 
     private void buildTrie(String[] words) {
-	for (String word : words) {
+	for (String word : words) {				//each node in the path will has the "WORD" saved.
 	    TrieNode node = root;
 	    char[] array = word.toCharArray();
 	    for (char c : array) {

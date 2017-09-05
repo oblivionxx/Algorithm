@@ -57,7 +57,7 @@ Note: Answer will in the range of 32-bit signed integer.
 Tree
  */
 public class LT662_Maximum_Width_of_Binary_Tree {
-    // Always make the id of left child as parent_id * 2; Always make the id of right child as parent_id * 2 + 1;
+    // Put node into array. Always make the id of left child as parent_id * 2; Always make the id of right child as parent_id * 2 + 1;
     // So we can just: Record the id of left most node at each level of the tree
     public int widthOfBinaryTree(TreeNode root) {
 	List<Integer> lefts = new ArrayList<Integer>(); // left most nodes at each level;
