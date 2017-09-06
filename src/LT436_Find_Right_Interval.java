@@ -37,7 +37,6 @@ Binary Search
 public class LT436_Find_Right_Interval {
     public int[] findRightInterval(Interval[] intervals) {
 	// 1. use treemap<start, index>
-	
 	int[] result = new int[intervals.length]; // store index
 	TreeMap<Integer, Integer> intervalMap = new TreeMap<>();
 

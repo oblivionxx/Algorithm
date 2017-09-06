@@ -169,8 +169,8 @@ public class LT308_Range_Sum_Query_2D_Mutable {
 
 	public int sumRegion(int row1, int col1, int row2, int col2) {
 	    int newX1 = Math.max(row1, x1);
-	    int newX2 = Math.min(row2, x2);
 	    int newY1 = Math.max(col1, y1);
+	    int newX2 = Math.min(row2, x2);
 	    int newY2 = Math.min(col2, y2);
 	    if (x1 == newX1 && x2 == newX2 && y1 == newY1 && y2 == newY2) {
 		return sum;

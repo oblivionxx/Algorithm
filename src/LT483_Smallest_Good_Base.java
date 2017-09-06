@@ -25,13 +25,12 @@ Binary Search, Math
  */
 public class LT483_Smallest_Good_Base {
     // loop k. search x with binary search. return smallest x.
-    // n = qual to x^(k-1) + x^(k-2) + ... + x + 1. nx + 1 = x^k + n. put n on left side => n * (x - 1) = x^k -1
+    // n = x^(k-1) + x^(k-2) + ... + x + 1. nx + 1 = x^k + n. put n on left side => n * (x - 1) = x^k -1
     public String smallestGoodBase(String n) {
 	BigInteger N = new BigInteger(n);
 	long base = Long.MAX_VALUE;
 
 	for (int k = 2; k < 66; k++) {
-
 	    long l = 2, r = Long.MAX_VALUE;
 	    while (l <= r) {
 		long mid = l + (r - l) / 2;

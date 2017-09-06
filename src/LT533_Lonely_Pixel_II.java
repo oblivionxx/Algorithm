@@ -64,9 +64,9 @@ public class LT533_Lonely_Pixel_II {
 		continue;
 	    if (picture[i][j] == 'B') { // other row should be the same as row index
 		if (rows[index] != rows[i])
-		    return false; // violates rule2
+		    return false; 	// number of Black points is different in row index and row i.
 		for (int col = 0; col < n; col++) {
-		    if (picture[i][col] != picture[index][col])
+		    if (picture[i][col] != picture[index][col])		//check each column in row index and row col.
 			return false;
 		}
 	    }

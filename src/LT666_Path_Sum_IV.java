@@ -36,7 +36,6 @@ public class LT666_Path_Sum_IV {
     //   0   1     2   3
     // 0 1  2 3   4 5  6 7
     // Regardless whether these nodes exist:
-
     // the position of left child is always parent_pos * 2;
     // the position of right child is alwaysparent_pos * 2 + 1;
     // the position of parent is always child_pos / 2;

@@ -1,7 +1,7 @@
 import java.util.*;
 
 /*
- * ou are given an integer array sorted in ascending order (may contain duplicates), you need to split them into several subsequences, where each subsequences consist of at least 3 consecutive integers. Return whether you can make such a split.
+ * You are given an integer array sorted in ascending order (may contain duplicates), you need to split them into several subsequences, where each subsequences consist of at least 3 consecutive integers. Return whether you can make such a split.
 
 Example 1:
 Input: [1,2,3,3,4,5]
@@ -45,7 +45,7 @@ public class LT659_Split_Array_into_Consecutive_Subsequences {
 		freq.put(i + 2, freq.get(i + 2) - 1);
 		appendfreq.put(i + 3, appendfreq.getOrDefault(i + 3, 0) + 1);
 	    } else
-		return false; // doesn't belong to any consecutive sequence
+		return false; // doesn't belong to any consecutive sequence. EG 12334. 2nd 3 will go to this line
 
 	}
 	return true;

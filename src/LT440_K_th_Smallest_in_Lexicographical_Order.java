@@ -16,7 +16,7 @@ The lexicographical order is [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9], so the
 
  */
 public class LT440_K_th_Smallest_in_Lexicographical_Order {
-    // Actually this is a denary tree (each node has 10 children). Find the kth element is to do a k steps preorder traverse of the tree.the idea is to calculate the steps between curr and curr + 1
+    // Actually this is a de-nary tree (each node has 10 children). Find the kth element is to do a k steps preorder traverse of the tree.the idea is to calculate the steps between curr and curr + 1
     // (neighbor nodes in same level), in order to skip some unnecessary moves.
     public int findKthNumber(int n, int k) {
 	int curr = 1;

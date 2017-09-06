@@ -74,7 +74,6 @@ public class LT499_The_Maze_III {
 		continue;
 
 	    for (int k = 0; k < 4; k++) {
-
 		int i = cur[0], j = cur[1];
 		int count = 0;
 		while ((i != hole[0] || j != hole[1]) && i + dx[k] >= 0 && i + dx[k] < m && j + dy[k] >= 0
