@@ -54,10 +54,10 @@ public class LT499_The_Maze_III {
     // https://discuss.leetcode.com/topic/77074/clear-java-accepted-dfs-solution-with-explanation/2
     public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
 	int m = maze.length, n = maze[0].length;
-	int[][] length = new int[m][n];
+	int[][] length = new int[m][n];				//save how many counts to roll to this.(not turns)
 
 	String[][] path = new String[m][n];
-	for (String[] items : path)
+	for (String[] items : path)				//save the turns path
 	    Arrays.fill(items, new String());
 
 	Queue<int[]> q = new LinkedList<>();
@@ -71,7 +71,7 @@ public class LT499_The_Maze_III {
 	while (!q.isEmpty()) {
 	    int[] cur = q.poll();
 	    if (Arrays.equals(cur, hole))
-		continue;
+		continue;				//use continue.. as there could be other path to hole that is shorter.
 
 	    for (int k = 0; k < 4; k++) {
 		int i = cur[0], j = cur[1];
@@ -83,10 +83,10 @@ public class LT499_The_Maze_III {
 		    j += dy[k];
 		}
 
-		if ((i != ball[0] || j != ball[1])
+		if ((i != ball[0] || j != ball[1])						//when new rolled position's previous count is larger or turns is more. can update with current path
 			&& (length[i][j] == 0 || length[i][j] > length[cur[0]][cur[1]] + count
 				|| (length[i][j] == length[cur[0]][cur[1]] + count
-					&& path[i][j].compareTo(path[cur[0]][cur[1]] + step[k]) > 0))) {
+					&& path[i][j].compareTo(path[cur[0]][cur[1]] + step[k]) > 0))) {	
 
 		    path[i][j] = path[cur[0]][cur[1]] + step[k];
 		    length[i][j] = length[cur[0]][cur[1]] + count;

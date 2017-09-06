@@ -37,7 +37,7 @@ public class LT527_Word_Abbreviation {
 		    break; // if not empty, need to recalculate abbreviation
 		set.add(i);
 		for (int k : set)
-		    ans[k] = makeAbbr(dict.get(k), ++prefix[k]); // increase the prefix
+		    ans[k] = makeAbbr(dict.get(k), ++prefix[k]); // increase the prefix. inside while. should have all string with different abbr.
 	    }
 	}
 	return Arrays.asList(ans);
