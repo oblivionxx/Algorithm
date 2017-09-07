@@ -46,7 +46,7 @@ public class LT230_Kth_Smallest_Element_in_a_BST {
 	return 0;
     }
 
-    // iterative
+    // Recursive.
     int count = 0;
     int result = Integer.MIN_VALUE;
 

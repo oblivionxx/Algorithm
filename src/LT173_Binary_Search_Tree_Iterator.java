@@ -10,7 +10,7 @@ Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
 Tree, Stack, Design
  */
 public class LT173_Binary_Search_Tree_Iterator {
-    // Ineorder
+    // Inorder
     Stack<TreeNode> stk = new Stack<>();
 
     public LT173_Binary_Search_Tree_Iterator(TreeNode root) {

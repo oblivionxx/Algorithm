@@ -43,6 +43,7 @@ public class LT272_Closest_Binary_Search_Tree_Value_II {
 	return new ArrayList<Integer>(queue);
     }
 
+    //O(k) space
     public void helper(TreeNode root, double target, int k, Queue<Integer> queue) {
 	if (root == null) {
 	    return;
@@ -59,5 +60,38 @@ public class LT272_Closest_Binary_Search_Tree_Value_II {
 	    }
 	}
 	helper(root.right, target, k, queue);
+    }
+
+    // use inorder traversal?
+    public List<Integer> closestKValues2(TreeNode root, double target, int k) {
+	Stack<Integer> s1 = new Stack<>(), s2 = new Stack<>();
+	List<Integer> list = new ArrayList<>();
+	inOrder(root, s1, true, target);
+	inOrder(root, s2, false, target);
+	while (list.size() < k) {
+	    if (s1.isEmpty()) {
+		list.add(s2.pop());
+		continue;
+	    }
+	    if (s2.isEmpty()) {
+		list.add(s1.pop());
+		continue;
+	    }
+	    if (Math.abs(target - s1.peek()) > Math.abs(target - s2.peek()))
+		list.add(s2.pop());
+	    else
+		list.add(s1.pop());
+	}
+	return list;
+    }
+
+    public void inOrder(TreeNode root, Stack<Integer> stack, boolean reverse, double target) {
+	if (root == null)
+	    return;
+	inOrder(reverse ? root.right : root.left, stack, reverse, target);
+	if ((target >= root.val && reverse) || (target < root.val && !reverse))
+	    return;
+	stack.push(root.val);
+	inOrder(reverse ? root.left : root.right, stack, reverse, target);
     }
 }

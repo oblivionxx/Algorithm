@@ -34,7 +34,6 @@ public class LT501_Find_Mode_in_Binary_Search_Tree {
 	if (root == null)
 	    return new int[0];
 	inorder(root);
-
 	List<Integer> list = new LinkedList<>();
 	for (int i : map.keySet()) {
 	    if (map.get(i) == max)

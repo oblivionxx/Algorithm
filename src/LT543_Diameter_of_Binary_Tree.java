@@ -22,7 +22,7 @@ public class LT543_Diameter_of_Binary_Tree {
 	int left = maxDepth(root.left);
 	int right = maxDepth(root.right);
 	diameter = Math.max(diameter, left + right); // diameter on the right is
-						     // the subtree diameter now
+						     // the subtree diameter now. use height no need plus 1(count edges).
 	return 1 + Math.max(left, right);
     }
 }
