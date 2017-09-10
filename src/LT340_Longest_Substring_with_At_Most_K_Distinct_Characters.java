@@ -15,9 +15,11 @@ public class LT340_Longest_Substring_with_At_Most_K_Distinct_Characters {
 	    if (count[s.charAt(j)]++ == 0)
 		num++;
 	    if (num > k) {
-		while (--count[s.charAt(i++)] > 0)
-		    ; // count[i]-- until one letter ->0
-		num--;
+		while (--count[s.charAt(i++)] > 0) ; // count[i]-- until one letter ->0
+//		--count[s.charAt(i)];
+//		while (count[s.charAt(i)] > 0)
+//		    i++;
+//		num--;
 	    }
 	    res = Math.max(res, j - i + 1);
 	}
@@ -26,7 +28,7 @@ public class LT340_Longest_Substring_with_At_Most_K_Distinct_Characters {
 
     public static void main(String[] args) {
 	String str = "eceba";
-	System.out.println(lengthOfLongestSubstringKDistinct2(str, 2));
+	System.out.println(lengthOfLongestSubstringKDistinct(str, 2));
     }
 
     public static int lengthOfLongestSubstringKDistinct2(String s, int k) {

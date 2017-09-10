@@ -28,6 +28,7 @@ public class LT325_Maximum_Size_Subarray_Sum_Equals_k {
 		max = i + 1;
 	    else if (map.containsKey(sum - k))
 		max = Math.max(max, i - map.get(sum - k));
+	    
 	    if (!map.containsKey(sum))
 		map.put(sum, i);
 	}

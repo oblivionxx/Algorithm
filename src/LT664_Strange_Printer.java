@@ -33,11 +33,11 @@ public class LT664_Strange_Printer {
 	    dp[i][i] = 1;
 	for (int i = n - 1; i >= 0; --i) {
 	    for (int j = i + 1; j < n; ++j) {
-		dp[i][j] = dp[i + 1][j] + 1;
+		dp[i][j] = dp[i + 1][j] + 1;			//init with maxValue. must print one more time for the letter added at i.
 		char c = cs[i];
 		for (int k = i; k < j; ++k) {
-		    if (cs[k + 1] == c)
-			dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k + 1][j] - 1);
+		    if (cs[k + 1] == c)				//dp[i][k] is subproblem that aa..b..a, it minus the printing needs as soon as it found a same char
+			dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k + 1][j] - 1);	
 		}
 	    }
 	}

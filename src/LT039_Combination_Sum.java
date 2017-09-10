@@ -42,13 +42,8 @@ public class LT039_Combination_Sum {
 	    // will have duplicate results. but leetcode dont check this.
 	    // continue;
 	    elm.add(candidates[i]);
-	    helper(res, elm, candidates, target - candidates[i], i); // each
-								     // number
-								     // can
-								     // be
-								     // used
-								     // infinite
-								     // times
+	    helper(res, elm, candidates, target - candidates[i], i); 
+	    // each number can be used infinite times
 	    elm.remove(elm.size() - 1);
 	}
     }

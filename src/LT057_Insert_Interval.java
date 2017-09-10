@@ -30,14 +30,8 @@ public class LT057_Insert_Interval {
 	    } else { // need to merge elm and newInterval to newInterval
 		int nstart = Math.min(elm.start, newInterval.start);
 		int nend = Math.max(newInterval.end, elm.end);
-		newInterval = new Interval(nstart, nend); // cannot write to
-							  // res.add(new
-							  // Interval(nstart,
-							  // nend))
-							  // if like this,
-							  // cannot pass
-							  // [[1,5]], [2,3]
-							  // case.
+		newInterval = new Interval(nstart, nend); 
+		// cannot write to res.add(new Interval(nstart, nend)) if like this, cannot pass [[1,5]], [2,3] case.
 	    }
 	}
 

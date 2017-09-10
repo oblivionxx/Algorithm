@@ -49,9 +49,8 @@ public class LT288_Unique_Word_Abbreviation {
 	    String abbr = convert(word);
 	    if (!map.containsKey(abbr))
 		return true;
-	    if (map.get(abbr).contains(word) && map.get(abbr).size() == 1) // means
-									   // the
-									   // map.get(abbr).equals(abbr)
+	    if (map.get(abbr).contains(word) && map.get(abbr).size() == 1) 
+		// means the map.get(abbr).equals(abbr)
 		return true;
 	    return false;
 	}

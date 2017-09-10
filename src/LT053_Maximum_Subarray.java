@@ -15,7 +15,7 @@ public class LT053_Maximum_Subarray {
 	if (nums == null || nums.length == 0)
 	    return 0;
 	int local = nums[0], global = nums[0]; // dont write =0.
-	for (int i = 0; i < nums.length; i++) {
+	for (int i = 1; i < nums.length; i++) {
 	    local = Math.max(local + nums[i], nums[i]); // important
 	    global = Math.max(global, local);
 	}

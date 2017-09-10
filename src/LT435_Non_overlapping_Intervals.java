@@ -32,7 +32,7 @@ Greedy
 public class LT435_Non_overlapping_Intervals {
     // https://en.wikipedia.org/wiki/Interval_scheduling#Interval_Scheduling_Maximization
     public int eraseOverlapIntervals(Interval[] intervals) {
-	Arrays.sort(intervals, (a, b) -> a.end - b.end); // sort by end is importaant. eg: [1,4],[2,3],[3,4]
+	Arrays.sort(intervals, (a, b) -> a.end - b.end); // sort by end is important. eg: [1,4],[2,3],[3,4]
 
 	int end = Integer.MIN_VALUE;
 	int count = 0;

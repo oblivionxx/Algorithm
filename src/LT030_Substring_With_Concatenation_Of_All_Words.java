@@ -28,16 +28,14 @@ public class LT030_Substring_With_Concatenation_Of_All_Words {
 
 	int n = words.length, single = words[0].length();
 
-	for (int i = 0; i <= s.length() - n * single; i++) { // loop starting
-							     // index
+	for (int i = 0; i <= s.length() - n * single; i++) {
+	    // loop starting index
 	    HashMap<String, Integer> sliding = new HashMap<>(dict);
 	    for (int j = 0; j < n; j++) {
-		String curWord = s.substring(i + j * single, i + (j + 1) * single); // search
-										    // for
-										    // each
-										    // word
-		if (sliding.containsKey(curWord)) { // update in the sliding
-						    // HashMap
+		String curWord = s.substring(i + j * single, i + (j + 1) * single);
+		// search for each word
+		if (sliding.containsKey(curWord)) {
+		    // update in the sliding HashMap
 		    if (sliding.get(curWord) == 1)
 			sliding.remove(curWord);
 		    else

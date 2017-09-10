@@ -17,18 +17,18 @@ public class LT046_Permutation {
 	return res;
     }
 
-    private void helper(List<List<Integer>> res, List<Integer> tempList, int[] nums) {
-	if (tempList.size() == nums.length) {
-	    res.add(new ArrayList<>(tempList));
+    private void helper(List<List<Integer>> res, List<Integer> elm, int[] nums) {
+	if (elm.size() == nums.length) {
+	    res.add(new ArrayList<>(elm));
 	} else {
 	    for (int i = 0; i < nums.length; i++) { // start from 0. at each
 						    // position put all possible
 						    // num
-		if (tempList.contains(nums[i]))
+		if (elm.contains(nums[i]))
 		    continue; // element already exists, skip
-		tempList.add(nums[i]);
-		helper(res, tempList, nums);
-		tempList.remove(tempList.size() - 1);
+		elm.add(nums[i]);
+		helper(res, elm, nums);
+		elm.remove(elm.size() - 1);
 	    }
 	}
     }

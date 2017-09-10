@@ -62,4 +62,31 @@ public class LT076_Minimum_Window_Substring {
 
 	return s.substring(minLeft, minLeft + minLen);
     }
+    
+    public static String minWindow2(String s, String t) {
+        int[] cnt = new int[256];//char 有256个数
+        for (char c : t.toCharArray()) cnt[c]++;
+        
+        int min = Integer.MAX_VALUE, from = 0, total = t.length();
+        for (int r = 0, l = 0; r < s.length(); r++) {
+            if (cnt[s.charAt(r)] > 0) total--;
+            cnt[s.charAt(r)]--;
+            //if (cnt[s.charAt(r)]-- > 0) total--;
+            while (total == 0) {                    	// total=0 means valid window
+                if (r - l + 1 < min) {			//try to update the min length
+                    min = r - l + 1;
+                    from = l;
+                }
+                ++cnt[s.charAt(l)];
+                if (cnt[s.charAt(l)] > 0) total++;		//aaab, ab
+                l++;
+                //if (++cnt[s.charAt(l++)] > 0) total++;
+            }
+        }
+        return (min == Integer.MAX_VALUE) ? "" : s.substring(from, from + min);
+    }
+    
+    public static void main(String[] args){
+	System.out.println(minWindow2("aaaab","ab"));
+    }
 }
