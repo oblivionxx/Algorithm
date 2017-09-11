@@ -71,7 +71,7 @@ public class LT568_Maximum_Vacation_Days {
 		    }
 		}
 	    }
-	    dp = temp;
+	    dp = temp;				//update the whole array. as repleace dp[i-1] with temp. space optimize. 
 	}
 
 	int max = 0;
