@@ -64,7 +64,7 @@ public class LT494_Target_Sum {
 	    dp[0][sum] = 2;
 	} else {
 	    dp[0][sum - nums[0]] = 1;
-	    dp[0][sum + nums[0]] = 1; // why return dp[len][S+sum] see here. must include the situation to the farthest S+sum/S-sum
+	    dp[0][sum + nums[0]] = 1; // why return dp[len][S+sum] see here. must include the situation to the farthest S+sum/S-sum. offset sum
 	}
 
 	for (int i = 1; i < nums.length; i++) {
@@ -80,7 +80,7 @@ public class LT494_Target_Sum {
 
 	// as given sum can range from -1000 to +1000, we need to add an offset of 1000 to the sum indices (column number) to map all the sums obtained to positive range only.
 	// could init int[][] dp = new int[nums.length][2001] and get dp[nums.length - 1][S + 1000]
-	return dp[nums.length - 1][S + sum];
+	return dp[nums.length - 1][S + sum];		//offset sum.
 
     }
 }
