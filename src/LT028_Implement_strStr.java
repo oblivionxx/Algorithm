@@ -1,4 +1,5 @@
 /*
+
  Implement strStr().
  Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
  */
@@ -64,7 +65,7 @@ public class LT028_Implement_strStr {
 	int m = haystack.length();
 	int n = needle.length();
 	int i = 0;
-	for (i = 0; i <= (m - n); i++) {
+	for (i = 0; i <= (m - n); i++) {				//must be = m-n. eg: "", ""
 	    if (haystack.substring(i).startsWith(needle))
 		return i;
 	}

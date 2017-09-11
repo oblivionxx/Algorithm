@@ -15,8 +15,33 @@
  * Array, Two Pointer, Sort
  */
 public class LT075_Sort_Colors {
-    public void sortColors1(int[] nums) {
-	// 1. counting sort.3-pass. if not require in-place, only need 2-pass,
+    // 2 pass
+    public void sortColors(int[] A) {
+	int[] color = new int[3];
+	for (int i = 0; i < A.length; i++) {
+	    color[A[i]]++;
+	}
+	int i = 0;
+	while (color[0]-- > 0)
+	    A[i++] = 0;
+	while (color[1]-- > 0)
+	    A[i++] = 1;
+	while (color[2]-- > 0)
+	    A[i++] = 2;
+    }
+
+    public void sortColors1(int[] A) {
+        //swap 2 to the end.  swap 0  to begining. use two pointers to track the location
+	//zero is first index after 0s. second is first index before 2s
+        int second=A.length-1, zero=0;
+        for (int i=0; i<=second; i++) {
+            while (A[i]==2 && i<second) swap(A, i, second--);
+            while (A[i]==0 && i>zero) swap(A, i, zero++);
+        }
+    }
+    
+    public void sortColors2(int[] nums) {
+	// 2. counting sort review. 3-pass. if not require in-place, only need 2-pass,
 	// just return B
 	int n = nums.length;
 	int[] B = new int[n];
@@ -40,9 +65,8 @@ public class LT075_Sort_Colors {
 	}
     }
 
-    public void sortColors2(int[] nums) {
-	// 2. swap in place.1-pass. swap 0 to front, 2 to end. using two pointer
-	// to keep the 0s' end and 2s' head.
+    public void sortColors3(int[] nums) {
+	// 3. swap in place.1-pass. 
 	int zero = 0, two = nums.length - 1;
 	int i = 0; // index
 	while (i <= two) {

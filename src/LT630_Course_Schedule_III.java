@@ -28,7 +28,7 @@ public class LT630_Course_Schedule_III {
 	for (int[] c : courses) {
 	    time += c[0]; // add current course to a priority queue
 	    pq.add(c[0]);
-	    if (time > c[1])
+	    if (time > c[1])		//if total time is larger than deadline of current course. 
 		time -= pq.poll(); // If time exceeds, drop the previous course which costs the most time. (That must be the best choice!)
 	}
 	return pq.size();
