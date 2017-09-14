@@ -21,35 +21,24 @@ public class LT360_Sort_Transformed_Array {
     // vertex.
     // if a < 0, the max value is at its vertex.with two pointer from two ends to center, filling result front to end
     public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
-	int[] res = new int[nums.length];
-	int start = 0;
-	int end = nums.length - 1;
-	int i = a >= 0 ? nums.length - 1 : 0;
-	while (start <= end) {
-	    int startNum = getNum(nums[start], a, b, c);
-	    int endNum = getNum(nums[end], a, b, c);
+	int n = nums.length;
+	int[] sorted = new int[n];
+	int i = 0, j = n - 1;
+	int index = a >= 0 ? n - 1 : 0;
+	while (i <= j) {
 	    if (a >= 0) {
-		if (startNum >= endNum) {
-		    res[i--] = startNum;
-		    start++;
-		} else {
-		    res[i--] = endNum;
-		    end--;
-		}
+		sorted[index--] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[i++], a, b, c)
+			: quad(nums[j--], a, b, c);
 	    } else {
-		if (startNum <= endNum) {
-		    res[i++] = startNum;
-		    start++;
-		} else {
-		    res[i++] = endNum;
-		    end--;
-		}
+		sorted[index++] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[j--], a, b, c)
+			: quad(nums[i++], a, b, c);
 	    }
 	}
-	return res;
+	return sorted;
     }
 
-    public int getNum(int x, int a, int b, int c) {
+    private int quad(int x, int a, int b, int c) {
 	return a * x * x + b * x + c;
     }
+
 }

@@ -33,4 +33,6 @@ public class LT280_Wiggle_Sort {
 	    nums[i] = tmp;
 	}
     }
+    
+    // Quick select. combine first half and last half.
 }

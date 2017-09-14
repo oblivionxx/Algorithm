@@ -1,3 +1,5 @@
+import java.util.*;
+
 import common.TreeNode;
 
 /*
@@ -45,6 +47,7 @@ public class LT297_Serialize_and_Deserialize_Binary_Tree {
 
     // Idea: recursive build the tree using the inorder traverse array
     public TreeNode helpDeserial(String[] str, int[] index) {
+//	List<String> test = Arrays.asList(str);
 	String curr = str[index[0]];
 	if (curr.equals("#")) {
 	    index[0]++;
