@@ -23,7 +23,9 @@ public class LT260_Single_Number_III {
 
 	int[] res = new int[2];
 	int a = 0, b = 0;
-	// 令lowbit = xor & -xor，lowbit的含义为xor从低位向高位，第一个非0位所对应的数字
+	// x & (-x) : Returns the rightmost 1 in binary representation of x
+	//x = 10 = (1010)  (-x) = -10 = (0110)  取反+1
+	//x & (-x) = (1010) & (0110) = (0010)
 	int lowbit = xor & -xor;
 	for (int elm : nums) {
 	    if ((elm & lowbit) == lowbit)

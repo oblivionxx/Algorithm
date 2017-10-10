@@ -15,7 +15,7 @@ String
 public class LT165_Compare_Version_Numbers {
     public int compareVersion(String version1, String version2) {
 	// compare length. be careful 1.0=1
-	String[] levels1 = version1.split("\\.");
+	String[] levels1 = version1.split("\\.");		//“.”在正则表达式中有特殊含义，使用时要转义：”\\.”
 	String[] levels2 = version2.split("\\.");
 
 	int length = Math.max(levels1.length, levels2.length);

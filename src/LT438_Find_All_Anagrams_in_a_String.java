@@ -34,6 +34,35 @@ The substring with start index = 2 is "ab", which is an anagram of "ab".
 Hash Table
  */
 public class LT438_Find_All_Anagrams_in_a_String {
+    public List<Integer> findAnagrams2(String s, String p) {
+        List<Integer> res = new ArrayList<>();
+        if(s.length()<p.length()) return res;
+        int m = s.length(), n = p.length();
+        int[] ss = new int[26];
+        int[] pp = new int[26];
+        for(int i=0;i<n;i++){
+            ss[s.charAt(i)-'a']++;
+            pp[p.charAt(i)-'a']++;
+        }
+        
+        for(int i=n;i<m;i++){
+            if(compare(ss, pp)) res.add(i-n);
+            ss[s.charAt(i)-'a']++;
+            ss[s.charAt(i-n)-'a']--;
+        }
+        if(compare(ss, pp)) res.add(m-n);
+        return res;
+        
+    }
+    
+    public boolean compare(int[] a, int[] b){
+        for(int i=0;i<26;i++){
+            if(a[i]!=b[i])
+                return false;
+        }
+        return true;
+    }
+    
     public List<Integer> findAnagrams(String s, String p) {
 	// sliding window. update count
 	List<Integer> list = new ArrayList<>();

@@ -34,7 +34,7 @@ public class LT368_Largest_Divisible_Subset {
 	    }
 	    if (dp[i] >= max) {
 		max = dp[i];
-		index = i; // keep the max index
+		index = i; // keep the max index!
 	    }
 	}
 

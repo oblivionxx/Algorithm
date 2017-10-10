@@ -10,7 +10,6 @@ public class LT214_Shortest_Palindrome {
     // 1. init idea is to calculate longest palidrome prefix.
     /*
      * It's O(n). Pretty easy to prove using Master Method. Given T(n) <= aT(n/b) + O(n^d), T(n)= O(n^d) if a<b^d
-     * 
      * Here a=1, b is not a constant but 1<b<n, and d=1. Thus a<b^d holds, thus T(n) = O(n). EOF
      */
     public static String shortestPalindrome(String s) {

@@ -35,7 +35,7 @@ public class LT486_Predict_the_Winner {
     // dp[i][i] means only one coin and we pick firstly, dp[i][i+1] means there are two coins, we pick the larger one.
     // dp[i][j] = max( nums[i] + dp[i + 1][j], dp[i][j - 1] + nums[j]), But dp[i + 1][j] and dp[i][j - 1] depends on the move that our opponent make.
     // dp[i+1][j] = min(dp[i + 1][j - 1], dp[i + 2][j]) //opponent pick larger one then smaller one for us.
-    // dp[i][j] = max(min(dp[i + 1][j - 1], dp[i + 2][ j]) + nums[i], min (dp[i][j - 2], dp[i + 1][ j - 1]) + nums[j]}) .
+    // dp[i][j] = max(min(dp[i + 1][j - 1], dp[i + 2][ j]) + nums[i], min(dp[i][j - 2], dp[i + 1][ j - 1]) + nums[j]}) .
     // sub problem is from i=j and extend to two sides. so loop j=0~len, loop i=j-1~0
     public boolean PredictTheWinner2(int[] nums) {
 	int n = nums.length, sum = 0;

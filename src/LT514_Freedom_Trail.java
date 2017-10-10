@@ -32,20 +32,20 @@ public class LT514_Freedom_Trail {
 	int m = key.length();
 	int[][] dp = new int[m + 1][n];
 
-	for (int i = m - 1; i >= 0; i--) {
+	for (int i = m - 1; i >= 0; i--) {				//逆向填入
 	    for (int j = 0; j < n; j++) {
 		// dp[i][j] = min steps to find key(i) with ring(j) at the start position. to deal with same letter on the ring. not the current shortest step with be the global best
 		dp[i][j] = Integer.MAX_VALUE;
-		for (int k = 0; k < n; k++) {
-		    if (ring.charAt(k) == key.charAt(i)) {
+		for (int k = 0; k < n; k++) {				
+		    if (ring.charAt(k) == key.charAt(i)) {		//rotate kth ring to 12h.
 			int diff = Math.abs(j - k);
 			int step = Math.min(diff, n - diff);
-			dp[i][j] = Math.min(dp[i][j], step + dp[i + 1][k]);
+			dp[i][j] = Math.min(dp[i][j], step + dp[i + 1][k]);  	//正向思考.下一轮找i+1时,k就在12点处. 
 		    }
 		}
 	    }
 	}
 
-	return dp[0][0] + m;
+	return dp[0][0] + m;		//press button m times.
     }
 }

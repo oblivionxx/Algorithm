@@ -63,15 +63,15 @@ public class LT312_Burst_Ballons {
 	    values[i] = nums[i - 1];
 	}
 
-	return DP(1, n);
+	return helper(1, n);
     }
 
-    public int DP(int i, int j) {
+    public int helper(int i, int j) {
 	if (dp[i][j] > 0) {// memorization
 	    return dp[i][j];
 	}
 	for (int x = i; x <= j; x++) { // cut at x between [i,j]
-	    dp[i][j] = Math.max(dp[i][j], DP(i, x - 1) + values[i - 1] * values[x] * values[j + 1] + DP(x + 1, j));
+	    dp[i][j] = Math.max(dp[i][j], helper(i, x - 1) + values[i - 1] * values[x] * values[j + 1] + helper(x + 1, j));
 	}
 	return dp[i][j];
     }

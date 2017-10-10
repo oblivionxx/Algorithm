@@ -43,7 +43,7 @@ public class LT671_Second_Minimum_Node_In_a_Binary_Tree {
 	if (root.val < first) {
 	    second = first;
 	    first = root.val;
-	} else if (root.val < second && root.val > first) {
+	} else if (root.val < second && root.val > first) {			//>first take care with the same value.
 	    second = root.val;
 	}
 	inorder(root.right);

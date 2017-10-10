@@ -54,4 +54,29 @@ public class LT071_Simplify_Path {
 	return res;
 
     }
+    
+    public String simplifyPath2(String path) {
+        String[] tokens = path.split("/+");
+        Stack<String> stk = new Stack<>();
+        for(String s: tokens){
+            if(s.equals(".") || s.length()==0) continue;
+            if(s.equals("..")){
+                if(!stk.isEmpty()) stk.pop();
+            }else
+                stk.push(s);
+        }
+        
+        if(stk.isEmpty()) return "/";
+        Stack<String> rev = new Stack<>();
+        while(!stk.isEmpty()){
+            rev.push("/"+stk.pop());
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        while(!rev.isEmpty()){
+            sb.append(rev.pop());
+        }
+        
+        return sb.toString();
+    }
 }

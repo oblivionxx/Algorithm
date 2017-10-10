@@ -26,19 +26,13 @@ public class LT206_Reverse_Linked_List {
 
     // 2. iterative. recheck
     public ListNode reverseList2(ListNode head) {
-	if (head == null || head.next == null)
-	    return head;
-
-	ListNode next = null;
-	ListNode cur = null;
-
-	while (head != null) {
-	    next = head.next;
-	    head.next = cur;
-	    cur = head;
-	    head = next;
-	}
-
-	return cur;
+        ListNode pre = null, cur = head;
+        while(cur!=null){
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
 }

@@ -65,7 +65,7 @@ public class LT075_Sort_Colors {
 	}
     }
 
-    public void sortColors3(int[] nums) {
+    public static void sortColors3(int[] nums) {
 	// 3. swap in place.1-pass. 
 	int zero = 0, two = nums.length - 1;
 	int i = 0; // index
@@ -81,9 +81,14 @@ public class LT075_Sort_Colors {
 	}
     }
 
-    private void swap(int[] nums, int i, int j) {
+    private static void swap(int[] nums, int i, int j) {
 	int tmp = nums[i];
 	nums[i] = nums[j];
 	nums[j] = tmp;
+    }
+    
+    public static void main(String[] args){
+	int[] a = {0,1,0,2,2,2,1};
+	sortColors3(a);
     }
 }

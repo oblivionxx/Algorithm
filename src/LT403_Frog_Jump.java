@@ -92,4 +92,25 @@ public class LT403_Frog_Jump {
 	}
 	return map.get(stones[stones.length - 1]).size() > 0;
     }
+    
+    public boolean canCross3(int[] stones) {
+        int k = 0;
+        return helper(stones, 0, k);
+    }
+
+    private boolean helper(int[] stones, int index, int k) {
+        //目前已经达到了
+        if (index == stones.length - 1) return true;
+        //选择k的步伐，范围k-1到k
+        for (int i = k - 1; i <= k + 1; i++) {
+            int nextJump = stones[index] + i;
+            //看接下来有没有合适的石头可以跳过去，从接下来的位置中查找有没有nextJump的位置，有的话返回石头的编号
+            int nextPosition = Arrays.binarySearch(stones, index + 1, stones.length, nextJump);
+            if (nextPosition > 0) {
+                if (helper(stones, nextPosition, i)) return true;
+        }
+    }
+
+    return false;
+}
 }

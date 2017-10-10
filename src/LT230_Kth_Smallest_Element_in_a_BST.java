@@ -64,4 +64,23 @@ public class LT230_Kth_Smallest_Element_in_a_BST {
 	    result = root.val;
 	traverse(root.right, k);
     }
+    
+    //Follow up: 
+    public int kthSmallest3(TreeNode root, int k) {
+        int left = nodeCount(root.left);  // this value can be saved in the root node
+        if(left + 1 == k) {
+            return root.val;
+        } else if (left + 1 < k) {
+            return kthSmallest3(root.right, k - left - 1);
+        } else {
+            return kthSmallest3(root.left, k);
+        }
+    }
+    
+    private int nodeCount(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        return 1 + nodeCount(root.left) + nodeCount(root.right);
+    }
 }

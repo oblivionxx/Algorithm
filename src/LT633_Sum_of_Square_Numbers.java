@@ -19,6 +19,24 @@ public class LT633_Sum_of_Square_Numbers {
 		return true;
 	}
 	return false;
-
+    }
+    
+    //Linear.
+    public boolean judgeSquareSum2(int c) {
+        int root = (int) Math.sqrt(c);
+        int left = 0, right = root;
+        while (left <= right) {
+            if (left * left + right * right < c) {
+                left++;
+            }
+            else if (left * left + right * right > c) {
+                right--;
+            }
+            else {
+                return true;
+            }
+        }
+        return false;
+        
     }
 }

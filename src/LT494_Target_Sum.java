@@ -33,7 +33,7 @@ public class LT494_Target_Sum {
     }
 
     public void helper(int[] nums, int S, int index) {
-	if (index >= nums.length) {
+	if (index == nums.length) {
 	    if (S == 0)
 		res++;
 	    return;

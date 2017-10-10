@@ -100,7 +100,7 @@ public class LT146_LRU_Cache {
 
     // Use API
     public class LRUCache {
-	private LinkedHashMap<Integer, Integer> map;
+	private LinkedHashMap<Integer, Integer> map;	//treemap
 	private final int CAPACITY;
 
 	public LRUCache(int capacity) {

@@ -12,6 +12,19 @@ If you have figured out the O(n) solution, try coding another solution of which 
 Array, Two Pointer, Binary Search
  */
 public class LT209_Minimum_Size_Subarray_Sum {
+    public int minSubArrayLen3(int s, int[] nums) {
+        if(nums.length==0||nums==null) return 0;
+        int j=0,sum=0,min=Integer.MAX_VALUE;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            while(sum>=s){
+                min=Math.min(min,i-j+1);
+                sum-=nums[j++];
+            }
+        }
+        return min==Integer.MAX_VALUE? 0:min;
+    }
+    
     // O(n) two pointer, move left or right border if window sum is larger or less than the target
     public int minSubArrayLen(int s, int[] nums) {
 	if (nums == null || nums.length == 0)

@@ -138,11 +138,11 @@ public class LT642_Design_Search_Autocomplete_System {
 	    return new ArrayList<>();
 	}
 	prefix += c;
-	List<TrieNode> candicates = bfs(search(root, prefix));
+	List<TrieNode> candicates = bfs(search(root, prefix));			//bfs all the children nodes that isWord
 	Collections.sort(candicates, new Comparator<TrieNode>() {
 	    @Override
 	    public int compare(TrieNode o1, TrieNode o2) {
-		return o2.times != o1.times ? o2.times - o1.times : o1.str.compareTo(o2.str);
+		return o2.times != o1.times ? o2.times - o1.times : o1.str.compareTo(o2.str);		//order by times.
 	    }
 	});
 	List<String> ans = new ArrayList<>();

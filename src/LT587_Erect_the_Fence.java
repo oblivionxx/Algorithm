@@ -25,22 +25,21 @@ Input points have NO order. No order required for output.
 Geometry
  */
 public class LT587_Erect_the_Fence {
-    // There are couple of ways to solve Convex Hull problem.
+    // There are couple of ways to solve Convex Hull problem. http://blog.csdn.net/u014688145/article/details/72200018
     // https://en.wikipedia.org/wiki/Convex_hull_algorithms
     // The following code implements Gift wrapping aka Jarvis march algorithm
-    // https://en.wikipedia.org/wiki/Gift_wrapping_algorithm and also added
-    // logic to handle case of multiple Points in a line because original Jarvis
+    // logic to handle case of multiple Points in a line because original Jarvis O(nH)
+    // For every point on the hull we examine all the other points to determine the next point. Here n is number of input points and H is number of output or hull points ($$H ≤ n).
     // march algorithm assumes no three points are collinear.
     // It also uses knowledge in this problem
-    // https://leetcode.com/problems/convex-polygon . Disscussion:
-    // https://discuss.leetcode.com/topic/70706/beyond-my-knowledge-java-solution-with-in-line-explanation
+    // https://leetcode.com/problems/convex-polygon . 
     public List<Point> outerTrees(Point[] points) {
 	Set<Point> result = new HashSet<>();
 
 	// Find the leftmost point
 	Point first = points[0];
 	int firstIndex = 0;
-	for (int i = 1; i < points.length; i++) {
+	for (int i = 1; i < points.length; i++) {		//point with smallest x must be a point on the fence. same for maximum x and y.
 	    if (points[i].x < first.x) {
 		first = points[i];
 		firstIndex = i;
@@ -48,28 +47,28 @@ public class LT587_Erect_the_Fence {
 	}
 	result.add(first);
 
-	Point cur = first;
+	Point cur = first;				//Point A
 	int curIndex = firstIndex;
 	do {
-	    Point next = points[0];
+	    Point next = points[0];			//Point C. pick any.
 	    int nextIndex = 0;
-	    for (int i = 1; i < points.length; i++) {
-		if (i == curIndex)
+	    for (int i = 1; i < points.length; i++) {	//Point B
+		if (i == curIndex)			//skip current point
 		    continue;
-		int cross = crossProductLength(cur, points[i], next);
-		if (nextIndex == curIndex || cross > 0 ||
-			// Handle collinear points
+		int cross = crossProductLength(cur, points[i], next);	//AB, BC clockwise, cross>0, meaning B在AC连线的右下侧.所以next应选择B而不是C
+		if (nextIndex == curIndex || cross > 0 ||		//next is localmax.
+			// Handle collinear points, use the farthest one
 			(cross == 0 && distance(points[i], cur) > distance(next, cur))) {
-		    next = points[i];
+		    next = points[i];					
 		    nextIndex = i;
 		}
 	    }
 	    // Handle collinear points
 	    for (int i = 0; i < points.length; i++) {
-		if (i == curIndex)
+		if (i == curIndex)			//skip current point.
 		    continue;
-		int cross = crossProductLength(cur, points[i], next);
-		if (cross == 0) {
+		int cross = crossProductLength(cur, points[i], next);	//check any other node collinear with next.
+		if (cross == 0) {					//add all 
 		    result.add(points[i]);
 		}
 	    }
@@ -77,11 +76,12 @@ public class LT587_Erect_the_Fence {
 	    cur = next;
 	    curIndex = nextIndex;
 
-	} while (curIndex != firstIndex);
+	} while (curIndex != firstIndex);		//end when loop back to 1st node
 
 	return new ArrayList<Point>(result);
     }
 
+    //This function returns a negative value if the point B is more counterclockwise to A than the point C
     private int crossProductLength(Point A, Point B, Point C) {
 	// Get the vectors' coordinates.
 	int BAx = A.x - B.x;

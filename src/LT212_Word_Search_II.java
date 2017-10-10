@@ -56,7 +56,7 @@ public class LT212_Word_Search_II {
 		res.add(str);
 	    }
 
-	    visited[x][y] = true;
+	    visited[x][y] = true;			//注意位置.不要放在startswith 前面
 	    dfs(board, visited, str, x - 1, y, trie);
 	    dfs(board, visited, str, x + 1, y, trie);
 	    dfs(board, visited, str, x, y - 1, trie);
